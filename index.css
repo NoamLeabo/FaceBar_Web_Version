@@ -1,0 +1,24 @@
+body{
+    background-color: #e9ecef;
+}
+.list-group-item{
+    border: 0;
+    background-color: transparent;
+}
+.container-fluid{
+    padding: 0;
+}
+
+.bi{
+    width: 30px;
+    fill: blue !important;
+}
+#faceboockimg{
+    width: 30px;
+    fill: blue !important;
+    font-size:35px;
+    padding-left: 15px;
+}
+.nav-icon{
+    padding: 15px 40px;
+}
