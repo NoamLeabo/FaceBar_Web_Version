@@ -37,7 +37,7 @@ input[type="display name"]{
     box-sizing: border-box;
     padding: 20px;
     border-radius: 1rem;
-    border: solid #dddfe2;
+    border: .1rem solid #dddfe2;;
 }
 input[type="name1"]{
     margin-top: 17px;
@@ -45,7 +45,7 @@ input[type="name1"]{
     box-sizing: border-box;
     padding: 20px;
     border-radius: 1rem;
-    border: solid #dddfe2;
+    border: .1rem solid #dddfe2;
 
 }
 input[type="name2"]{
@@ -54,7 +54,7 @@ input[type="name2"]{
     padding: 20px;
     box-sizing: border-box;
     border-radius: 1rem;
-    border: solid #dddfe2;
+    border: .1rem solid #dddfe2;
 }
 input[type="password"]{
     margin-top: 10px;
@@ -62,7 +62,7 @@ input[type="password"]{
     box-sizing: border-box;
     padding: 20px;
     border-radius: 1rem;
-    border: solid #dddfe2;
+    border: .1rem solid #dddfe2;
 
 }
 input[type="password_check"]{
@@ -71,7 +71,9 @@ input[type="password_check"]{
     box-sizing: border-box;
     padding: 20px;
     border-radius: 1rem;
-    border: solid #dddfe2;
+    border: .1rem solid #dddfe2;
+    border-bottom: lightgray .1rem solid;
+
 
 }
 .subscribe_btn{
@@ -90,7 +92,7 @@ input[type="password_check"]{
     margin-left: 50px;
 }
 input::placeholder{
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 .sign{
     font-size: 30px;
@@ -102,4 +104,6 @@ input::placeholder{
     margin-top: 4px;
     font-size: 1.1rem;
     text-align: center;
+    border-bottom: lightgray .1rem solid;
+    padding-bottom: 10px;
 }
