@@ -1,4 +1,3 @@
-import SubscribeButton from './SubscribeButton';
 import InputBox from './InputBox';
 import './SubscribeContainer.css';
 function SubscribeContainer() {
