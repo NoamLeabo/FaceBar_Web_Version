@@ -1,0 +1,45 @@
+input[type="display name"]{
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 1rem;
+    border: .1rem solid #dddfe2;;
+}
+input[type="firstName"]{
+    margin-top: 17px;
+    width: 46%;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 1rem;
+    border: .1rem solid #dddfe2;
+
+}
+input[type="lastName"]{
+    width: 46.5%;
+    margin-left: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    border: .1rem solid #dddfe2;
+}
+input[type="password"]{
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 1rem;
+    border: .1rem solid #dddfe2;
+
+}
+input[type="password_check"]{
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 1rem;
+    border: .1rem solid #dddfe2;
+    border-bottom: lightgray .1rem solid;
+
+
+}
