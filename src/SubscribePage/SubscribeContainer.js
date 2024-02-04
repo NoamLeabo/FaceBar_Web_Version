@@ -1,4 +1,4 @@
-import Buttons from './Buttons';
+import SubscribeButton from './SubscribeButton';
 import InputBox from './InputBox';
 import './SubscribeContainer.css';
 function SubscribeContainer() {
@@ -12,7 +12,6 @@ function SubscribeContainer() {
             </div>
             <div className="subscribedetails">
                 <InputBox />
-                <Buttons />
             </div>
 
         </div>
