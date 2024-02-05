@@ -2,6 +2,7 @@ import './InputBox.css'
 import SubscribeButton from './SubscribeButton';
 import { useRef } from 'react';
 import React from 'react';
+// input fields for the user to sign up
 function InputBox() {
     // hook for all the input fields
     const fname = useRef(null);
@@ -22,6 +23,9 @@ function InputBox() {
                 <br></br>
             </form>
                 <SubscribeButton fname={fname} lname={lname} dname={dname} passw={passw}/>
+            <div className="exist_acc">
+                <a href="" className="acc">Already have an account?</a>
+            </div>
         </div>
         
     );

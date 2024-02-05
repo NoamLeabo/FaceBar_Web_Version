@@ -1,5 +1,6 @@
 import InputBox from './InputBox';
 import './SubscribeContainer.css';
+// container for the input fields and the sign up button
 function SubscribeContainer() {
     return (
         <div className="subscribecontainer">

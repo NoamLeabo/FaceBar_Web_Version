@@ -1,4 +1,5 @@
 import './FoobarText.css'
+// simple text to show on the screen
 function FoobarText() {
   return (
     <div className="FoobarText">

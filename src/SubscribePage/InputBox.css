@@ -40,6 +40,15 @@ input[type="password_check"]{
     border-radius: 1rem;
     border: .1rem solid #dddfe2;
     border-bottom: lightgray .1rem solid;
+}
+.exist_acc{
+margin-top: 10px;
+}
+.acc{
+    font-size: 1.1rem;
+    text-align: center;
 
-
+    color: #1877f2;
+    margin-left: 20%;
+    margin-bottom: 10%;
 }
