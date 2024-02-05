@@ -1,7 +1,7 @@
 import './App.css';
 import InfoBox from './InfoBox';
-import HLineTextBlock from './HLineTextBlock';
-import SLineTextBlock from './SLineTextBlock';
+import MainTextBlock from './MainTextBlock';
+import SLineTextBlock from './SubTextBlock';
 
 function App() {
   return (
@@ -9,10 +9,9 @@ function App() {
     <div className="container">
       {/* Creating a row in which we will be inserting Col's */}
       <div className="row">
-        {/* Creating a first Col' in which we will write our logo and some description */}
+        {/* Creating a first Col' -Main_Text_Section- in which we will write our logo and some description */}
         
-        {/* Logo */}
-        <HLineTextBlock />
+        <MainTextBlock />
 
         {/* Creating a second Col' in which we will have the login-Box */}
         <InfoBox />

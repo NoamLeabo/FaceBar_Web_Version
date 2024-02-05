@@ -10,7 +10,7 @@ function InfoBox() {
             {/* Creating the card-body */}
             <div className="card-body">
               {/* Putting the 'Username' input-Box */}
-                <InputGetter type="text" text="Username or Email"/>
+              <InputGetter type="text" text="Username or Email"/>
               {/* Putting the 'Password' input-Box */}
               <InputGetter type="password" text="Password"/>
               {/* Creating a Log-in btn */}

@@ -1,7 +1,7 @@
-import HLStyle from "./HLineTextBlock.css";
-import SLineTextBlock from "./SLineTextBlock";
+import HLStyle from "./MainTextBlock.css";
+import SubTextBlock from "./SubTextBlock";
 
-function HLineTextBlock(params) {
+function MainTextBlock(params) {
   return (
     <>
     <div className="col-xl-1 col-lg-1 col-md-1 col-sm-3 col-xs-5"></div>
@@ -11,11 +11,11 @@ function HLineTextBlock(params) {
       </div>
 
       {/* Description */}
-      <SLineTextBlock text={"Connect with foo and the hello-world"} />
-      <SLineTextBlock text={"around you on FaceBar."} />
+      <SubTextBlock text={"Connect with foo and the hello-world"} />
+      <SubTextBlock text={"around you on FaceBar."} />
     </div>
     </>
   );
 }
 
-export default HLineTextBlock;
+export default MainTextBlock;
