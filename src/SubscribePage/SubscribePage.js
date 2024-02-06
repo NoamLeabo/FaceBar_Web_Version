@@ -1,12 +1,12 @@
 import React from "react";
 import "./SubscribePage.css"
 import SubscribeContainer from "./SubscribeContainer";
-import FoobarText from "./FoobarText";
+import MainTextRegister from "./MainTextRegister";
 
 function SubscribePage(){
     return(
     <div className="Subscribe">
-        <FoobarText/>
+        <MainTextRegister/>
         <SubscribeContainer/>
     </div>
     )

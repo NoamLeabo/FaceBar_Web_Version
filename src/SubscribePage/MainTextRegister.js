@@ -1,6 +1,6 @@
-import './FoobarText.css'
+import './MainTextRegister.css'
 // simple text to show on the screen
-function FoobarText() {
+function MainTextRegister() {
   return (
     <div className="FoobarText">
         <div className="foobar">
@@ -9,4 +9,4 @@ function FoobarText() {
     </div>
   );
 }
-export default FoobarText;
+export default MainTextRegister;
