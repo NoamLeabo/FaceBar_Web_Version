@@ -1,6 +1,6 @@
 
 import './SubscribeContainer.css';
-import Test from './RegisterBox';
+import RegisterBox from './RegisterBox';
 // container for the input fields and the sign up button
 function SubscribeContainer() {
     return (
@@ -12,7 +12,7 @@ function SubscribeContainer() {
                 It's quick and easy.
             </div>
             <div className="subscribedetails">
-                <Test />
+                <RegisterBox />
             </div>
 
         </div>
