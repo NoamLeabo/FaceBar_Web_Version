@@ -1,8 +1,9 @@
-import btnstyle from "./Btn.css";
-function TestBtn({text, id, className, clicked}) {
+import BStyle from "./Btn.css";
+
+function Btn({text, id, className, clicked}) {
     return(
         <a href="#" className={className} onClick={clicked} id={id}>{text}</a>
     )
 }
 
-export default TestBtn;
+export default Btn;

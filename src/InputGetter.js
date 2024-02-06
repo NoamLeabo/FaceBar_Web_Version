@@ -2,7 +2,7 @@ import React from "react";
 
 function InputGetter({ type, text, onChange }) {
   return (
-
+    
     <div className="input-group mb-3">
       <input
         type={type}
@@ -16,4 +16,4 @@ function InputGetter({ type, text, onChange }) {
   );
 }
 
-export default InputGetter;
+export default InputGetter;
