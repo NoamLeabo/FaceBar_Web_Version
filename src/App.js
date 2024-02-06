@@ -1,7 +1,7 @@
 import './App.css';
-import InfoBox from './InfoBox';
-import MainTextBlock from './MainTextBlock';
-import SLineTextBlock from './SubTextBlock';
+import LoginBox from './loginPage/LoginBox';
+import MainTextBlock from './loginPage/MainTextBlock';
+import SLineTextBlock from './loginPage/SubTextBlock';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <MainTextBlock />
 
         {/* Creating a second Col' in which we will have the login-Box */}
-        <InfoBox />
+        <LoginBox />
 
       </div>
 

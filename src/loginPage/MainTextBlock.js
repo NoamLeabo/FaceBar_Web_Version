@@ -1,7 +1,7 @@
 import HLStyle from "./MainTextBlock.css";
 import SubTextBlock from "./SubTextBlock";
 
-function MainTextBlock(params) {
+function MainTextBlock() {
   return (
     <>
     <div className="col-xl-1 col-lg-1 col-md-1 col-sm-3 col-xs-5"></div>
