@@ -21,6 +21,7 @@ function InputBox() {
                 <br></br>
                 <input type="password_check" placeholder="Confirm Password" />
                 <br></br>
+                <input type="file" id="picture" accept="image/*"/>
             </form>
                 <SubscribeButton fname={fname} lname={lname} dname={dname} passw={passw}/>
             <div className="exist_acc">

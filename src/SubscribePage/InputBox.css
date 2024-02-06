@@ -3,7 +3,7 @@ input[type="display name"]{
     width: 100%;
     box-sizing: border-box;
     padding: 20px;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     border: .1rem solid #dddfe2;;
 }
 input[type="firstName"]{
@@ -11,16 +11,15 @@ input[type="firstName"]{
     width: 46%;
     box-sizing: border-box;
     padding: 20px;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     border: .1rem solid #dddfe2;
-
 }
 input[type="lastName"]{
     width: 46.5%;
-    margin-left: 20px;
+    margin-left: 26px;
     padding: 20px;
     box-sizing: border-box;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     border: .1rem solid #dddfe2;
 }
 input[type="password"]{
@@ -28,7 +27,7 @@ input[type="password"]{
     width: 100%;
     box-sizing: border-box;
     padding: 20px;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     border: .1rem solid #dddfe2;
 
 }
@@ -37,7 +36,7 @@ input[type="password_check"]{
     width: 100%;
     box-sizing: border-box;
     padding: 20px;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     border: .1rem solid #dddfe2;
     border-bottom: lightgray .1rem solid;
 }
@@ -51,4 +50,21 @@ margin-top: 10px;
     color: #1877f2;
     margin-left: 20%;
     margin-bottom: 10%;
+}
+
+input::file-selector-button{
+    background-color: #1877f2;
+    color: white;
+    padding: 7px;
+    width: 50%;
+    display: block; 
+    margin-top: 20px;
+    text-align: center;   
+    justify-content: center;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    margin-left: 100px;
 }

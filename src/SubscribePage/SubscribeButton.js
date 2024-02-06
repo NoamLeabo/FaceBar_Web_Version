@@ -18,7 +18,7 @@ function SubscribeButton({fname, lname, dname, passw}) {
         alert(subscriber.passw.current.value);
     }
     return (
-        // oncklick funct to do when sign up is clicked
+        // oncklick func to do when sign up is clicked
         <div className='subsc'>
             <button className="subscribe_btn" onClick={submit}><h2>Sign Up</h2></button> {
         }

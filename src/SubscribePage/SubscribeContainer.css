@@ -2,7 +2,7 @@
     border: white .3rem solid;
     border-radius: 1rem;
     background-color: white;
-    height: 30rem;
+    height: 34rem;
     width: 23rem;
     margin-top: 15px;
     padding: 1rem;
@@ -24,3 +24,4 @@ input::placeholder{
     border-bottom: lightgray .1rem solid;
     padding-bottom: 10px;
 }
+
