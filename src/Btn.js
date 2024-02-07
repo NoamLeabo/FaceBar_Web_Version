@@ -1,8 +1,11 @@
 import BStyle from "./Btn.css";
+import { Link } from "react-router-dom";
 
 function Btn({text, id, className, clicked, linking}) {
     return(
-        <a href={linking} className={className} onClick={clicked} id={id}>{text}</a>
+        <Link to={linking}>
+        <a className={className} onClick={clicked} id={id}>{text}</a>
+        </Link>
     )
 }
 
