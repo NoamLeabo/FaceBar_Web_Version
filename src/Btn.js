@@ -1,8 +1,8 @@
 import BStyle from "./Btn.css";
 
-function Btn({text, id, className, clicked}) {
+function Btn({text, id, className, clicked, linking}) {
     return(
-        <a href="#" className={className} onClick={clicked} id={id}>{text}</a>
+        <a href={linking} className={className} onClick={clicked} id={id}>{text}</a>
     )
 }
 

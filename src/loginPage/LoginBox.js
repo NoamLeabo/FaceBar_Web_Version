@@ -49,11 +49,11 @@ function LoginBox() {
               {/* Creating a Log-in btn */}
               <Btn clicked={clicked} className={"fw-bolder btn"} id={"logInBtn"} text={"Log In"}/>
               {/* Adding a 'forgot password?' linker */}
-              <a href="#" className="text-reset" style={{ display: 'block', marginTop: '10px' }}>Forgot password?</a>
+              <a href="#" className="" style={{ display: 'block', marginTop: '10px' }}>Forgot password?</a>
               {/* Adding a visual divider */}
               <hr style={{ margin: '10px 0' }} />
               {/* Adding a 'create a new account' btn */}
-              <Btn className={"fw-bolder btn"} id={"cNewBtn"} text={"Create new account"}/>
+              <Btn linking={"/details"} className={"fw-bolder btn"} id={"cNewBtn"} text={"Create new account"}/>
             </div>
           </div>
           {/* Adding some motivating text */}

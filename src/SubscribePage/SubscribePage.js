@@ -5,10 +5,13 @@ import MainTextRegister from "./MainTextRegister";
 
 function SubscribePage(){
     return(
+    <>
     <div className="Subscribe">
         <MainTextRegister/>
         <SubscribeContainer/>
     </div>
+    <hr style={{ margin: "700px 0" }} />
+    </>
     )
     
 };

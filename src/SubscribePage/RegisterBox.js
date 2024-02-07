@@ -1,7 +1,7 @@
 import InputGetter from "../InputGetter";
 import { useEffect, useState } from "react";
-import usersInfo from "./users.json";
-import Btn from "../Button";
+import usersInfo from "../users.json";
+import Btn from "../Btn";
 function RegisterBox() {
   
   const [newSignning, setNewSignning] = useState({ name: "", password: "" }); // Define entry state
@@ -52,7 +52,7 @@ function RegisterBox() {
             <br></br>
             <input type="file" id="picture" accept="image/*"/>
         </form>
-        <Btn text="Sign Up" id="cNewBtn" className="fw-bolder btn" clicked={clicked} />
+        <Btn linking={"/"} text="Sign Up" id="cNewBtn" className="fw-bolder btn" clicked={clicked} />
         <div className="exist_acc">
             <a href="" className="acc">Already have an account?</a>
         </div>
