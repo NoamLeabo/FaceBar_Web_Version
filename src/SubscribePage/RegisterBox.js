@@ -63,8 +63,8 @@ function RegisterBox({setActiveUsers, activeUsers}) {
             <InputGetter type="password" text="Confirm Password" onChange={setConfirmPass} />
             <br></br>
             <input type="file" id="picture" accept="image/*"/>
-        
-        <Btn linking={"/"} text="Sign Up" id="cNewBtn" className="fw-bolder btn" clicked={clicked} />
+
+        <Btn text="Sign Up" id="cNewBtn" className="fw-bolder btn" clicked={clicked} />
         </form>
         <div className="exist_acc">
             <a href="#" className="acc">Already have an account?</a>
