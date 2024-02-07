@@ -1,46 +1,58 @@
 import InputGetter from "../InputGetter";
-import { useEffect, useState } from "react";
-import usersInfo from "./users.json";
-import Btn from "../Button";
-function RegisterBox() {
+import RBStyle from "./RegisterBox.css"
+import { useEffect, useState, useRef} from "react";
+import { useNavigate } from "react-router-dom";
+import Btn from "../Btn";
+function RegisterBox({setActiveUsers, activeUsers}) {
+  const navigate = useNavigate();
+
+    
+  const uName = useRef('');
+  const uLName = useRef('');
+  const uFName = useRef('');
+  const uCPass = useRef('');
+  const uPassword = useRef('');
+
+  const setUsername = function(newUsername) {
+    uName.current = newUsername;
+  }
+  const setPassword = function(newPassword) {
+    uPassword.current = newPassword;
+  }
   
-  const [newSignning, setNewSignning] = useState({ name: "", password: "" }); // Define entry state
-
-  const [users, setUsers] = useState(usersInfo); 
-
-  const [fName, setFName] = useState(""); // State for username
-  const [password, setPassword] = useState(""); // State for password
-  const [username, setUsername] = useState(""); // State for password
-  const [confirmPass, setConfirmPass] = useState(""); // State for password
-  const [lname, setLName] = useState(""); // State for password
-
+  const setFName = function(newFName) {
+    uFName.current = newFName;
+  }
   
-  useEffect(() => {
-    checkIfValid(newSignning);
-  }, [newSignning]);
+  const setLName = function(newLName) {
+    uLName.current = newLName;
+  }
+  
+  const setConfirmPass = function(newCPass) {
+    uCPass.current = newCPass;
+  }
 
   const clicked = () => {
-    console.log("clicked");
-    setNewSignning({ user: username, password: password });
+    const newU = {
+      "name": uName.current,	
+      "password": uPassword.current
+    }
+    checkIfValid(newU)
   };
 
-  const checkIfValid = (newSignning) => {
-    if (newSignning.password !== confirmPass) {
+  const checkIfValid = (newU) => {
+    console.log("im in regi")
+    if (newU.password !== uCPass.current) {
       alert("Passwords do not match!");
       return;
     }
-    if (newSignning.user !== "" && newSignning.password !== "") {
-      const newU = {
-        "name": newSignning.user,	
-        "password": newSignning.password
-      };
-      setUsers([...usersInfo, newU]);
+    if (newU.name !== "" && newU.password !== "") {
+      setActiveUsers([...activeUsers, newU]);
+      navigate("/")
     }
   };
 
   
-  
-
   return (
     <div className='InputBox'>
         <form>
@@ -51,10 +63,12 @@ function RegisterBox() {
             <InputGetter type="password" text="Confirm Password" onChange={setConfirmPass} />
             <br></br>
             <input type="file" id="picture" accept="image/*"/>
-        </form>
+
         <Btn text="Sign Up" id="cNewBtn" className="fw-bolder btn" clicked={clicked} />
+        </form>
         <div className="exist_acc">
-            <a href="" className="acc">Already have an account?</a>
+            <a href="#" className="acc">Already have an account?</a>
+        
         </div>
     </div>
     

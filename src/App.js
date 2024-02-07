@@ -1,28 +1,23 @@
 import './App.css';
-import LoginBox from './loginPage/LoginBox';
-import MainTextBlock from './loginPage/MainTextBlock';
-import SLineTextBlock from './loginPage/SubTextBlock';
+import SubscribePage from './SubscribePage/SubscribePage';
+import LoginPage from './loginPage/LoginPage';
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
+import { useState } from 'react';
+import usersInfo from "./users.json"
 
 function App() {
+  
+  const[activeUsers, setActiveUsers] = useState(usersInfo)
+  
   return (
     <div>
-    <div className="container">
-      {/* Creating a row in which we will be inserting Col's */}
-      <div className="row">
-        {/* Creating a first Col' -Main_Text_Section- in which we will write our logo and some description */}
-        
-        <MainTextBlock />
-
-        {/* Creating a second Col' in which we will have the login-Box */}
-        <LoginBox />
-
-      </div>
-
-      {/* Adding a visual divider */}
-      <hr style={{ margin: '100px 0' }} />
-      
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<LoginPage activeUsers={activeUsers}/> }></Route>
+      <Route path="/details" element={<SubscribePage setActiveUsers={setActiveUsers} activeUsers={activeUsers} />}></Route>
+    </Routes>
+    </BrowserRouter>
     </div>
-  </div>
   );
 }
 

@@ -2,7 +2,7 @@
 import './SubscribeContainer.css';
 import RegisterBox from './RegisterBox';
 // container for the input fields and the sign up button
-function SubscribeContainer() {
+function SubscribeContainer({setActiveUsers, activeUsers}) {
     return (
         <div className="subscribecontainer">
             <div className="sign">
@@ -12,7 +12,7 @@ function SubscribeContainer() {
                 It's quick and easy.
             </div>
             <div className="subscribedetails">
-                <RegisterBox />
+                <RegisterBox setActiveUsers={setActiveUsers} activeUsers={activeUsers} />
             </div>
 
         </div>

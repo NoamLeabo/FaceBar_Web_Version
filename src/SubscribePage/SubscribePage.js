@@ -3,12 +3,15 @@ import "./SubscribePage.css"
 import SubscribeContainer from "./SubscribeContainer";
 import MainTextRegister from "./MainTextRegister";
 
-function SubscribePage(){
+function SubscribePage({setActiveUsers, activeUsers}){
     return(
+    <>
     <div className="Subscribe">
         <MainTextRegister/>
-        <SubscribeContainer/>
+        <SubscribeContainer setActiveUsers={setActiveUsers} activeUsers={activeUsers} />
     </div>
+    <hr style={{ margin: "700px 0" }} />
+    </>
     )
     
 };
