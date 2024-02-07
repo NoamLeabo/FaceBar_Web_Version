@@ -1,3 +1,5 @@
+
+import FeedPage from "./FeedPage";
 import './App.css';
 import SubscribePage from './SubscribePage/SubscribePage';
 import LoginPage from './loginPage/LoginPage';
