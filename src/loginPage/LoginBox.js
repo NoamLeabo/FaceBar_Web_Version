@@ -1,16 +1,21 @@
 import IBStyle from "./LoginBox.css";
 import InputGetter from "../InputGetter";
 import Btn from "../Btn";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import usersInfo from "../users.json";
 function LoginBox() {
   const [running, setRunning] = useState(false);
 
   const [entry, setEntry] = useState({ user: "", password: "" }); // Define entry state
+  const uName = useRef('');
+  const uPassword = useRef('');
 
-  const [username, setUsername] = useState(""); // State for username
-  const [password, setPassword] = useState(""); // State for password
-
+  const setUsername = function(newUsername) {
+    uName.current = newUsername;
+  }
+  const setPassword = function(newPassword) {
+    uPassword.current = newPassword;
+  }
   
   useEffect(() => {
     if (running) {
@@ -21,7 +26,7 @@ function LoginBox() {
   const clicked = () => {
     console.log("clicked");
     setRunning(true);
-    setEntry({ user: username, password: password });
+    setEntry({ user: uName.current, password: uPassword.current });
   };
 
   const checkIfValid = (entry) => {

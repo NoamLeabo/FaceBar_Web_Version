@@ -1,5 +1,5 @@
 import InputGetter from "../InputGetter";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import usersInfo from "../users.json";
 import Btn from "../Btn";
 function RegisterBox() {
@@ -7,13 +7,31 @@ function RegisterBox() {
   const [newSignning, setNewSignning] = useState({ name: "", password: "" }); // Define entry state
 
   const [users, setUsers] = useState(usersInfo); 
+  
+  const uName = useRef('');
+  const uLName = useRef('');
+  const uFName = useRef('');
+  const uCPass = useRef('');
+  const uPassword = useRef('');
 
-  const [fName, setFName] = useState(""); // State for username
-  const [password, setPassword] = useState(""); // State for password
-  const [username, setUsername] = useState(""); // State for password
-  const [confirmPass, setConfirmPass] = useState(""); // State for password
-  const [lname, setLName] = useState(""); // State for password
-
+  const setUsername = function(newUsername) {
+    uName.current = newUsername;
+  }
+  const setPassword = function(newPassword) {
+    uPassword.current = newPassword;
+  }
+  
+  const setFName = function(newFName) {
+    uFName.current = newFName;
+  }
+  
+  const setLName = function(newLName) {
+    uLName.current = newLName;
+  }
+  
+  const setConfirmPass = function(newCPass) {
+    uCPass.current = newCPass;
+  }
   
   useEffect(() => {
     checkIfValid(newSignning);
@@ -21,11 +39,11 @@ function RegisterBox() {
 
   const clicked = () => {
     console.log("clicked");
-    setNewSignning({ user: username, password: password });
+    setNewSignning({ user: uName.current, password: uPassword.current });
   };
 
   const checkIfValid = (newSignning) => {
-    if (newSignning.password !== confirmPass) {
+    if (uPassword.current !== uCPass.current) {
       alert("Passwords do not match!");
       return;
     }
