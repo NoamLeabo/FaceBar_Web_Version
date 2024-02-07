@@ -2,8 +2,8 @@ import IBStyle from "./LoginBox.css";
 import InputGetter from "../InputGetter";
 import Btn from "../Btn";
 import { useEffect, useState, useRef } from "react";
-import usersInfo from "../users.json";
-function LoginBox() {
+
+function LoginBox({activeUsers}) {
   const [running, setRunning] = useState(false);
 
   const [entry, setEntry] = useState({ user: "", password: "" }); // Define entry state
@@ -24,16 +24,14 @@ function LoginBox() {
   }, [entry]);
 
   const clicked = () => {
-    console.log("clicked");
     setRunning(true);
     setEntry({ user: uName.current, password: uPassword.current });
   };
 
   const checkIfValid = (entry) => {
     let isValid = false;
-    for (const info of usersInfo) {
-      if (info.name === entry.user && info.password === entry.password) {
-        console.log("Credentials are valid");
+    for (const aUser of activeUsers) {
+      if (aUser.name === entry.user && aUser.password === entry.password) {
         isValid = true;
         break;
       }

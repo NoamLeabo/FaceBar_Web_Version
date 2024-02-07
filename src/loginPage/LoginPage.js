@@ -3,7 +3,8 @@ import MainTextBlock from "./MainTextBlock";
 import LoginBox from "./LoginBox";
 import LPStyle from "./LoginPage.css"
 
-function LoginPage() {
+function LoginPage({activeUsers}) {
+  console.log(activeUsers)
   return (
     <div className="Login">
       <div className="container">
@@ -14,7 +15,7 @@ function LoginPage() {
           <MainTextBlock />
 
           {/* Creating a second Col' in which we will have the login-Box */}
-          <LoginBox />
+          <LoginBox activeUsers={activeUsers} />
         </div>
 
         {/* Adding a visual divider */}

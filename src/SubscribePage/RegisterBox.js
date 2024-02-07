@@ -1,13 +1,10 @@
 import InputGetter from "../InputGetter";
 import { useEffect, useState, useRef } from "react";
-import usersInfo from "../users.json";
 import Btn from "../Btn";
-function RegisterBox() {
-  
-  const [newSignning, setNewSignning] = useState({ name: "", password: "" }); // Define entry state
+function RegisterBox({setActiveUsers, activeUsers}) {
 
-  const [users, setUsers] = useState(usersInfo); 
-  
+  const [newEntry, setNewEntry] = useState({"name": "def", "password": "def"})
+    
   const uName = useRef('');
   const uLName = useRef('');
   const uFName = useRef('');
@@ -32,33 +29,27 @@ function RegisterBox() {
   const setConfirmPass = function(newCPass) {
     uCPass.current = newCPass;
   }
-  
-  useEffect(() => {
-    checkIfValid(newSignning);
-  }, [newSignning]);
 
   const clicked = () => {
-    console.log("clicked");
-    setNewSignning({ user: uName.current, password: uPassword.current });
+    const newU = {
+      "name": uName.current,	
+      "password": uPassword.current
+    }
+    checkIfValid(newU)
   };
 
-  const checkIfValid = (newSignning) => {
-    if (uPassword.current !== uCPass.current) {
+  const checkIfValid = (newU) => {
+    console.log("im in regi")
+    if (newU.password !== uCPass.current) {
       alert("Passwords do not match!");
       return;
     }
-    if (newSignning.user !== "" && newSignning.password !== "") {
-      const newU = {
-        "name": newSignning.user,	
-        "password": newSignning.password
-      };
-      setUsers([...usersInfo, newU]);
+    if (newU.name !== "" && newU.password !== "") {
+      setActiveUsers([...activeUsers, newU]);
     }
   };
 
   
-  
-
   return (
     <div className='InputBox'>
         <form>
@@ -72,7 +63,7 @@ function RegisterBox() {
         </form>
         <Btn linking={"/"} text="Sign Up" id="cNewBtn" className="fw-bolder btn" clicked={clicked} />
         <div className="exist_acc">
-            <a href="" className="acc">Already have an account?</a>
+            <a href="#" className="acc">Already have an account?</a>
         </div>
     </div>
     
