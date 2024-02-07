@@ -1,0 +1,22 @@
+
+input::file-selector-button {
+    margin-top: 7px;
+    color: white;
+    border-radius: 0.1rem;
+    background-color: #4800ff;
+    border: none;
+    font-size: larger;
+}
+.exist_acc{
+    margin-top: 15px;
+    font-size: 1.1rem;
+    text-align: center;
+    padding-bottom: 10px;
+}
+.btn_sign{
+    margin-top: 20px;
+    margin-left: 30%;
+}
+form{
+    padding-top: 10px;
+}

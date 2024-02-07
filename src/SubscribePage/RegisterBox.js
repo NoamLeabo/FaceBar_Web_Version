@@ -1,9 +1,11 @@
 import InputGetter from "../InputGetter";
-import { useEffect, useState, useRef } from "react";
+import RBStyle from "./RegisterBox.css"
+import { useEffect, useState, useRef} from "react";
+import { useNavigate } from "react-router-dom";
 import Btn from "../Btn";
 function RegisterBox({setActiveUsers, activeUsers}) {
+  const navigate = useNavigate();
 
-  const [newEntry, setNewEntry] = useState({"name": "def", "password": "def"})
     
   const uName = useRef('');
   const uLName = useRef('');
@@ -46,6 +48,7 @@ function RegisterBox({setActiveUsers, activeUsers}) {
     }
     if (newU.name !== "" && newU.password !== "") {
       setActiveUsers([...activeUsers, newU]);
+      navigate("/")
     }
   };
 
@@ -60,10 +63,12 @@ function RegisterBox({setActiveUsers, activeUsers}) {
             <InputGetter type="password" text="Confirm Password" onChange={setConfirmPass} />
             <br></br>
             <input type="file" id="picture" accept="image/*"/>
-        </form>
+        
         <Btn linking={"/"} text="Sign Up" id="cNewBtn" className="fw-bolder btn" clicked={clicked} />
+        </form>
         <div className="exist_acc">
             <a href="#" className="acc">Already have an account?</a>
+        
         </div>
     </div>
     
