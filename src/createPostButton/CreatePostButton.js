@@ -1,5 +1,5 @@
 function CreatePostButton (){
-    return();
+    return(<></>);
 }
 
 export default CreatePostButton;
