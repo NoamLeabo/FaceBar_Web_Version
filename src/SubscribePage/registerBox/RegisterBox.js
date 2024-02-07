@@ -1,8 +1,8 @@
-import InputGetter from "../InputGetter";
+import InputGetter from "../../CrossScreensElements/inputGetter/InputGetter";
 import RBStyle from "./RegisterBox.css"
 import { useEffect, useState, useRef} from "react";
 import { useNavigate } from "react-router-dom";
-import Btn from "../Btn";
+import Btn from "../../CrossScreensElements/btn/Btn";
 function RegisterBox({setActiveUsers, activeUsers}) {
   const navigate = useNavigate();
 

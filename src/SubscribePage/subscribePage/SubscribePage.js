@@ -1,7 +1,7 @@
 import React from "react";
 import "./SubscribePage.css"
-import SubscribeContainer from "./SubscribeContainer";
-import MainTextRegister from "./MainTextRegister";
+import SubscribeContainer from "../subscribeContainer/SubscribeContainer";
+import MainTextRegister from "../mainTextRegister/MainTextRegister";
 
 function SubscribePage({setActiveUsers, activeUsers}){
     return(

@@ -1,6 +1,6 @@
 import React from "react";
-import MainTextBlock from "./MainTextBlock";
-import LoginBox from "./LoginBox";
+import MainTextBlock from "../mainTextBlock/MainTextBlock";
+import LoginBox from "../loginBox/LoginBox";
 import LPStyle from "./LoginPage.css"
 
 function LoginPage({activeUsers}) {

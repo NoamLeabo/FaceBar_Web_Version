@@ -1,5 +1,5 @@
 import HLStyle from "./MainTextBlock.css";
-import SubTextBlock from "./SubTextBlock";
+import SubTextBlock from "../subTextBlock/SubTextBlock";
 
 function MainTextBlock() {
   return (

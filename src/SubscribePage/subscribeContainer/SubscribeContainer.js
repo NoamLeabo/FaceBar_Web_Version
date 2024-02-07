@@ -1,6 +1,6 @@
 
 import './SubscribeContainer.css';
-import RegisterBox from './RegisterBox';
+import RegisterBox from '../registerBox/RegisterBox';
 // container for the input fields and the sign up button
 function SubscribeContainer({setActiveUsers, activeUsers}) {
     return (

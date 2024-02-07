@@ -1,6 +1,6 @@
 import IBStyle from "./LoginBox.css";
-import InputGetter from "../InputGetter";
-import Btn from "../Btn";
+import InputGetter from "../../CrossScreensElements/inputGetter/InputGetter";
+import Btn from "../../CrossScreensElements/btn/Btn";
 import { useEffect, useState, useRef} from "react";
 import { useNavigate } from "react-router-dom";
 

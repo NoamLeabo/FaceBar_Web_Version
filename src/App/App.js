@@ -1,11 +1,11 @@
 
-import FeedPage from "./FeedPage/FeedPage";
+import FeedPage from "../FeedPage/feedPage/FeedPage";
 import './App.css';
-import SubscribePage from './SubscribePage/SubscribePage';
-import LoginPage from './loginPage/LoginPage';
+import SubscribePage from '../SubscribePage/subscribePage/SubscribePage';
+import LoginPage from '../loginPage/loginPage/LoginPage';
 import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
 import { useState } from 'react';
-import usersInfo from "./users.json"
+import usersInfo from "../users.json"
 
 function App() {
   
