@@ -1,9 +1,9 @@
 import './App.css';
-import FeedPost from './feedPost/FeedPost';
-import posts from './feedPost/posts';
+import FeedPost from './FeedPage/feedPost/FeedPost';
+import posts from './FeedPage/feedPost/posts';
 import NavBar from './navBar/NavBar';
-import CreatePostModal from './createPostModal/CreatePostModal';
-import SideBar from './sideBar/SideBar';
+import CreatePostModal from './FeedPage/createPostModal/CreatePostModal';
+import SideBar from './FeedPage/sideBar/SideBar';
 import { useState } from 'react';
 
 function FeedPage() {
