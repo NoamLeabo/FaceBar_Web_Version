@@ -43,7 +43,7 @@ function LoginBox({activeUsers}) {
       alert("Username or Password is incorrect!")
     }
     if (isValid){
-      alert("You just entered faceBar! CONGRATZ!")
+      navigate("/home")
     }
   };
 

@@ -1,5 +1,5 @@
 
-import FeedPage from "./FeedPage";
+import FeedPage from "./FeedPage/FeedPage";
 import './App.css';
 import SubscribePage from './SubscribePage/SubscribePage';
 import LoginPage from './loginPage/LoginPage';
@@ -17,6 +17,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LoginPage activeUsers={activeUsers}/> }></Route>
       <Route path="/details" element={<SubscribePage setActiveUsers={setActiveUsers} activeUsers={activeUsers} />}></Route>
+      <Route path="/home" element={<FeedPage />}></Route>
     </Routes>
     </BrowserRouter>
     </div>
