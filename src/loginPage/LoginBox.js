@@ -4,7 +4,8 @@ import Btn from "../Btn";
 import { useEffect, useState } from "react";
 import usersInfo from "../users.json";
 function LoginBox() {
-  
+  const [running, setRunning] = useState(false);
+
   const [entry, setEntry] = useState({ user: "", password: "" }); // Define entry state
 
   const [username, setUsername] = useState(""); // State for username
@@ -12,11 +13,14 @@ function LoginBox() {
 
   
   useEffect(() => {
+    if (running) {
     checkIfValid(entry);
+    }
   }, [entry]);
 
   const clicked = () => {
     console.log("clicked");
+    setRunning(true);
     setEntry({ user: username, password: password });
   };
 
