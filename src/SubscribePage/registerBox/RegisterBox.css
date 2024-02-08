@@ -17,3 +17,23 @@ input::file-selector-button {
     margin-top: 20px;
     margin-left: 30%;
 }
+#image{
+    position: absolute; 
+    top: 600px; 
+    left: 800px; 
+    width: 100px;
+    border-radius: 1rem ;
+    border: none !important;
+    outline: none;
+    height: 100px;
+    margin-left: 10px;
+    margin-top: 2px;
+}
+#label{
+    margin-top: 7px;
+    color: white;
+    border-radius: 0.1rem;
+    background-color: #4800ff;
+    border: none;
+    text-align: center;
+}
