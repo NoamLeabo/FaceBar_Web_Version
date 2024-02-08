@@ -21,7 +21,6 @@ input::file-selector-button {
     margin-left: 30%;
 }
 #image{
-    position: absolute; 
     top: 600px; 
     left: 800px; 
     width: 100px;
@@ -32,11 +31,16 @@ input::file-selector-button {
     margin-left: px;
     margin-top: 2px;
 }
-#label{
-    margin-top: 7px;
-    color: white;
-    border-radius: 0.1rem;
+#label1{
     background-color: #4800ff;
-    border: none;
-    text-align: center;
+    border-color: #4800ff;
+}
+#label1:hover{
+    background-color: #290091;
+    border-color: #290091;
+}
+.image-container {
+    float: right;
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
 }

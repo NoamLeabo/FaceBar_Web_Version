@@ -3,7 +3,7 @@ import './MainTextRegister.css'
 function MainTextRegister() {
   return (
     <div className="foobar">
-      facebar
+      faceBar
     </div>
   );
 }
