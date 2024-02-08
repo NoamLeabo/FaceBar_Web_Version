@@ -34,10 +34,6 @@ li > .dropdown-toggle{
 }
 
 #feedmain{
-  margin-right: auto;
-  margin-bottom: auto;
-  margin-left: auto;
-  width: 35%;
   padding: 15px;
 }
 
@@ -53,6 +49,10 @@ li > .dropdown-toggle{
 
 }
 
+#feedmain .card .card-body button.btn {
+  width: 100% !important; /* Override width to fill parent */
+}
+
 #create-post-text::placeholder {
   color: gray;
 }
@@ -65,12 +65,15 @@ li > .dropdown-toggle{
 /* .card{
 
 } */
-.feed-component{
+.card-body{
   /* padding: 15px; */
   /* background-color: #e9ecef; */
   background-color: white;
   margin: 10px;
-  padding: 15px;
+  padding: 5px;
+}
+.card{
+  margin: 10px;
 }
 
 #side-bar{

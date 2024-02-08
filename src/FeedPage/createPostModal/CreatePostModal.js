@@ -53,7 +53,7 @@ function CreatePostModal ({addPost}){
                 </form>
                 </div>
                 <div className="post-button">
-                <button type="button" ref={content} className="btn btn-primary disabled btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={postSetter}>Post</button>
+                <button type="button" ref={content} className="btn btn-primary disabled btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={postSetter} style={{ marginBottom: '12px' }} >Post</button>
                 </div>
             </div>
             </div>
