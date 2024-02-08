@@ -7,6 +7,9 @@ input::file-selector-button {
     border: none;
     font-size: larger;
 }
+.acc{
+    color: #4800ff;
+}
 .exist_acc{
     margin-top: 15px;
     font-size: 1.1rem;
@@ -22,11 +25,11 @@ input::file-selector-button {
     top: 600px; 
     left: 800px; 
     width: 100px;
-    border-radius: 1rem ;
+    border-radius: 1rem;
     border: none !important;
     outline: none;
     height: 100px;
-    margin-left: 10px;
+    margin-left: px;
     margin-top: 2px;
 }
 #label{
