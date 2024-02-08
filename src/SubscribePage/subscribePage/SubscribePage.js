@@ -10,7 +10,7 @@ function SubscribePage({setActiveUsers, activeUsers}){
         <MainTextRegister/>
         <SubscribeContainer setActiveUsers={setActiveUsers} activeUsers={activeUsers} />
     </div>
-    <hr style={{ margin: "700px 0" }} />
+    <hr style={{ margin: "900px 0" }} />
     </>
     )
     
