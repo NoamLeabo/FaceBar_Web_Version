@@ -55,27 +55,27 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
       uLName.current === "" ||
       uCPass.current === ""
     ) {
-      alert("Please fill in all fields!");
+      alert("You must fill all fields!");
       return;
     }
     if (!uName.current.match(checkUsername)) {
       alert(
-        "Username must contain only letters, numbers, underscores and hyphens and be between 4 and 16 characters long"
+        "Username must be between 4 and 16 characters long\nand contain only:\n-letters\n-numbers\n-underscores\n-hyphens"
       );
       return;
     }
     if (!uPassword.current.match(checkPassword)) {
       alert(
-        "Password must contain at least 8 characters, including uppercase, lowercase letters and numbers"
+        "Password must contain:\n-at least 8 characters\n-uppercase letters\n-lowercase letters\n-numbers"
       );
       return;
     }
     if (!uLName.current.match(checkName) || !uFName.current.match(checkName)) {
-      alert("name must contain only letters");
+      alert("First And Last Names must contain letters only!");
       return;
     }
     if (image === null) {
-      alert("Please upload a profile picture!");
+      alert("No profile image was uploaded!");
       return;
     }
     if (newU.password !== uCPass.current) {
@@ -153,7 +153,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
         </div>
       </form>
       <div className="exist_acc">
-        <a href="/" className="acc">
+        <a href="" onClick={() => navigate("/")} className="acc">
           Already have an account?
         </a>
       </div>
