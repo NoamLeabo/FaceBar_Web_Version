@@ -92,8 +92,8 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
   return (
     <div className="InputBox">
       <form>
-        <div class="row g-3">
-          <div class="col">
+        <div className="row g-3">
+          <div className="col">
             <InputGetter
               type="text"
               text="First Name"
@@ -101,7 +101,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
               title="first name must contain only letters"
             />
           </div>
-          <div class="col">
+          <div className="col">
             <InputGetter
               type="text"
               text="Last Name"
@@ -135,7 +135,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
           onChange={handleChange}
           hidden
         />
-        <label for="picture" className="btn btn-danger btn-sm" id="label1">
+        <label htmlFor="picture" className="btn btn-danger btn-sm" id="label1">
           Choose a profile picture
         </label>
         

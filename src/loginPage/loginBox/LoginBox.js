@@ -26,7 +26,6 @@ function LoginBox({activeUsers}) {
   }, [entry]);
 
   const clickedLogIn = () => {
-    console.log(5)
     setRunning(true);
     setEntry({ user: uName.current, password: uPassword.current });
   };
