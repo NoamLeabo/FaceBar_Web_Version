@@ -25,3 +25,14 @@
     background: rgb(23, 124, 14);
 }
 
+#likeBtn{
+  color: black;
+}
+#likeBtnDis{
+  opacity: 1 !important;
+  color: #0d6efd;
+}
+.btn.settings-btn{
+  color: black !important;
+  
+}

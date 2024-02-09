@@ -1,4 +1,5 @@
 import './Posts.css';
+import SettingBtn from "../../CrossScreensElements/btn/SettingsBtn"; 
 import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
 import { useRef } from "react";
 
@@ -19,6 +20,7 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
     return(
         <div className="card">
           <div className="card-body">
+            <SettingBtn btn1text={"Delet post"} btn1action= {remPost} id={id}/>
             <h5 className="card-title">{composer}</h5>
             <p className="card-text">
               <small className="text-body-secondary">Last updated {time}</small>
@@ -32,7 +34,7 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
                 <div className="d-flex justify-content-center">
                   <img
                     alt="not found"
-                    width={"90%"}
+                    width={"50%"}
                     src={img}
                   />
                 </div>
@@ -44,7 +46,7 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
                     <div className='col'>
                 <button ref={likebtn} type="button" class="btn reg-btn" data-bs-toggle="button" onClick={liked} id="likeBtn">
                     <i class="bi bi-hand-thumbs-up"></i>
-                    <span class="position-relative top-1 start-100 translate-middle badge rounded-pill bg-danger">
+                    <span class="position-relative fixed-top top-6 start-100 translate-middle badge rounded-pill bg-danger">
                       {likesDisp}
                     </span>
                 </button>

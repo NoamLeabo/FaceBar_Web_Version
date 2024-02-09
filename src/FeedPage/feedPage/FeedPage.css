@@ -20,7 +20,11 @@ body{
   font-size:35px;
   padding-left: 15px;
 }
+#navbar{
+  z-index: 9999;
+  /* position:relative; */
 
+}
 .nav-icon{
   padding: 15px 40px;
 }

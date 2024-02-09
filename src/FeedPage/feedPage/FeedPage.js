@@ -7,14 +7,23 @@ import SideBar from '../sideBar/SideBar';
 import { useState } from 'react';
 
 function FeedPage() {
-       
+  function filterById(jsonObject, id) {return jsonObject.filter(function(jsonObject) {return (jsonObject['id'] == id);})[0];}
+
   const [postList, setPostList] = useState(posts)
   const addPost = (post) =>{
        
     setPostList([...postList, post])
   }
-  const remPost = (id) =>{
-    postList.splice(id,1);
+  function remPost (id){
+    var index = -1;
+    postList.find(function(item, i){
+      if(item.id === id){
+        index = i;
+        return i;
+      }
+    });
+    
+    postList.splice(index,1);
     setPostList([...postList]);
   };
   const postListElement = postList.map((post ) =>{

@@ -8,7 +8,7 @@ function NavBar(){
     //   }
 
     return(      
-    <nav className="navbar bg-body-tertiary justify-content-between fixed-top" id="navbar">
+    <nav className="navbar bg-body-tertiary fixed-top nav-justified" id="navbar">
         <div className="container-fluid" id="navbarcontainer">
         <a className="navbar-brand" href="#">
             <i className="bi bi-facebook fa-7x text-primary" id="faceboockimg"></i>
