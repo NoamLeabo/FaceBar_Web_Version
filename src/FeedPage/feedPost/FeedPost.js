@@ -8,17 +8,17 @@ function FeedPost({id, composer, time, text,comments, contains_img, img, likes})
 
   let likesDisp;
   const [likenum, setLikes] = useState(likes);
-  if(likenum>99){
-    likesDisp = "99+";
+  if(likenum>999){
+    likesDisp = "999+";
   }else{
     likesDisp = likenum;
   }
-  const addLike = function (){
+  const addLike = function (stat){
     console.log(likenum);
-    setLikes(l => l + 1);
+    setLikes(l => l + stat);
     console.log(likenum);
-    if(likenum>99){
-      likesDisp = "99+";
+    if(likenum>999){
+      likesDisp = "999+";
     }else{
       likesDisp = likenum;
     }

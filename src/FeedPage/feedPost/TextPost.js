@@ -8,10 +8,13 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
     }
     const likebtn = useRef(null);
     const liked = function(){
-      addLike();
-      likebtn.current.setAttribute('class', 'btn reg-btn disabled');
+      if (likebtn.current.getAttribute('id') == "likeBtn") {
+        addLike(1);
       likebtn.current.setAttribute('id', 'likeBtnDis');
-
+      } else {
+        addLike(-1);
+      likebtn.current.setAttribute('id', 'likeBtn');
+      }
   }
     return(
         <div className="card">
@@ -37,14 +40,22 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
           </div>
           <div className="card-footer">
                 <p class="d-flex justify-content-around">
+                  <div className="row g-3">
+                    <div className='col'>
                 <button ref={likebtn} type="button" class="btn reg-btn" data-bs-toggle="button" onClick={liked} id="likeBtn">
                     <i class="bi bi-hand-thumbs-up"></i>
                     <span class="position-relative top-1 start-100 translate-middle badge rounded-pill bg-danger">
                       {likesDisp}
                     </span>
                 </button>
+                </div>
+                <div className='col'>
                   <ImgBtn target={"#opened-post-" + id} toggle= {"modal"} img = {"bi bi-chat"}/>
+                  </div>
+                  <div className='col'>
                   <ImgBtn target={"#opened-post-" + id} toggle= {"modal"} img = {"bi bi-send"}/>
+                  </div>
+                </div>
                 </p>
             </div>
           </div>

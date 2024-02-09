@@ -7,7 +7,7 @@ function UploadAndDisplayImage({addedImg, selectedImage, setSelectedImage})  {
     <div className="textAlignC">
       {selectedImage && (
         <div>
-          <img
+          <img style={{marginBottom:"20px"}}
             alt="not found"
             width={"250px"}
             src={URL.createObjectURL(selectedImage)}
