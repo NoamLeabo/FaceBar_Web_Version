@@ -5,13 +5,10 @@ import MainTextRegister from "../mainTextRegister/MainTextRegister";
 
 function SubscribePage({setActiveUsers, activeUsers}){
     return(
-    <>
     <div className="Subscribe">
         <MainTextRegister/>
         <SubscribeContainer setActiveUsers={setActiveUsers} activeUsers={activeUsers} />
     </div>
-    <hr style={{ margin: "700px 0" }} />
-    </>
     )
     
 };

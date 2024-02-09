@@ -18,8 +18,8 @@
     height: 45px;
     line-height: 30px;
     font-size: 15px;
-    width: 45%;
-}
+    width: 50%;
+} 
 #cNewBtn:hover{
     color: white;
     background: rgb(23, 124, 14);

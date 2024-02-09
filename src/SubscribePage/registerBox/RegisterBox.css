@@ -7,6 +7,9 @@ input::file-selector-button {
     border: none;
     font-size: larger;
 }
+.acc{
+    color: #4800ff;
+}
 .exist_acc{
     margin-top: 15px;
     font-size: 1.1rem;
@@ -17,6 +20,27 @@ input::file-selector-button {
     margin-top: 20px;
     margin-left: 30%;
 }
-form{
-    padding-top: 10px;
+#image{
+    top: 600px; 
+    left: 800px; 
+    width: 100px;
+    border-radius: 1rem;
+    border: none !important;
+    outline: none;
+    height: 100px;
+    margin-left: px;
+    margin-top: 2px;
+}
+#label1{
+    background-color: #4800ff;
+    border-color: #4800ff;
+}
+#label1:hover{
+    background-color: #290091;
+    border-color: #290091;
+}
+.image-container {
+    float: right;
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
 }

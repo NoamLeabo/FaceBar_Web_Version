@@ -1,7 +1,6 @@
 .foobar{
-    padding: 0;
+    font-weight: 700;
     font-size: 6rem;
     color: #4800ff;
     text-align: center;
-    margin-top: 15px;
 }

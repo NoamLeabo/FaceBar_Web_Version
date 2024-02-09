@@ -26,7 +26,6 @@ function LoginBox({activeUsers}) {
   }, [entry]);
 
   const clickedLogIn = () => {
-    console.log(5)
     setRunning(true);
     setEntry({ user: uName.current, password: uPassword.current });
   };
@@ -64,7 +63,7 @@ function LoginBox({activeUsers}) {
                 {/* Creating a Log-in btn */}
                 <Btn clicked={clickedLogIn} className={"fw-bolder btn"} id={"logInBtn"} text={"Log In"}/>
                 {/* Adding a 'forgot password?' linker */}
-                <a href="#" className="" style={{marginTop: '10px' }}>Forgot password?</a>
+                <a href="#" onClick={() => {navigate("/details"); alert("Create another account then :)")}} className="" style={{marginTop: '10px' }}>Forgot password?</a>
                 {/* Adding a visual divider */}
                 <hr style={{ margin: '10px 0' }} />
                 {/* Adding a 'create a new account' btn */}

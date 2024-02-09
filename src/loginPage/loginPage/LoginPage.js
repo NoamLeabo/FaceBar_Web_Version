@@ -4,7 +4,6 @@ import LoginBox from "../loginBox/LoginBox";
 import LPStyle from "./LoginPage.css"
 
 function LoginPage({activeUsers}) {
-  console.log(activeUsers)
   return (
     <div className="Login">
       <div className="container">
