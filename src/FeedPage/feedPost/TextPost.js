@@ -23,11 +23,13 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
             <p className="card-text">
               {text}
             </p>
+            <hr style={{ margin: "10px 0" }} />
+
             {img && (
-                <div>
+                <div className="d-flex justify-content-center">
                   <img
                     alt="not found"
-                    width={"250px"}
+                    width={"90%"}
                     src={img}
                   />
                 </div>
