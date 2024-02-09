@@ -13,8 +13,12 @@ function FeedPage() {
        
     setPostList([...postList, post])
   }
+  const remPost = (id) =>{
+    postList.splice(id,1);
+    setPostList([...postList]);
+  };
   const postListElement = postList.map((post ) =>{
-    return <FeedPost {...post} key={post.id}/>
+    return <FeedPost {...post} remPost={remPost}key={post.id}/>
   });
   return (
     <div className="container-fluid">

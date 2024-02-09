@@ -2,8 +2,8 @@ import './Posts.css';
 import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
 import { useRef } from "react";
 
-function TextPost({id, composer, time, text , likesDisp, addLike, img, filterById}){
-    if(id>=10 && img){
+function TextPost({id, composer, time, text , likesDisp, addLike, img, filterById, remPost}){
+      if(id>=10 && img){
       img = URL.createObjectURL(img);
     }
     const likebtn = useRef(null);

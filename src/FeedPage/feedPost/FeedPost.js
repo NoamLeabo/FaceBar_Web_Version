@@ -2,7 +2,7 @@ import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
 import FeedPostModal from "./FeedPostModal";
 import TextPost from "./TextPost";
 import { useState } from "react";
-function FeedPost({id, composer, time, text,comments, contains_img, img, likes}){
+function FeedPost({id, composer, time, text,comments, contains_img, img, likes, remPost}){
   function filterById(jsonObject, id) {return jsonObject.filter(function(jsonObject) {return (jsonObject['id'] == id);})[0];}
 
 
@@ -21,11 +21,11 @@ function FeedPost({id, composer, time, text,comments, contains_img, img, likes})
       likesDisp = "999+";
     }else{
       likesDisp = likenum;
-    }
+    } 
   }
     return(
       <div className="feed-component">
-      <TextPost id = {id} composer = {composer} time ={time}  text ={text} likesDisp = {likesDisp} addLike = {addLike} filterById = {filterById} img = {img}/>
+      <TextPost id = {id} composer = {composer} time ={time}  text ={text} likesDisp = {likesDisp} addLike = {addLike} filterById = {filterById} img = {img} remPost={remPost}/>
       <FeedPostModal id = {id} composer = {composer} time ={time}  text ={text} comments = {comments} likesDisp = {likesDisp} addLike = {addLike} filterById = {filterById} img = {img}/>
     </div>
     );
