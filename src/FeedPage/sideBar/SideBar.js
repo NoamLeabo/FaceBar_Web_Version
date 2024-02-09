@@ -5,7 +5,7 @@ function SideBar(){
         return <SideBarBtn {...button} key={key}/>
       });
     return(
-        <div className="list-group" id="side-bar">
+        <div className="list-group" id="side-bar" style={{marginTop:"20px"}}>
         {/* <!-- <a href="#" className="list-group-item list-group-item-action active" aria-current="true">
           The current link item
         </a> --> */}
@@ -16,9 +16,7 @@ function SideBar(){
               See more
             </button>
             <ul className="dropdown-menu">
-              <li><button className="dropdown-item" type="button">Action</button></li>
-              <li><button className="dropdown-item" type="button">Another action</button></li>
-              <li><button className="dropdown-item" type="button">Something else here</button></li>
+              <li><button className="dropdown-item" type="button">Not Available Yet...</button></li>
             </ul>
           </div>
           {/* <!-- <a href="#" className=" list-group-item-action ">
