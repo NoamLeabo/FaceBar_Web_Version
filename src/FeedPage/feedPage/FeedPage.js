@@ -13,8 +13,12 @@ function FeedPage() {
        
     setPostList([...postList, post])
   }
-  const postListElement = postList.map((post, key ) =>{
-    return <FeedPost {...post} key={key}/>
+  const remPost = (id) =>{
+    postList.splice(id,1);
+    setPostList([...postList]);
+  };
+  const postListElement = postList.map((post ) =>{
+    return <FeedPost {...post} remPost={remPost}key={post.id}/>
   });
   return (
     <div className="container-fluid">
@@ -24,23 +28,20 @@ function FeedPage() {
               <SideBar/>
           </div>
           <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6" id="feedmain">
-            {/* <!-- Button trigger modal --> */}
             <div className="card">
-              {/* Creating the card-body */}
               <div className="card-body">
             <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create-post" id="create-post-btn">
               What's on your mind, Arnon?
             </button>
           </div>
           </div>
-            {/* <!-- Modal --> */}
+            {/* <!-- Modal for creating a post--> */}
             <CreatePostModal addPost = {addPost}/>
-            {/* <!-- Post with image --> */}
+            {/* <!-- Posts --> */}
             {postListElement}
-            {/* <!-- Post with only text --> */}
           </div>
           <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-2">
-              cont
+              
           </div>
       </div>
   </div>

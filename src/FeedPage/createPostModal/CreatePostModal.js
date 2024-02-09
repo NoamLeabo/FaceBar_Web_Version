@@ -1,9 +1,16 @@
 import { useRef } from "react";
-
+import UploadAndDisplayImage from "../uploadAndDisplayImage/UploadAndDisplayImage";
+import { useState } from "react";
 
 function CreatePostModal ({addPost}){
+    let imgWasAdded = false;
+    const [selectedImage, setSelectedImage] = useState(null);
+    const addedImg = (event) =>{
+        setSelectedImage(event.target.files[0]);
+        imgWasAdded = true;
+    }
     const content = useRef(null);
-
+    let postNumber = 10;
 
     String.prototype.trim = function() {
         return this.replace(/^\s+|\s+$/g,"");
@@ -24,14 +31,20 @@ function CreatePostModal ({addPost}){
         }
     }
     const postSetter = function(){
+        console.log(selectedImage);
         const post = {
+            id : postNumber,
             composer : "Arnon Lutsky",
             time : "now",
             text : postText.current.value,
-            contains_img : 0
+            contains_img : imgWasAdded,
+            img : selectedImage,
+            likes : 0,
+            comments :[]
         }
         addPost(post)
-        
+        postText.current.value = "";
+        postNumber = postNumber + 1;
     }
 
     return(
@@ -48,12 +61,13 @@ function CreatePostModal ({addPost}){
                     <textarea ref={postText} onKeyUp={search} className="form-control" id="create-post-text" placeholder="What's on your mind, Arnon?"></textarea>
                     </div>
                     <div className="input-group">
-                    <input  type="file" className="form-control" aria-label="Upload image or video"></input>
+                    {/* <input  type="file" className="form-control" aria-label="Upload image or video"></input> */}
+                    <UploadAndDisplayImage addedImg = {addedImg} selectedImage = {selectedImage}/>
                     </div>
                 </form>
                 </div>
-                <div className="post-button">
-                <button type="button" ref={content} className="btn btn-primary disabled btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={postSetter} style={{ marginBottom: '12px' }} >Post</button>
+                <div className="textAlignC">
+                <button type="button" ref={content} className="btn btn-primary disabled" data-bs-dismiss="modal" aria-label="Close" onClick={postSetter} style={{ marginBottom: '12px' }} >Post</button>
                 </div>
             </div>
             </div>
