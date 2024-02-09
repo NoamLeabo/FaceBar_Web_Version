@@ -153,7 +153,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
         </div>
       </form>
       <div className="exist_acc">
-        <a href="" onClick={() => navigate("/")} className="acc">
+        <a href="#" onClick={() => navigate("/")} className="acc">
           Already have an account?
         </a>
       </div>
