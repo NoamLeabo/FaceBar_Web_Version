@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import { useRef } from "react";
 import './UploadAndDisplayImage.css'
 function UploadAndDisplayImage({addedImg, selectedImage, setSelectedImage})  {
+    const fileInput = useRef(null);
 
+    const remImg = () =>{
+        setSelectedImage(null);
+        fileInput.current.value = "";
+    }
 
   return (
     <div className="textAlignC">
@@ -12,10 +18,10 @@ function UploadAndDisplayImage({addedImg, selectedImage, setSelectedImage})  {
             width={"250px"}
             src={URL.createObjectURL(selectedImage)}
           />
-          {/* <button id="removeImgBtn" className ="btn btn-secondary"onClick={() => setSelectedImage(null)}>Remove</button> */}
+          <button id="removeImgBtn" className ="btn btn-secondary"onClick={remImg}>Remove</button>
         </div>
       )}  
-      <input type="file" className="form-control" onChange={(event) => {addedImg(event); }} />
+      <input ref={fileInput} type="file" className="form-control" onChange={(event) => {addedImg(event); }} />
     </div>
   );
 };

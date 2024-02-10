@@ -20,7 +20,7 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
     return(
         <div className="card">
           <div className="card-body">
-            <SettingBtn btn1text={"Delet post"} btn1action= {remPost} id={id}/>
+            <SettingBtn btn1action= {remPost} text = {text} composer = {composer} time = {time} id={id} likesDisp = {likesDisp} img = {img}/>
             <h5 className="card-title">{composer}</h5>
             <p className="card-text">
               <small className="text-body-secondary">Last updated {time}</small>

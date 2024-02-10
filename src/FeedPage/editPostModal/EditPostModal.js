@@ -1,17 +1,19 @@
 import { useRef } from "react";
 import UploadAndDisplayImage from "../uploadAndDisplayImage/UploadAndDisplayImage";
 import { useState } from "react";
+import { useEffect } from "react";
 
-function CreatePostModal ({addPost}){
-    let imgWasAdded = false;
+function EditPostModal ({editPost, myId, myText, myComposer, myTime, myLikes, myImg, myComments}){
     const [selectedImage, setSelectedImage] = useState(null);
+    useEffect(() => {
+        if (myImg != null && myId > 9) {
+          setSelectedImage(myImg);
+        }
+      }, []);
     const addedImg = (event) =>{
         setSelectedImage(event.target.files[0]);
-        imgWasAdded = true;
     }
     const content = useRef(null);
-    let postNumber = 10;
-
     String.prototype.trim = function() {
         return this.replace(/^\s+|\s+$/g,"");
       }
@@ -30,25 +32,35 @@ function CreatePostModal ({addPost}){
             content.current.setAttribute('class', 'btn btn-primary disabled');
         }
     }
+    if(myComments == null){
+        myComments = [];
+    }
+    if(myLikes == null){
+        myLikes = 0;
+    }
+    if(myTime == null){
+        myTime = "now";
+    }
+    if(myComposer == null){
+        myComposer = "Arnon Lutsky";
+    }
     const postSetter = function(){
         console.log(selectedImage);
         const post = {
-            id : postNumber,
-            composer : "Arnon Lutsky",
-            time : "now",
+            id : myId,
+            composer : myComposer,
+            time : myTime,
             text : postText.current.value,
-            contains_img : imgWasAdded,
             img : selectedImage,
-            likes : 0,
-            comments :[]
+            likes : myLikes,
+            comments : myComments
         }
-        addPost(post)
+        editPost(myId, post)
         postText.current.value = "";
-        postNumber = postNumber + 1;
     }
 
     return(
-        <div className="modal fade" id="create-post" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id={`edit-post-${myId}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">
@@ -58,11 +70,11 @@ function CreatePostModal ({addPost}){
                 <div className="modal-body">
                 <form>
                     <div className="mb-3">
-                    <textarea ref={postText} onKeyUp={search} className="form-control" id="create-post-text" placeholder="What's on your mind, Arnon?"></textarea>
+                    <textarea ref={postText} onKeyUp={search} className="form-control" id="create-post-text" placeholder="What's on your mind, Arnon?">{myText}</textarea>
                     </div>
                     <div className="input-group">
                     {/* <input  type="file" className="form-control" aria-label="Upload image or video"></input> */}
-                    <UploadAndDisplayImage addedImg = {addedImg} selectedImage = {selectedImage} setSelectedImage={setSelectedImage}/>
+                    <UploadAndDisplayImage addedImg = {addedImg} selectedImage = {selectedImage} setSelectedImage={setSelectedImage} myImg = {myImg}/>
                     </div>
                 </form>
                 </div>
@@ -74,6 +86,6 @@ function CreatePostModal ({addPost}){
         </div>
 
     );
-}
 
-export default CreatePostModal;
+}
+export default EditPostModal;

@@ -26,8 +26,20 @@ function FeedPage() {
     postList.splice(index,1);
     setPostList([...postList]);
   };
+  function editPost (id, newItem){
+    var index = -1;
+    postList.find(function(item, i){
+      if(item.id === id){
+        index = i;
+        return i;
+      }
+    });
+    
+    postList.splice(index,1, newItem);
+    setPostList([...postList]);
+  };
   const postListElement = postList.map((post ) =>{
-    return <FeedPost {...post} remPost={remPost}key={post.id}/>
+    return <FeedPost {...post} remPost={remPost} editPost={editPost} key={post.id}/>
   });
   return (
     <div className="container-fluid">
