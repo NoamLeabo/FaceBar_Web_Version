@@ -1,5 +1,5 @@
 import './Posts.css';
-import SettingBtn from "../../CrossScreensElements/btn/SettingsBtn"; 
+import PostSettingBtn from "../../CrossScreensElements/btn/PostSettingBtn"; 
 import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
 import { useRef } from "react";
 
@@ -20,7 +20,7 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
     return(
         <div className="card">
           <div className="card-body">
-            <SettingBtn btn1action= {remPost} text = {text} composer = {composer} time = {time} id={id} likesDisp = {likesDisp} img = {img}/>
+            <PostSettingBtn btn1action= {remPost} text = {text} composer = {composer} time = {time} id={id} likesDisp = {likesDisp} img = {img}/>
             <h5 className="card-title">{composer}</h5>
             <p className="card-text">
               <small className="text-body-secondary">Last updated {time}</small>
@@ -41,12 +41,12 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
               )} 
           </div>
           <div className="card-footer">
-                <p class="d-flex justify-content-around">
+                <div className="d-flex justify-content-around">
                   <div className="row g-3">
                     <div className='col'>
-                <button ref={likebtn} type="button" class="btn reg-btn" data-bs-toggle="button" onClick={liked} id="likeBtn">
-                    <i class="bi bi-hand-thumbs-up"></i>
-                    <span class="position-relative fixed-top top-6 start-100 translate-middle badge rounded-pill bg-danger">
+                <button ref={likebtn} type="button" className="btn reg-btn" data-bs-toggle="button" onClick={liked} id="likeBtn">
+                    <i className="bi bi-hand-thumbs-up"></i>
+                    <span className="position-relative fixed-top top-6 start-100 translate-middle badge rounded-pill bg-danger">
                       {likesDisp}
                     </span>
                 </button>
@@ -58,7 +58,7 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
                   <ImgBtn target={"#opened-post-" + id} toggle= {"modal"} img = {"bi bi-send"}/>
                   </div>
                 </div>
-                </p>
+                </div>
             </div>
           </div>
     );

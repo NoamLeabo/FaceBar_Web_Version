@@ -21,7 +21,7 @@ function UploadAndDisplayImage({addedImg, selectedImage, setSelectedImage})  {
           <button id="removeImgBtn" className ="btn btn-secondary"onClick={remImg}>Remove</button>
         </div>
       )}  
-      <input ref={fileInput} type="file" className="form-control" onChange={(event) => {addedImg(event); }} />
+      <input ref={fileInput} type="file" value="" className="form-control" onChange={(event) => {addedImg(event); }} />
     </div>
   );
 };

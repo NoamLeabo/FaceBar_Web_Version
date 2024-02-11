@@ -27,10 +27,11 @@ function EditPostModal ({editPost, myId, myText, myComposer, myTime, myLikes, my
     const postText = useRef(null);
     const search = function(){
         if(Postable()){
-            content.current.setAttribute('class', 'btn btn-primary');
+            content.current.className ='btn btn-primary';
         }else{
-            content.current.setAttribute('class', 'btn btn-primary disabled');
+            content.current.className = 'btn btn-primary disabled';
         }
+        
     }
     if(myComments == null){
         myComments = [];
@@ -60,7 +61,7 @@ function EditPostModal ({editPost, myId, myText, myComposer, myTime, myLikes, my
     }
 
     return(
-        <div className="modal fade" id={`edit-post-${myId}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id={`edit-post-${myId}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">
@@ -70,7 +71,7 @@ function EditPostModal ({editPost, myId, myText, myComposer, myTime, myLikes, my
                 <div className="modal-body">
                 <form>
                     <div className="mb-3">
-                    <textarea ref={postText} onKeyUp={search} className="form-control" id="create-post-text" placeholder="What's on your mind, Arnon?">{myText}</textarea>
+                    <textarea ref={postText} onKeyUp={search} className="form-control" id="create-post-text" defaultValue={myText}></textarea>
                     </div>
                     <div className="input-group">
                     {/* <input  type="file" className="form-control" aria-label="Upload image or video"></input> */}

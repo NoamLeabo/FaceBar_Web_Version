@@ -4,7 +4,7 @@ import Btn from "../../CrossScreensElements/btn/Btn";
 import { useEffect, useState, useRef} from "react";
 import { useNavigate } from "react-router-dom";
 
-function LoginBox({activeUsers}) {
+function LoginBox({activeUsers, SetLoggedUser}) {
   const navigate = useNavigate();
   const [running, setRunning] = useState(false);
 
@@ -28,6 +28,7 @@ function LoginBox({activeUsers}) {
   const clickedLogIn = () => {
     setRunning(true);
     setEntry({ user: uName.current, password: uPassword.current });
+    SetLoggedUser(uName.current);
   };
 
   const checkIfValid = (entry) => {

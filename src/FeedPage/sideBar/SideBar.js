@@ -1,14 +1,32 @@
 import SideBarBtn from './SideBarBtn';
 import btns from './btns';
-function SideBar(){
+import { useRef } from 'react';
+import "./SideBar.css"
+function SideBar({setDarkMode, loggedinUser}){
+    const darkModeBtn = useRef(null);
+    const darkMode = function(){
+      if(darkModeBtn.current.checked){
+        setDarkMode('container-fluid');
+        document.body.style.backgroundColor = "rgb(231, 214, 214)";
+
+        
+      }else{
+        setDarkMode('container-fluid dark-mode');
+        document.body.style.backgroundColor = "rgb(82 82 82)";
+      }
+    }
     const btnList = btns.map((button, key ) =>{
         return <SideBarBtn {...button} key={key}/>
       });
     return(
         <div className="list-group" id="side-bar" style={{marginTop:"20px"}}>
-        {/* <!-- <a href="#" className="list-group-item list-group-item-action active" aria-current="true">
-          The current link item
-        </a> --> */}
+        <a href="#" className="list-group-item list-group-item-action active" aria-current="true">
+          {loggedinUser.name}
+        </a>
+        <label className="switch">
+          <input ref={darkModeBtn} onChange={darkMode} type="checkbox"></input>
+          <span className="slider round"></span>
+        </label>
         {btnList}
         <li className="list-group-item">
           <div className="dropdown">
@@ -19,10 +37,8 @@ function SideBar(){
               <li><button className="dropdown-item" type="button">Not Available Yet...</button></li>
             </ul>
           </div>
-          {/* <!-- <a href="#" className=" list-group-item-action ">
-              See more</a> --> */}
+
           </li>
-        {/* <!-- <a className="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a> --> */}
       </div>
     );
 }

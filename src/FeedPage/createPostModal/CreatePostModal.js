@@ -2,7 +2,9 @@ import { useRef } from "react";
 import UploadAndDisplayImage from "../uploadAndDisplayImage/UploadAndDisplayImage";
 import { useState } from "react";
 
-function CreatePostModal ({addPost}){
+function CreatePostModal ({addPost, postNum, composer}){
+    const [date, setDate] = useState(new Date());
+    
     let imgWasAdded = false;
     const [selectedImage, setSelectedImage] = useState(null);
     const addedImg = (event) =>{
@@ -10,7 +12,6 @@ function CreatePostModal ({addPost}){
         imgWasAdded = true;
     }
     const content = useRef(null);
-    let postNumber = 10;
 
     String.prototype.trim = function() {
         return this.replace(/^\s+|\s+$/g,"");
@@ -25,17 +26,17 @@ function CreatePostModal ({addPost}){
     const postText = useRef(null);
     const search = function(){
         if(Postable()){
-            content.current.setAttribute('class', 'btn btn-primary');
+            content.current.className = 'btn btn-primary';
         }else{
-            content.current.setAttribute('class', 'btn btn-primary disabled');
+            content.current.className = 'btn btn-primary disabled';
         }
     }
     const postSetter = function(){
         console.log(selectedImage);
         const post = {
-            id : postNumber,
-            composer : "Arnon Lutsky",
-            time : "now",
+            id : postNum,
+            composer : composer,
+            time : date.toDateString(),
             text : postText.current.value,
             contains_img : imgWasAdded,
             img : selectedImage,
@@ -44,11 +45,12 @@ function CreatePostModal ({addPost}){
         }
         addPost(post)
         postText.current.value = "";
-        postNumber = postNumber + 1;
+        setSelectedImage(null);
+        search();
     }
 
     return(
-        <div className="modal fade" id="create-post" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="create-post" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">

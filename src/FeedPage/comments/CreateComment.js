@@ -1,5 +1,5 @@
 import { useRef } from "react";
-function CreateComment({addComment}){
+function CreateComment({addComment, commId, Uname}){
     const content = useRef(null);
 
 
@@ -14,17 +14,18 @@ function CreateComment({addComment}){
         }
     }
     const commText = useRef(null);
-    const search = function(){
-        if(Postable()){
-            content.current.setAttribute('class', 'btn btn-outline-primary');
-        }else{
-            content.current.setAttribute('class', 'btn btn-outline-secondary disabled');
+    const search = function() {
+        if (Postable()) {
+            content.current.className = 'btn btn-outline-primary';
+        } else {
+            content.current.className = 'btn btn-outline-secondary disabled';
         }
-    }
+    };
     const commSetter = function(){
         const comment = {
-            commentAuthor : "Arnon Lutsky",
+            commentAuthor : Uname,
             commentText : commText.current.value,
+            commentId : commId
         }
         addComment(comment);
         commText.current.value = "";
@@ -38,7 +39,7 @@ function CreateComment({addComment}){
         </form>
         <div className="d-flex flex-row-reverse">
             <button ref={content} className="btn btn-outline-secondary disabled" onClick={commSetter} style={{ marginBottom: '12px' }} >
-                <i class="bi bi-send-fill" fill="currentColor" ></i>
+                <i className="bi bi-send-fill" fill="currentColor" ></i>
             </button>
         </div>
         </>
