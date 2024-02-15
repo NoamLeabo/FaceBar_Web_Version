@@ -6,6 +6,7 @@ Download zip- extract folder and then:
 2. npm start
 
 Work flow:
+
 We started by reading the exercide a few times and understanding what we need to do. 
 We devided the work between us and began working on it.
 Everyone worked on his part and we assured every few days with the other team mates that everyone is advancing.
