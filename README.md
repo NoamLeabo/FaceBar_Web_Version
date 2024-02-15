@@ -1,6 +1,7 @@
 # Foobar_p2_web
 
 How to run our project?
+
 Download zip- extract folder and then:
 1. npm i
 2. npm start
