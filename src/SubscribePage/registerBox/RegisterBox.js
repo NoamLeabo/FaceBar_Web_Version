@@ -38,6 +38,9 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
     const newU = {
       name: uName.current,
       password: uPassword.current,
+      FirstName : uFName.current,
+      LastName : uLName.current, 
+      image: image
     };
     checkIfValid(newU);
   };
@@ -139,9 +142,12 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
           Choose a profile picture
         </label>
         
+        {image && (
         <div className="image-container">
           <img src={image} id="image" alt="" />
+          {/* <button id="removeImgBtn" className ="btn btn-secondary"onClick={remImg}>Remove</button> */}
         </div>
+      )}  
 
         <div className="btn_sign">
           <Btn

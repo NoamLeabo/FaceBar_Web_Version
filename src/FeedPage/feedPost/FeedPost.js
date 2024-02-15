@@ -4,58 +4,108 @@ import EditPostModal from "../editPostModal/EditPostModal";
 import TextPost from "./TextPost";
 import { useState } from "react";
 import EditComment from "../comments/EditComment";
-function FeedPost({id, composer, time, text,comments, img, likes, remPost, editPost, remComment, editComment, Uname}){
-  function filterById(jsonObject, id) {return jsonObject.filter(function(jsonObject) {return (jsonObject['id'] == id);})[0];}
-  const [commentList, setCommentList] = useState(comments)
+import SharePostModal from "../sharePostModal/SharePostModal";
+function FeedPost({
+  id,
+  composer,
+  time,
+  text,
+  comments,
+  img,
+  likes,
+  remPost,
+  editPost,
+  remComment,
+  editComments,
+  Uname,
+  commentsNum,
+  postAddComment
+}) {
+  
+  function filterById(jsonObject, id) {
+    return jsonObject.filter(function (jsonObject) {
+      return jsonObject["id"] == id;
+    })[0];
+  }
+  const [commentList, setCommentList] = useState(comments);
 
   let likesDisp;
   const [likenum, setLikes] = useState(likes);
-  if(likenum>999){
+  if (likenum > 999) {
     likesDisp = "999+";
-  }else{
+  } else {
     likesDisp = likenum;
   }
-  const addLike = function (stat){
+  const addLike = function (stat) {
     console.log(likenum);
-    setLikes(l => l + stat);
+    setLikes((l) => l + stat);
     console.log(likenum);
-    if(likenum>999){
+    if (likenum > 999) {
       likesDisp = "999+";
-    }else{
+    } else {
       likesDisp = likenum;
-    } 
-  }
-  const editCommListElement = commentList.map((comm, key ) =>{
-    return <EditComment editComment={editComment}
-    originalCommentText={comm.commentText}
-    commentId={comm.commentId}
-    postId ={id}
-    key = {key}/> 
+    }
+  };
+  const editCommListElement = commentList.map((comm, key) => {
+    return (
+      <EditComment
+        editComments={editComments}
+        originalCommentText={comm.commentText}
+        commentId={comm.commentId}
+        commentAuthor={comm.commentAuthor}
+        postId={id}
+        key={key}
+        setCommentList={setCommentList}
+        commentList={commentList}
+      />
+    );
   });
-    return(
-      <div className="feed-component">
-      <TextPost id = {id} composer = {composer} time ={time}  text ={text} likesDisp = {likesDisp} addLike = {addLike} filterById = {filterById} img = {img} remPost={remPost}/>
-      <FeedPostModal id = {id}
-      composer = {composer}
-      time ={time}
-      text ={text} 
-      comments = {comments} 
-      likesDisp = {likesDisp} 
-      addLike = {addLike} 
-      filterById = {filterById} 
-      img = {img} 
-      remComment={remComment} 
-      editComment = {editComment}
-      commentList ={commentList}
-      setCommentList = {setCommentList}
-      Uname = {Uname}/>
-      
-      <EditPostModal editPost ={editPost} myId = {id} myText ={text} myComposer = {composer} myTime={time} myLikes = {likesDisp} myImg ={img} myComments = {comments} />
+  return (
+    <div className="feed-component" data-testid={`test-post-${id}`}>
+      <TextPost
+        id={id}
+        composer={composer}
+        time={time}
+        text={text}
+        likesDisp={likesDisp}
+        addLike={addLike}
+        filterById={filterById}
+        img={img}
+        remPost={remPost}
+      />
+      <FeedPostModal
+        id={id}
+        composer={composer}
+        time={time}
+        text={text}
+        comments={comments}
+        likesDisp={likesDisp}
+        addLike={addLike}
+        filterById={filterById}
+        img={img}
+        remComment={remComment}
+        editComments={editComments}
+        commentList={commentList}
+        setCommentList={setCommentList}
+        Uname={Uname}
+        commentsNum = {commentsNum}
+        postAddComment = {postAddComment}
+      />
+
+      <EditPostModal
+        editPost={editPost}
+        myId={id}
+        myText={text}
+        myComposer={composer}
+        myTime={time}
+        myLikes={likesDisp}
+        myImg={img}
+        myComments={comments}
+      />
+      <SharePostModal />
       {editCommListElement}
     </div>
-    );
+  );
 }
 
-
 export default FeedPost;
-

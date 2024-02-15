@@ -1,5 +1,29 @@
 
 [
-    
+{ "name" : "arnonlu",
+"password": "aAaA1234" ,
+"FirstName" : "Arnon",
+"LastName" : "Lustky", 
+"image": "/usersPFP/arnon.jpeg" },
+{ "name" : "maxcat",
+"password": "aAaA1234" ,
+"FirstName" : "Max's",
+"LastName" : "Cat", 
+"image": "/usersPFP/maxcat.jpg" },
+{ "name" : "beethoven",
+"password": "aAaA1234" ,
+"FirstName" : "Ludwig Van",
+"LastName" : "Beethoven", 
+"image": "/imgs/beethoven.jpg" },
+{ "name" : "gideonnaam",
+"password": "aAaA1234" ,
+"FirstName" : "Gideon",
+"LastName" : "Naaman", 
+"image": "/usersPFP/gideonnaam.jpeg" },
+{ "name" : "noamlea",
+"password": "aAaA1234" ,
+"FirstName" : "Noam",
+"LastName" : "Leabovich", 
+"image": "/usersPFP/noamlea.jpeg" }
 ]
   

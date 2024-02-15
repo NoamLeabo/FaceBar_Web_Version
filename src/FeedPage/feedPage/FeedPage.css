@@ -16,7 +16,7 @@ body{
 }
 #faceboockimg{
   width: 30px;
-  fill: blue !important;
+  fill: #4800ff !important;
   font-size:35px;
   padding-left: 15px;
 }
@@ -27,6 +27,9 @@ body{
 }
 .nav-icon{
   padding: 15px 40px;
+}
+.nav-item{
+  list-style-type: none;
 }
 .nav-icon:hover{
   background-color: rgb(227, 227, 227);
@@ -70,13 +73,20 @@ li > .dropdown-toggle{
   flex: content;
 }
 
-
-/* .card{
-
-} */
+.postable-comment{
+  color: #0d6efd !important;
+}
+.post-modal{
+  --bs-modal-width: 50%;
+}
+.comments-class{
+  box-shadow: 4px 6px 8px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.create-comment-class{
+  padding-inline: 10px;
+}
 .card-body{
-  /* padding: 15px; */
-  /* background-color: #e9ecef; */
   background-color: white;
   margin: 10px;
   padding: 5px;
@@ -87,6 +97,9 @@ li > .dropdown-toggle{
 
 #side-bar{
   position: fixed;
+  height:100%;
+  /* position: absolute; */
+  overflow-y: scroll;
 }
 
 
@@ -112,10 +125,21 @@ figure{
   color: #0d6efd !important;
   border: 0;
 }
-#notAvail{
+.modal{
   padding-top: 10%;
 }
-
+.img-cover{
+  object-fit: cover;
+  object-position: center;
+}
+.ProfPic{
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+}
+#navbarProfileDropdown{
+  padding-right: 30px;
+}
 .dark-mode{
   
   .list-group-item{
@@ -194,6 +218,5 @@ figure{
   }
   .comments-class{
     background-color: rgb(103, 103, 103);
-    border-radius: 6px;
   }
 }

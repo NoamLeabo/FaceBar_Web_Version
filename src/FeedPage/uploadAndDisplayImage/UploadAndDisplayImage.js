@@ -16,12 +16,12 @@ function UploadAndDisplayImage({addedImg, selectedImage, setSelectedImage})  {
           <img style={{marginBottom:"20px"}}
             alt="not found"
             width={"250px"}
-            src={URL.createObjectURL(selectedImage)}
+            src={selectedImage}
           />
           <button id="removeImgBtn" className ="btn btn-secondary"onClick={remImg}>Remove</button>
         </div>
       )}  
-      <input ref={fileInput} type="file" value="" className="form-control" onChange={(event) => {addedImg(event); }} />
+      <input ref={fileInput} type="file" defaultValue="" className="form-control" onChange={(event) => {addedImg(event); }} />
     </div>
   );
 };

@@ -6,12 +6,12 @@ import { useEffect } from "react";
 function EditPostModal ({editPost, myId, myText, myComposer, myTime, myLikes, myImg, myComments}){
     const [selectedImage, setSelectedImage] = useState(null);
     useEffect(() => {
-        if (myImg != null && myId > 9) {
+        if (myImg != null) {
           setSelectedImage(myImg);
         }
       }, []);
     const addedImg = (event) =>{
-        setSelectedImage(event.target.files[0]);
+        setSelectedImage(URL.createObjectURL(event.target.files[0]));
     }
     const content = useRef(null);
     String.prototype.trim = function() {
@@ -27,7 +27,7 @@ function EditPostModal ({editPost, myId, myText, myComposer, myTime, myLikes, my
     const postText = useRef(null);
     const search = function(){
         if(Postable()){
-            content.current.className ='btn btn-primary';
+            content.current.className = 'btn btn-primary';
         }else{
             content.current.className = 'btn btn-primary disabled';
         }
@@ -42,9 +42,9 @@ function EditPostModal ({editPost, myId, myText, myComposer, myTime, myLikes, my
     if(myTime == null){
         myTime = "now";
     }
-    if(myComposer == null){
-        myComposer = "Arnon Lutsky";
-    }
+    // if(myComposer == null){
+    //     myComposer = "Arnon Lutsky";
+    // }
     const postSetter = function(){
         console.log(selectedImage);
         const post = {

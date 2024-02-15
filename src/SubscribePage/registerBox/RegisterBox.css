@@ -21,14 +21,13 @@ input::file-selector-button {
     margin-left: 30%;
 }
 #image{
-    position: absolute; 
-    top: 77%; 
-    left: 53.5%; 
+    top: 600px; 
+    left: 800px; 
     width: 100px;
     border-radius: 1rem;
     border: none !important;
     outline: none;
-    height: 90px;
+    height: 100px;
     margin-left: px;
     margin-top: 2px;
 }

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function EditComment({ editComment, originalCommentText, commentId, postId }) {
+function EditComment({ editComments, originalCommentText, commentId, postId, commentAuthor, setCommentList}) {
     const content = useRef(null);
 
     String.prototype.trim = function() {
@@ -19,19 +19,18 @@ function EditComment({ editComment, originalCommentText, commentId, postId }) {
 
     const search = function() {
         if (Postable()) {
-            content.current.setAttribute('class', 'btn btn-primary');
+            content.current.className = 'btn btn-primary';
         } else {
-            content.current.setAttribute('class', 'btn btn-primary disabled');
+            content.current.className = 'btn btn-primary disabled';
         }
     };
 
     const commSetter = function() {
         const comment = {
-            commentAuthor: "Arnon Lutsky",
+            commentAuthor: commentAuthor,
             commentText: commText.current.value,
         };
-        editComment(postId, commentId, comment);
-        commText.current.value = "";
+        editComments(postId, commentId, comment, setCommentList);
     };
 
     return (
@@ -39,7 +38,7 @@ function EditComment({ editComment, originalCommentText, commentId, postId }) {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <h1 className="modal-title fs-5" id="exampleModalLabel">Edit comment</h1>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
@@ -49,14 +48,11 @@ function EditComment({ editComment, originalCommentText, commentId, postId }) {
                             </div>
                         </form>
                         <div className="d-flex flex-row-reverse">
-                            <button style={{ marginBottom: '12px' }}>
-                                <i className="bi bi-send-fill" fill="currentColor"></i>
-                            </button>
                         </div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button ref={content} className="btn btn-primary disabled" onClick={commSetter}>Save changes</button>
+                        <button ref={content} className="btn btn-primary disabled"  data-bs-dismiss="modal" onClick={commSetter}>Save changes</button>
                     </div>
                 </div>
             </div>

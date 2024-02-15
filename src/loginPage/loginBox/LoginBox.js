@@ -3,8 +3,13 @@ import InputGetter from "../../CrossScreensElements/inputGetter/InputGetter";
 import Btn from "../../CrossScreensElements/btn/Btn";
 import { useEffect, useState, useRef} from "react";
 import { useNavigate } from "react-router-dom";
+import ForgotPasswordToast from "../toasts/ForgotPasswordToast";
+// import Toast from 'react-bootstrap/Toast';
+
 
 function LoginBox({activeUsers, SetLoggedUser}) {
+  const toastTrigger = useRef(null)
+
   const navigate = useNavigate();
   const [running, setRunning] = useState(false);
 

@@ -4,9 +4,7 @@ import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
 import { useRef } from "react";
 
 function TextPost({id, composer, time, text , likesDisp, addLike, img, filterById, remPost}){
-      if(id>=10 && img){
-      img = URL.createObjectURL(img);
-    }
+
     const likebtn = useRef(null);
     const liked = function(){
       if (likebtn.current.getAttribute('id') == "likeBtn") {
@@ -19,9 +17,11 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
   }
     return(
         <div className="card">
-          <div className="card-body">
+          <div className="card-body ">
             <PostSettingBtn btn1action= {remPost} text = {text} composer = {composer} time = {time} id={id} likesDisp = {likesDisp} img = {img}/>
-            <h5 className="card-title">{composer}</h5>
+            <h5 className="card-title">
+              <img src={composer.image} className="ProfPic rounded-circle img-cover ratio ratio-1x1 overflow-hidden" width={"100px"} alt="" />
+              {composer.FirstName} {composer.LastName}</h5>
             <p className="card-text">
               <small className="text-body-secondary">Last updated {time}</small>
             </p>
@@ -29,7 +29,7 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
               {text}
             </p>
             <hr style={{ margin: "10px 0" }} />
-
+            <div className='container'>
             {img && (
                 <div className="d-flex justify-content-center">
                   <img
@@ -39,6 +39,7 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
                   />
                 </div>
               )} 
+              </div>
           </div>
           <div className="card-footer">
                 <div className="d-flex justify-content-around">
@@ -55,7 +56,7 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
                   <ImgBtn target={"#opened-post-" + id} toggle= {"modal"} img = {"bi bi-chat"}/>
                   </div>
                   <div className='col'>
-                  <ImgBtn target={"#opened-post-" + id} toggle= {"modal"} img = {"bi bi-send"}/>
+                  <ImgBtn target="#share-post-modal" toggle= {"modal"} img = {"bi bi-send"}/>
                   </div>
                 </div>
                 </div>
@@ -63,5 +64,4 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
           </div>
     );
 }
-// `opened-post-${id}`
 export default TextPost;

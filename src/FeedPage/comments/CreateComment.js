@@ -1,5 +1,5 @@
 import { useRef } from "react";
-function CreateComment({addComment, commId, Uname}){
+function CreateComment({addComment, commId, Uname, editComments}){
     const content = useRef(null);
 
 
@@ -16,7 +16,7 @@ function CreateComment({addComment, commId, Uname}){
     const commText = useRef(null);
     const search = function() {
         if (Postable()) {
-            content.current.className = 'btn btn-outline-primary';
+            content.current.className = 'btn btn-outline-primary postable-comment';
         } else {
             content.current.className = 'btn btn-outline-secondary disabled';
         }
@@ -29,11 +29,12 @@ function CreateComment({addComment, commId, Uname}){
         }
         addComment(comment);
         commText.current.value = "";
+        content.current.className = 'btn btn-outline-secondary disabled';
     }
     return(
         <>
         <form>
-            <div className="mb-3">
+            <div className="mb-3 create-comment-class">
                 <textarea ref={commText} onKeyUp={search} className="form-control" id="create-comment-text"></textarea>
             </div>
         </form>

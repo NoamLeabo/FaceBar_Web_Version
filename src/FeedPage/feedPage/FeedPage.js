@@ -8,20 +8,21 @@ import { useState } from 'react';
 import ContentNotAvailable from '../contentNotAvailable/ContentNotAvailable';
 import { useRef } from 'react';
 import { Navigate } from 'react-router-dom';
+import Contact from '../contact/Contact';
+import { keyboard } from '@testing-library/user-event/dist/keyboard';
 
-function FeedPage({loggedinUser}) {
+function FeedPage({loggedinUser, setLoggedinUser, activeUsers}) {
   const page = useRef(null);
   const [postList, setPostList] = useState(posts)
-
   if(!loggedinUser){
     return <Navigate to="/" />;
   }
   function filterById(jsonObject, id) {return jsonObject.filter(function(jsonObject) {return (jsonObject['id'] == id);})[0];}
-
+  
   const setDarkMode = function(mode){
     page.current.className = mode;
   }
-
+  let postNum = postList.length;
   const addPost = (post) =>{
        
     setPostList([post, ...postList])
@@ -37,28 +38,30 @@ function FeedPage({loggedinUser}) {
 
     postList.splice(index,1);
     setPostList([...postList]);
+    postNum++;
   };
   
-  function remComment (postId, commentId){
-    var index = -1;
+  function remComment (postId, commentId, setter){
+    var postIndex = -1;
     postList.find(function(item, i){
       if(item.id === postId){
-        index = i;
+        postIndex = i;
         return i;
       }
     });
 
-  const comments = postList[index].comments;
-  index = -1;
-  comments.find(function(item, i){
-    if(item.commentId === commentId){
-      index = i;
-      return i;
-    }
-  });
-  comments.splice(index,1);
-  postList[index].comments = comments;
-  setPostList([...postList]);
+    const comments = postList[postIndex].comments;
+    var index = -1;
+    comments.find(function(item, i){
+      if(item.commentId === commentId){
+        index = i;
+        return i;
+      }
+    });
+    comments.splice(index,1);
+    postList[postIndex].comments = comments;
+    setPostList([...postList]);
+    setter(comments);
   };
 
   function editPost (id, newItem){
@@ -74,17 +77,17 @@ function FeedPage({loggedinUser}) {
     setPostList([...postList]);
   };
 
-  function editComment (postId, commentId, newItem){
-    var index = -1;
+  function editComments (postId, commentId, newItem, setter){
+    var postIndex = -1;
     postList.find(function(item, i){
       if(item.id === postId){
-        index = i;
+        postIndex = i;
         return i;
       }
     });
 
-  const comments = postList[index].comments;
-  index = -1;
+  const comments = postList[postIndex].comments;
+  var index = -1;
   comments.find(function(item, i){
     if(item.commentId === commentId){
       index = i;
@@ -93,44 +96,69 @@ function FeedPage({loggedinUser}) {
   });
 
   comments.splice(index,1,newItem);
-  postList[index].comments = comments;
+  postList[postIndex].comments = comments;
   setPostList([...postList]);
+  setter(comments);
   };
 
+  function postAddComment (postId, newItem){
+    var postIndex = -1;
+    postList.find(function(item, i){
+      if(item.id === postId){
+        postIndex = i;
+        return i;
+      }
+    });
+
+  const comments = postList[postIndex].comments;
+  var index = comments.length;
+
+  comments.splice(index,1,newItem);
+  postList[postIndex].comments = comments;
+  setPostList([...postList]);
+  };
   
   const postListElement = postList.map((post ) =>{
     return <FeedPost {...post}
      remPost={remPost}
      editPost={editPost}
      remComment = {remComment} 
-     editComment = {editComment} 
+     editComments = {editComments} 
+     postAddComment = {postAddComment}
      key={post.id} 
-     Uname = {loggedinUser.name}/>
+     Uname = {loggedinUser.name}
+     commentsNum = {post.comments.length}
+     />
   });
-  console.log("logged in is" + loggedinUser.name)
+  const contactList = activeUsers.map((user, key ) =>{
+    return <Contact user = {user} key={key}/>
+  })
   return (
     <div ref={page} className="container-fluid">
-      <NavBar/>
+      <NavBar loggedinUser = {loggedinUser} setLoggedinUser = {setLoggedinUser} activeUsers = {activeUsers} setDarkMode= {setDarkMode}/>
       <div className="row">
           <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-2">
-              <SideBar setDarkMode= {setDarkMode} loggedinUser ={loggedinUser}/>
+              <SideBar loggedinUser ={loggedinUser}/>
           </div>
           <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6" id="feedmain">
             <div className="card">
               <div className="card-body">
             <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create-post" id="create-post-btn">
-              What's on your mind, Arnon?
+              What's on your mind, {loggedinUser.FirstName}?
             </button>
           </div>
           </div>
             {/* <!-- Modal for creating a post--> */}
-            <CreatePostModal addPost = {addPost} postNum = {postList.length} composer = {loggedinUser.name}/>
+            <CreatePostModal addPost = {addPost} postNum = {postList.length} FirstName = {loggedinUser.FirstName} LastName={loggedinUser.LastName} composer = {loggedinUser}/>
             {/* <!-- Posts --> */}
             {postListElement}
             <ContentNotAvailable />
           </div>
           <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-2">
-              
+          <div className="list-group" id="side-bar" style={{ marginTop: "20px", paddingBottom: "60px"}}>
+            Contacts:
+            {contactList}
+          </div>
           </div>
       </div>
   </div>
@@ -138,4 +166,4 @@ function FeedPage({loggedinUser}) {
 
 }
 
-export default FeedPage
+export default FeedPage;

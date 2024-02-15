@@ -14,8 +14,6 @@ function App() {
   // Get a user by username
   function filterByUname(userList, Uname) {return userList.filter(function(userList) {return (userList['name'] == Uname);})[0];}
   const SetLoggedUser = function (Uname){
-    console.log(Uname);
-    console.log(filterByUname(activeUsers, Uname))
     setLoggedinUser(filterByUname(activeUsers, Uname));
   }
   return (
@@ -24,7 +22,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LoginPage activeUsers={activeUsers} SetLoggedUser = {SetLoggedUser}/> }></Route>
       <Route path="/details" element={<SubscribePage setActiveUsers={setActiveUsers} activeUsers={activeUsers} />}></Route>
-      <Route path="/home" element={<FeedPage loggedinUser={loggedinUser} />}></Route>
+      <Route path="/home" element={<FeedPage loggedinUser={loggedinUser} setLoggedinUser = {setLoggedinUser} activeUsers = {activeUsers} />}></Route>
     </Routes>
     </BrowserRouter>
     </div>

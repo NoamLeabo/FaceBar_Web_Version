@@ -2,13 +2,13 @@ import { useRef } from "react";
 import UploadAndDisplayImage from "../uploadAndDisplayImage/UploadAndDisplayImage";
 import { useState } from "react";
 
-function CreatePostModal ({addPost, postNum, composer}){
+function CreatePostModal ({addPost, postNum, composer, LastName, FirstName}){
     const [date, setDate] = useState(new Date());
     
     let imgWasAdded = false;
     const [selectedImage, setSelectedImage] = useState(null);
     const addedImg = (event) =>{
-        setSelectedImage(event.target.files[0]);
+        setSelectedImage(URL.createObjectURL(event.target.files[0]));
         imgWasAdded = true;
     }
     const content = useRef(null);
@@ -32,7 +32,6 @@ function CreatePostModal ({addPost, postNum, composer}){
         }
     }
     const postSetter = function(){
-        console.log(selectedImage);
         const post = {
             id : postNum,
             composer : composer,
@@ -41,7 +40,7 @@ function CreatePostModal ({addPost, postNum, composer}){
             contains_img : imgWasAdded,
             img : selectedImage,
             likes : 0,
-            comments :[]
+            comments : new Array
         }
         addPost(post)
         postText.current.value = "";
@@ -60,7 +59,7 @@ function CreatePostModal ({addPost, postNum, composer}){
                 <div className="modal-body">
                 <form>
                     <div className="mb-3">
-                    <textarea ref={postText} onKeyUp={search} className="form-control" id="create-post-text" placeholder="What's on your mind, Arnon?"></textarea>
+                    <textarea ref={postText} onChange={search} className="form-control" data-testid = "create-post-text-test" id="create-post-text" placeholder= "Enter some text for the post"></textarea>
                     </div>
                     <div className="input-group">
                     {/* <input  type="file" className="form-control" aria-label="Upload image or video"></input> */}
