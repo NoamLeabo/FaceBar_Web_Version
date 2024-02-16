@@ -90,6 +90,7 @@ function FeedPost({
         Uname={Uname}
         commentsNum = {commentsNum}
         postAddComment = {postAddComment}
+        remPost={remPost}
       />
 
       <EditPostModal

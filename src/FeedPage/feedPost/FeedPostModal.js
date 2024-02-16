@@ -52,7 +52,7 @@ function FeedPostModal({
           <div className="modal-header"></div>
           <div className="modal-body">
             <TextPost
-            id={id+1000}
+            id={id}
             composer={composer}
             time={time}
             text={text}
@@ -61,6 +61,7 @@ function FeedPostModal({
             filterById={filterById}
             img={img}
             remPost={remPost}
+            inModal = {"modal"}
             />
           </div>
           {commentListElement}

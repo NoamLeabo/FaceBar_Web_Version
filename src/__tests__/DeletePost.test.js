@@ -26,7 +26,7 @@ describe('FeedPage', () => {
     });
     expect(screen.getByTestId('test-post-1')).toBeInTheDocument();
     // Find the delete button associated with the first post
-    const deleteButton = screen.getByTestId('test-delete-post-1');
+    const deleteButton = screen.getAllByTestId('test-delete-post-1')[0];
 
     // Click on the delete button
     fireEvent.click(deleteButton);

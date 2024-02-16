@@ -3,7 +3,7 @@ import PostSettingBtn from "../../CrossScreensElements/btn/PostSettingBtn";
 import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
 import { useRef } from "react";
 
-function TextPost({id, composer, time, text , likesDisp, addLike, img, filterById, remPost}){
+function TextPost({id, composer, time, text , likesDisp, addLike, img, filterById, remPost, inModal}){
 
     const likebtn = useRef(null);
     const liked = function(){
@@ -18,7 +18,7 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
     return(
         <div className="card">
           <div className="card-body ">
-            <PostSettingBtn btn1action= {remPost} text = {text} composer = {composer} time = {time} id={id} likesDisp = {likesDisp} img = {img}/>
+            <PostSettingBtn btn1action= {remPost} text = {text} composer = {composer} time = {time} id={id} likesDisp = {likesDisp} img = {img} inModal= {inModal}/>
             <h5 className="card-title">
               <img src={composer.image} className="ProfPic rounded-circle img-cover ratio ratio-1x1 overflow-hidden" width={"100px"} alt="" />
               {composer.FirstName} {composer.LastName}</h5>
