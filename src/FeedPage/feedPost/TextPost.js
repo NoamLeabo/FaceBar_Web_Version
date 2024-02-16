@@ -29,12 +29,12 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
               {text}
             </p>
             <hr style={{ margin: "10px 0" }} />
-            <div className='container'>
+            <div className='container' style={{ height: "350px"}}>
             {img && (
                 <div className="d-flex justify-content-center">
                   <img
                     alt="not found"
-                    width={"50%"}
+                    style={{maxHeight: "350px", height: "100%", width: "100%", objectFit: "contain"}}
                     src={img}
                   />
                 </div>
