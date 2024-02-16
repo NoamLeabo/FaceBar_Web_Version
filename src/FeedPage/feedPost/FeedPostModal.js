@@ -26,7 +26,6 @@ function FeedPostModal({
     setCommentList([...commentList, comment]);
     postAddComment(id, comment);
     commentsNum++;
-    console.log(comment);
   };
   const commentListElement = commentList.map((comment, key) => {
     return (
@@ -53,7 +52,7 @@ function FeedPostModal({
           <div className="modal-header"></div>
           <div className="modal-body">
             <TextPost
-            id={id}
+            id={id+1000}
             composer={composer}
             time={time}
             text={text}

@@ -45,7 +45,7 @@ function TextPost({id, composer, time, text , likesDisp, addLike, img, filterByI
                 <div className="d-flex justify-content-around">
                   <div className="row g-3">
                     <div className='col'>
-                <button ref={likebtn} type="button" className="btn reg-btn" data-bs-toggle="button" onClick={liked} id="likeBtn">
+                <button ref={likebtn} type="button" className="btn reg-btn" data-bs-toggle="button" onClick={liked} data-testid={`likeBtn-test-${id}`} id="likeBtn">
                     <i className="bi bi-hand-thumbs-up"></i>
                     <span className="position-relative fixed-top top-6 start-100 translate-middle badge rounded-pill bg-danger">
                       {likesDisp}

@@ -16,9 +16,9 @@ function CreateComment({addComment, commId, Uname, editComments}){
     const commText = useRef(null);
     const search = function() {
         if (Postable()) {
-            content.current.className = 'btn btn-outline-primary postable-comment';
+            content.current.className = 'btn btn-outline-primary postable-comment post-comment-class';
         } else {
-            content.current.className = 'btn btn-outline-secondary disabled';
+            content.current.className = 'btn btn-outline-secondary disabled post-comment-class';
         }
     };
     const commSetter = function(){
@@ -39,7 +39,7 @@ function CreateComment({addComment, commId, Uname, editComments}){
             </div>
         </form>
         <div className="d-flex flex-row-reverse">
-            <button ref={content} className="btn btn-outline-secondary disabled" onClick={commSetter} style={{ marginBottom: '12px' }} >
+            <button ref={content} className="btn btn-outline-secondary disabled post-comment-class" onClick={commSetter} style={{ marginBottom: '12px' }} >
                 <i className="bi bi-send-fill" fill="currentColor" ></i>
             </button>
         </div>
