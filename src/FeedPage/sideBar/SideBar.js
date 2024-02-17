@@ -3,9 +3,6 @@ import btns from "./btns";
 import { useRef } from "react";
 import "./SideBar.css";
 function SideBar({ loggedinUser }) {
-
-  
-
   const btnList = btns.map((button, key) => {
     return <SideBarBtn {...button} key={key} />;
   });

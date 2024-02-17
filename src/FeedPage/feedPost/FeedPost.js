@@ -19,9 +19,8 @@ function FeedPost({
   editComments,
   Uname,
   commentsNum,
-  postAddComment
+  postAddComment,
 }) {
-  
   function filterById(jsonObject, id) {
     return jsonObject.filter(function (jsonObject) {
       return jsonObject["id"] == id;
@@ -37,9 +36,7 @@ function FeedPost({
     likesDisp = likenum;
   }
   const addLike = function (stat) {
-    console.log(likenum);
     setLikes((l) => l + stat);
-    console.log(likenum);
     if (likenum > 999) {
       likesDisp = "999+";
     } else {
@@ -88,8 +85,8 @@ function FeedPost({
         commentList={commentList}
         setCommentList={setCommentList}
         Uname={Uname}
-        commentsNum = {commentsNum}
-        postAddComment = {postAddComment}
+        commentsNum={commentsNum}
+        postAddComment={postAddComment}
         remPost={remPost}
       />
 

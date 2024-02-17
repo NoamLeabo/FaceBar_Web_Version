@@ -20,7 +20,7 @@ function FeedPostModal({
   remPost,
   filterById,
   commentsNum,
-  postAddComment
+  postAddComment,
 }) {
   const addComment = (comment) => {
     setCommentList([...commentList, comment]);
@@ -52,16 +52,16 @@ function FeedPostModal({
           <div className="modal-header"></div>
           <div className="modal-body">
             <TextPost
-            id={id}
-            composer={composer}
-            time={time}
-            text={text}
-            likesDisp={likesDisp}
-            addLike={addLike}
-            filterById={filterById}
-            img={img}
-            remPost={remPost}
-            inModal = {"modal"}
+              id={id}
+              composer={composer}
+              time={time}
+              text={text}
+              likesDisp={likesDisp}
+              addLike={addLike}
+              filterById={filterById}
+              img={img}
+              remPost={remPost}
+              inModal={"modal"}
             />
           </div>
           {commentListElement}
