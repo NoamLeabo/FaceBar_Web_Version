@@ -1,0 +1,20 @@
+
+.loginCard {
+    text-align: center;
+    width: 100%;
+    margin-top: 55px;
+    box-shadow: -1px -1px 50px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .loginInput {
+    height: 55px;
+    font-size: 18px;
+  }
+  
+  #genericT {
+    text-align: center;
+    padding-top: 5px;
+}
+#logInBtn{
+  margin-bottom: 8px;
+}

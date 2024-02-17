@@ -1,0 +1,27 @@
+.subscribecontainer{
+    border: white .3rem solid;
+    border-radius: 1rem;
+    background-color: white;
+    height: 35rem;
+    width: 30rem;
+    padding: 1rem;
+    margin-bottom: 4rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+input::placeholder{
+    font-size: 1.05rem;
+}
+.sign{
+    font-size: 30px;
+    color: black;
+    text-align: center;
+}
+.signtext{
+    margin-top: 4px;
+    font-size: 1.1rem;
+    text-align: center;
+    border-bottom: lightgray .1rem solid;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+

@@ -1,0 +1,38 @@
+.btn {
+    color: white;
+  }
+  
+  #logInBtn {
+    background: #4800ff;
+    font-size: 25px;
+    width: 100%;
+  }
+  #logInBtn:hover{
+    color: #4800ff;
+    background: none;
+    border-color: #4800ff;
+  }
+  
+#cNewBtn {
+    background: rgb(6, 189, 6);
+    height: 45px;
+    line-height: 30px;
+    font-size: 15px;
+    width: 50%;
+} 
+#cNewBtn:hover{
+    color: white;
+    background: rgb(23, 124, 14);
+}
+
+#likeBtn{
+  color: black;
+}
+#likeBtnDis{
+  opacity: 1 !important;
+  color: #0d6efd;
+}
+.btn.settings-btn{
+  color: black !important;
+  
+}
