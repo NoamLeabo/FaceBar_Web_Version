@@ -17,7 +17,8 @@ function TextPost({
 }) {
   let containerSize = null;
   if (img) {
-    containerSize = { height: "350px" };
+    let imgHeight = img.height + 50;
+    containerSize = { height: { imgHeight } };
   }
   const likebtn = useRef(null);
   const liked = function () {
