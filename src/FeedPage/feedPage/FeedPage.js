@@ -154,7 +154,7 @@ function FeedPage({ loggedinUser, setLoggedinUser, activeUsers }) {
           <SideBar loggedinUser={loggedinUser} />
         </div>
         <div
-          className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6"
+          className="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-xs-6"
           id="feedmain"
         >
           <CreatePostButton loggedinUser={loggedinUser} />
@@ -174,7 +174,7 @@ function FeedPage({ loggedinUser, setLoggedinUser, activeUsers }) {
           <div
             className="list-group"
             id="side-bar"
-            style={{ marginTop: "20px", paddingBottom: "100px" }}
+            style={{ marginTop: "20px", paddingBottom: "100px" , right: "0"}}
           >
             Contacts:
             {contactList}

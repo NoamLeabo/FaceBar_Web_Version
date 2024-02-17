@@ -51,10 +51,10 @@ li > .dropdown-toggle{
 
 
 #create-post-btn{
-  --bs-btn-bg: rgb(227, 227, 227);
-  --bs-btn-hover-bg: rgb(178, 178, 178);
+  --bs-btn-bg: rgb(186, 186, 186);
+  --bs-btn-hover-bg: rgb(102, 102, 102);
   border: 0;
-  --bs-btn-color: rgb(89, 89, 89);
+  --bs-btn-color: rgb(59, 59, 59);
   border-radius: 1rem;
   --bs-btn-padding-x: 6rem;
 
