@@ -19,6 +19,8 @@ First the login and subscribe screens were merged together and we refactored sam
 have written these 2 screens.
 At the end the feed screen was merged with the 2 other screens and refactoring was done to make all different thing work
 
+A quick guide to help you find your way through Facebar:
+
 When starting the web application you see this page.
 Start by clicking on "Create new account"
 ![image](https://github.com/gideonn12/Foobar_p2_web/assets/155386445/c60e0f9d-f47a-4845-ad11-df0031f0752a)
