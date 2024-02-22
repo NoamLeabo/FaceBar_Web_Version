@@ -19,11 +19,13 @@ have written these 2 screens.
 At the end the feed screen was merged with the 2 other screens and refactoring was done to make all different thing work
 
 When starting the web application you see this page.
-Start by clicking on "CREate new account"
+Start by clicking on "Create new account"
 ![image](https://github.com/gideonn12/Foobar_p2_web/assets/155386445/c60e0f9d-f47a-4845-ad11-df0031f0752a)
 
 This will bring you to the subscribe page.
+
 Make yourself a new account and subscribe!
+
 If you need to know what should be inputted in every box just "hover" over the box and you should get more info!
 ![image](https://github.com/gideonn12/Foobar_p2_web/assets/155386445/5e0ecc25-030b-452b-86c9-01f85fdc81f0)
 
