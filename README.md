@@ -1,8 +1,9 @@
 # Foobar_p2_web
+Welcome to the web version of Facebar!
 
 How to run our project?
 
-Download zip- extract folder and then:
+Download zip from Github - extract folder and then:
 1. npm i
 2. npm start
 
