@@ -40,15 +40,18 @@ you are able to create another account and sign in with it.
 now you should be directed to the feed Page!
 
 //Link to feed page photo
+<img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/7a187b79-3e01-4ab6-b463-6cc278abff43">
 
 
 I - By clicking on your profile picture, you can open a menu featuring a logout button (VI). it will hold some very exciting features in the next update.
 
 //Link to logout btn photo
+<img  src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/a0a070ff-c8c5-4894-9fa6-52d7db54d342">
 
 II - To enjoy FaceBar even at the dark hours of the night, you can enter dark mode to relieve your eyes.
 
 // Link to darkmode photo
+<img  src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/69b76c0c-fdf5-40fc-97a7-68b38106b2c9">
 
 III - If a post wasn't to your liking, you are able to edit it or even completly remove it from FaceBar by clicking the VII, VIII buttons respectively.
 
