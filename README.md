@@ -61,9 +61,24 @@ V - These features are not available in the current version of FaceBar but soon 
 // Link to chopin post photo
 
 IX - The comment section of a post is an excelent way to let the creator of a post and everyone else that has seen it what you think about it. Chopin would be very happy to know how much you like his pieces!
+
 X - Another way you can show your appreciation of a post is by liking it.
+
 XI - Because FaceBar is still a very exclusive website, you are able to practice sending a post to another platform but you won't be able to actually send it.
 
+//Link to feed post modal
+
 //Link to comment section
+
+Adding a post is pretty intuitive - click on the text area, write your thoughts and click the blue send button. Notice that you can't post a comment without any text, because saying nothing isn't saying much.
+
+Last but not least, Let's create a new post of our own!
+
+// link to post button photo
+
+XII - by clicking on this button, you'll be able to create your own post. At FaceBar, we value reading so only posts with text are acceptable. You are able to add an image as well to add to your post!
+
+Enjoy FaceBar!
+
 
 
