@@ -38,3 +38,32 @@ Log in with your account details and click "Log in".
 If you forgot your username or password, don't worry!
 you are able to create another account and sign in with it.
 now you should be directed to the feed Page!
+
+//Link to feed page photo
+
+
+I - By clicking on your profile picture, you can open a menu featuring a logout button (VI). it will hold some very exciting features in the next update.
+
+//Link to logout btn photo
+
+II - To enjoy FaceBar even at the dark hours of the night, you can enter dark mode to relieve your eyes.
+
+// Link to darkmode photo
+
+III - If a post wasn't to your liking, you are able to edit it or even completly remove it from FaceBar by clicking the VII, VIII buttons respectively.
+
+//Link to edit/remove post photo
+
+IV - FaceBar is not yet available for the wide public. Thus, everyone that signs in probably knows each and every one that registered. We show you all of them as contacts, so you can see some familiar faces apart from your favorite composers.
+
+V - These features are not available in the current version of FaceBar but soon enough you will be able to access the full power and diversity of the platform.
+
+// Link to chopin post photo
+
+IX - The comment section of a post is an excelent way to let the creator of a post and everyone else that has seen it what you think about it. Chopin would be very happy to know how much you like his pieces!
+X - Another way you can show your appreciation of a post is by liking it.
+XI - Because FaceBar is still a very exclusive website, you are able to practice sending a post to another platform but you won't be able to actually send it.
+
+//Link to comment section
+
+
