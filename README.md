@@ -68,7 +68,7 @@ XI - Because FaceBar is still a very exclusive website, you are able to practice
 
 <img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/9eea59c6-c126-4296-ab40-b59cac73491e">
 
-Adding a post is pretty intuitive - click on the text area, write your thoughts and click the blue send button. 
+Adding a comment is pretty intuitive - click on the text area, write your thoughts and click the blue send button. 
 
 <img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/93cb4d10-efc1-48a0-90e6-b6a3538c3460">
 
