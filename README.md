@@ -39,29 +39,26 @@ If you forgot your username or password, don't worry!
 you are able to create another account and sign in with it.
 now you should be directed to the feed Page!
 
-//Link to feed page photo
 <img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/7a187b79-3e01-4ab6-b463-6cc278abff43">
 
 
 I - By clicking on your profile picture, you can open a menu featuring a logout button (VI). it will hold some very exciting features in the next update.
 
-//Link to logout btn photo
 <img  src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/a0a070ff-c8c5-4894-9fa6-52d7db54d342">
 
 II - To enjoy FaceBar even at the dark hours of the night, you can enter dark mode to relieve your eyes.
 
-// Link to darkmode photo
 <img  src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/69b76c0c-fdf5-40fc-97a7-68b38106b2c9">
 
 III - If a post wasn't to your liking, you are able to edit it or even completly remove it from FaceBar by clicking the VII, VIII buttons respectively.
 
-//Link to edit/remove post photo
+<img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/aabd64b9-2e87-4640-b2a6-b0c499446d1a">
 
 IV - FaceBar is not yet available for the wide public. Thus, everyone that signs in probably knows each and every one that registered. We show you all of them as contacts, so you can see some familiar faces apart from your favorite composers.
 
 V - These features are not available in the current version of FaceBar but soon enough you will be able to access the full power and diversity of the platform.
 
-// Link to chopin post photo
+<img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/77a8d63e-10ff-4169-ba8c-150ed06dc30d">
 
 IX - The comment section of a post is an excelent way to let the creator of a post and everyone else that has seen it what you think about it. Chopin would be very happy to know how much you like his pieces!
 
@@ -69,17 +66,20 @@ X - Another way you can show your appreciation of a post is by liking it.
 
 XI - Because FaceBar is still a very exclusive website, you are able to practice sending a post to another platform but you won't be able to actually send it.
 
-//Link to feed post modal
+<img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/9eea59c6-c126-4296-ab40-b59cac73491e">
 
-//Link to comment section
+<img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/93cb4d10-efc1-48a0-90e6-b6a3538c3460">
+
+<img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/314be8c8-225d-48b4-89e7-8c39505e7b1e">
 
 Adding a post is pretty intuitive - click on the text area, write your thoughts and click the blue send button. Notice that you can't post a comment without any text, because saying nothing isn't saying much.
 
 Last but not least, Let's create a new post of our own!
 
-// link to post button photo
+<img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/4d2764db-c541-4e83-9cd8-1102d7193846">
 
 XII - by clicking on this button, you'll be able to create your own post. At FaceBar, we value reading so only posts with text are acceptable. You are able to add an image as well to add to your post!
+<img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/9138b5cf-aa89-4d82-8f35-d0f3c3798125">
 
 Enjoy FaceBar!
 
