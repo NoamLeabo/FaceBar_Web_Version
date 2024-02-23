@@ -9,7 +9,7 @@ Download zip from Github - extract folder and then:
 
 Work flow:
 
-We started by reading the exercide a few times and understanding what we need to do. 
+We started by reading the exercise a few times and understanding what we need to do. 
 We devided the work between us and began working on it.
 Everyone wrote his tasks on the JIRA and updated what he was working on.
 Everyone worked on his part and we assured every few days with the other team mates that everyone is advancing.
@@ -34,5 +34,7 @@ If you need to know what should be inputted in every box just "hover" over the b
 ![image](https://github.com/gideonn12/Foobar_p2_web/assets/155386445/5e0ecc25-030b-452b-86c9-01f85fdc81f0)
 
 Now you should be directed back to the login-page.
-Log in with your account details and click "Log in"
+Log in with your account details and click "Log in".
+If you forgot your username or password, don't worry!
+you are able to create another account and sign in with it.
 now you should be directed to the feed Page!
