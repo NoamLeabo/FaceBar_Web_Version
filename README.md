@@ -78,7 +78,7 @@ Notice that you can't post a comment without any text, because saying nothing is
 
 Last but not least, Let's create a new post of our own!
 
-<img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/4d2764db-c541-4e83-9cd8-1102d7193846">
+<img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/8eee813a-c238-4d6e-ba63-a845826fa292">
 
 XII - by clicking on this button, you'll be able to create your own post. At FaceBar, we value reading so only posts with text are acceptable. You are able to add an image as well to add to your post!
 <img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/9138b5cf-aa89-4d82-8f35-d0f3c3798125">
