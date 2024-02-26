@@ -1,12 +1,18 @@
 import Search from "../search/Search";
 import "./NavBar.css";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import DarkModeBtn from "../../CrossScreensElements/btn/DarkModeBtn";
 
 function NavBar({ loggedinUser, setLoggedinUser, setDarkMode }) {
+  const navigate = useNavigate();
+
   const logOut = () => {
     setLoggedinUser(null);
     return <Navigate to="/" />;
+  };
+  const profPage = () => {
+    var myProffPage = "/users/" + loggedinUser.name;
+    navigate("/users/arnonlu");
   };
   return (
     <nav
@@ -77,6 +83,9 @@ function NavBar({ loggedinUser, setLoggedinUser, setDarkMode }) {
                 className="dropdown-menu dropdown-menu-end animate slideIn"
                 aria-labelledby="navbarDropdown"
               >
+                <a className="dropdown-item" role="button" onClick={profPage}>
+                  Profile page
+                </a>
                 <a className="dropdown-item" role="button" onClick={logOut}>
                   Log out
                 </a>

@@ -9,7 +9,7 @@ function SideBar({ loggedinUser }) {
   return (
     <div className="list-group" id="side-bar" style={{ marginTop: "20px" }}>
       {btnList}
-      <li className="list-group-item">
+      {/* <li className="list-group-item">
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
@@ -27,7 +27,7 @@ function SideBar({ loggedinUser }) {
             </li>
           </ul>
         </div>
-      </li>
+      </li> */}
     </div>
   );
 }

@@ -1,0 +1,244 @@
+body{
+    background-color: #e9ecef;
+    padding-top: 65px;
+  }
+  .list-group-item{
+    border: 0;
+    background-color: transparent;
+  }
+  .container-fluid{
+    padding: 0;
+  }
+  
+  .bi{
+    width: 30px;
+    fill: blue !important;
+  }
+  #faceboockimg{
+    width: 30px;
+    fill: #4800ff !important;
+    font-size:35px;
+    padding-left: 15px;
+  }
+  #navbar{
+    z-index: 9999;
+    /* position:relative; */
+  
+  }
+  .nav-icon{
+    padding: 15px 20px;
+  }
+  .nav-item{
+    list-style-type: none;
+  }
+  .nav-icon:hover{
+    background-color: rgb(227, 227, 227);
+  }
+  li > .dropdown-toggle{
+    border: 0;
+    background-color: transparent;
+  
+  }
+  .navbar-nav{
+    padding-left: 20px;
+    flex-grow: auto;
+  }
+
+  #feedmain{
+  margin-left: 60px;
+  }
+  
+  
+  
+  #create-post-btn{
+    --bs-btn-bg: rgb(186, 186, 186);
+    --bs-btn-hover-bg: rgb(102, 102, 102);
+    border: 0;
+    --bs-btn-color: rgb(59, 59, 59);
+    border-radius: 1rem;
+    --bs-btn-padding-x: 6rem;
+  
+  }
+  
+  #feedmain .card .card-body button.btn {
+    width: 100% !important; /* Override width to fill parent */
+  }
+  
+  #create-post-text::placeholder {
+    color: gray;
+  }
+  
+  .textAlignC{
+    text-align: center !important; 
+    flex: content;
+  }
+  
+  .postable-comment{
+    color: #0d6efd !important;
+  }
+  .post-modal{
+    --bs-modal-width: 50%;
+  }
+  .comments-class{
+    box-shadow: 4px 6px 8px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+  .create-comment-class{
+    padding-inline: 10px;
+  }
+  .card-body{
+    background-color: white;
+    margin: 10px;
+    padding: 5px;
+  }
+  .card{
+    margin: 10px;
+  }
+  
+  #side-bar{
+    position: fixed;
+    height:100%;
+    overflow-y: scroll;
+    padding-left: 2rem;
+  }
+  
+  
+  .reg-btn{
+    border: 0;
+    background-color: transparent;
+    padding-inline: 45px;
+  }
+  .reg-btn:hover{
+    background-color: rgb(227, 227, 227);
+    cursor: pointer;
+  }
+  figure{
+    border: 1.5px rgb(218, 218, 218);
+    padding: 15px;
+    border-style: groove none;
+    margin: 10px;
+  }
+  .btn-outline-secondary{
+    border: 0;
+  }
+  .btn-outline-primery{
+    color: #0d6efd !important;
+    border: 0;
+  }
+  .modal{
+    padding-top: 10%;
+  }
+  .img-cover{
+    object-fit: cover;
+    object-position: center;
+  }
+  /* added now */
+  .ProfPagePic{
+    width: 175px;
+    height: 175px;
+    padding: 5px;
+  }
+  .profileInfoRow{
+    background-color: white;
+    padding: 15px;
+    padding-block: 25px;
+    box-shadow: 0px -1px 7px 1px rgba(0, 0, 0, 0.2);
+  }
+  .profileInfo{
+    display: ruby;
+  }
+  .card{
+    box-shadow: 0px 3px 4px -2px rgba(0, 0, 0, 0.2);
+  }
+  .navbar{
+    --bs-navbar-padding-y: 0;
+    box-shadow: 0px -1px 7px 1px rgba(0, 0, 0, 0.2);
+  }
+  .userNameDisp{
+    padding-left: 25px;
+  }
+  /* end of added now */
+  #navbarProfileDropdown{
+    padding-right: 30px;
+  }
+  .dark-mode{
+    
+    .list-group-item{
+      color: rgb(190, 190, 190) !important;
+    }
+    .bi{
+      width: 30px;
+      fill: blue !important;
+    }
+  
+  
+  
+    .nav-icon:hover{
+      background-color: rgb(227, 227, 227);
+    }
+  
+    nav{
+      background-color: rgb(68, 68, 68) !important;
+      box-shadow: 4px 6px 8px 2px rgba(0, 0, 0, 0.2);
+    }
+  
+    
+  
+    .card{
+      --bs-card-bg: rgb(45, 45, 45) ;
+      color: rgb(190, 190, 190) !important;
+  
+    }
+    .text-body-secondary{
+      color:rgb(185 187 190 / 75%)!important;
+    }
+    
+    #create-post-btn{
+      --bs-btn-bg: rgb(60, 71, 106);
+      --bs-btn-hover-bg: rgb(93, 96, 120);
+      --bs-btn-color: rgb(93, 96, 120);
+  
+    }
+    
+  
+    
+    #create-post-text::placeholder {
+      color: gray;
+    }
+    
+    .card-body{
+      background-color: rgb(68, 68, 68);
+  
+    }
+    
+    
+    .reg-btn{
+      border: 0;
+      background-color: transparent;
+      padding-inline: 45px;
+    }
+    .reg-btn:hover{
+      background-color: rgb(227, 227, 227);
+      cursor: pointer;
+    }
+    figure{
+      border: 1.5px rgb(68, 68, 68);
+      padding: 15px;
+      border-style: groove none;
+      margin: 10px;
+    }
+  
+    .btn-outline-primery{
+      color: #0d6efd !important;
+      border: 0;
+    }
+    #likeBtn{
+      color: rgb(190, 190, 190) !important;
+    }
+    .modal-content{
+      background-color: rgb(68, 68, 68);
+    }
+    .comments-class{
+      background-color: rgb(103, 103, 103);
+    }
+  }
