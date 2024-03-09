@@ -6,10 +6,10 @@ import { useState } from "react";
 import EditComment from "../comments/EditComment";
 import SharePostModal from "../sharePostModal/SharePostModal";
 function FeedPost({
-  id,
-  composer,
-  time,
-  text,
+  _id,
+  author,
+  published,
+  content,
   comments,
   img,
   likes,
@@ -43,38 +43,46 @@ function FeedPost({
       likesDisp = likenum;
     }
   };
-  const editCommListElement = commentList.map((comm, key) => {
-    return (
-      <EditComment
-        editComments={editComments}
-        originalCommentText={comm.commentText}
-        commentId={comm.commentId}
-        commentAuthor={comm.commentAuthor}
-        postId={id}
-        key={key}
-        setCommentList={setCommentList}
-        commentList={commentList}
-      />
-    );
-  });
+  async function deletePost() {
+    const data = await fetch("http://localhost:12345/posts/" + _id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+  // const editCommListElement = commentList.map((comm, key) => {
+  //   return (
+  //     <EditComment
+  //       editComments={editComments}
+  //       originalCommentText={comm.commentText}
+  //       commentId={comm.commentId}
+  //       commentAuthor={comm.commentAuthor}
+  //       postId={id}
+  //       key={key}
+  //       setCommentList={setCommentList}
+  //       commentList={commentList}
+  //     />
+  //   );
+  // });
   return (
-    <div className="feed-component" data-testid={`test-post-${id}`}>
+    <div className="feed-component" data-testid={`test-post-${_id}`}>
       <TextPost
-        id={id}
-        composer={composer}
-        time={time}
-        text={text}
+        id={_id}
+        composer={author}
+        time={published}
+        text={content}
         likesDisp={likesDisp}
         addLike={addLike}
         filterById={filterById}
         img={img}
-        remPost={remPost}
+        remPost={deletePost}
       />
       <FeedPostModal
-        id={id}
-        composer={composer}
-        time={time}
-        text={text}
+        id={_id}
+        composer={author}
+        time={published}
+        text={content}
         comments={comments}
         likesDisp={likesDisp}
         addLike={addLike}
@@ -87,21 +95,21 @@ function FeedPost({
         Uname={Uname}
         commentsNum={commentsNum}
         postAddComment={postAddComment}
-        remPost={remPost}
+        remPost={deletePost}
       />
 
       <EditPostModal
         editPost={editPost}
-        myId={id}
-        myText={text}
-        myComposer={composer}
-        myTime={time}
+        myId={_id}
+        myText={content}
+        myComposer={author}
+        myTime={published}
         myLikes={likesDisp}
         myImg={img}
         myComments={comments}
       />
       <SharePostModal />
-      {editCommListElement}
+      {/* {editCommListElement} */}
     </div>
   );
 }

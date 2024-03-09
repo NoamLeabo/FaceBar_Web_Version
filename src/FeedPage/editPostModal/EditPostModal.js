@@ -52,19 +52,35 @@ function EditPostModal({
   }
 
   const postSetter = function () {
-    const post = {
-      id: myId,
-      composer: myComposer,
-      time: myTime,
-      text: postText.current.value,
-      img: selectedImage,
-      likes: myLikes,
-      comments: myComments,
-    };
-    editPost(myId, post);
+    // const post = {
+    //   id: myId,
+    //   composer: myComposer,
+    //   time: myTime,
+    //   text: postText.current.value,
+    //   img: selectedImage,
+    //   likes: myLikes,
+    //   comments: myComments,
+    // };
+    // editPost(myId, post);
+    update();
     postText.current.value = "";
   };
-
+  ///////////////////////////////////////////////////////////////////
+  async function update() {
+    console.log("my id is" + myId);
+    const data = await fetch("http://localhost:12345/posts/" + myId, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        content: postText.current.value,
+      }),
+    });
+    // posts = await data.json();
+    // console.log(posts);
+  }
+  /////////////////////////////////////////////////////////
   return (
     <div
       className="modal fade"

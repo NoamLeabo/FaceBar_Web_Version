@@ -34,13 +34,28 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
     uCPass.current = newCPass;
   };
 
+  async function addUser() {
+    const data = await fetch("http://localhost:12345/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fName: uFName.current,
+        lName: uLName.current,
+        username: uName.current,
+        password: uPassword.current,
+        profileImg: image,
+      }),
+    });
+  }
   const clicked = () => {
     const newU = {
       name: uName.current,
       password: uPassword.current,
-      FirstName : uFName.current,
-      LastName : uLName.current, 
-      image: image
+      FirstName: uFName.current,
+      LastName: uLName.current,
+      image: image,
     };
     checkIfValid(newU);
   };
@@ -141,20 +156,20 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
         <label htmlFor="picture" className="btn btn-danger btn-sm" id="label1">
           Choose a profile picture
         </label>
-        
+
         {image && (
-        <div className="image-container">
-          <img src={image} id="image" alt="" />
-          {/* <button id="removeImgBtn" className ="btn btn-secondary"onClick={remImg}>Remove</button> */}
-        </div>
-      )}  
+          <div className="image-container">
+            <img src={image} id="image" alt="" />
+            {/* <button id="removeImgBtn" className ="btn btn-secondary"onClick={remImg}>Remove</button> */}
+          </div>
+        )}
 
         <div className="btn_sign">
           <Btn
             text="Sign Up"
             id="cNewBtn"
             className="fw-bolder btn"
-            clicked={clicked}
+            clicked={addUser}
           />
         </div>
       </form>

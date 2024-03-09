@@ -27,18 +27,18 @@ function FeedPostModal({
     postAddComment(id, comment);
     commentsNum++;
   };
-  const commentListElement = commentList.map((comment, key) => {
-    return (
-      <Comment
-        {...comment}
-        key={key}
-        remComment={remComment}
-        editComments={editComments}
-        postId={id}
-        setCommentList={setCommentList}
-      />
-    );
-  });
+  // const commentListElement = commentList.map((comment, key) => {
+  //   return (
+  //     <Comment
+  //       {...comment}
+  //       key={key}
+  //       remComment={remComment}
+  //       editComments={editComments}
+  //       postId={id}
+  //       setCommentList={setCommentList}
+  //     />
+  //   );
+  // });
   return (
     <div
       className="modal fade post-modal"
@@ -64,7 +64,7 @@ function FeedPostModal({
               inModal={"modal"}
             />
           </div>
-          {commentListElement}
+          {/* {commentListElement} */}
           <CreateComment
             addComment={addComment}
             commId={commentsNum}

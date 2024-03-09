@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import usersInfo from "../users.json";
 import ProfilePage from "../profilePage/ProfilePage";
+import PostsPage from "../postsPage/PostsPage";
 
 function App() {
   const [activeUsers, setActiveUsers] = useState(usersInfo);
@@ -61,6 +62,7 @@ function App() {
               />
             }
           ></Route>
+          {/* <Route path="/posts" element={<PostsPage />}></Route> */}
         </Routes>
       </BrowserRouter>
     </div>

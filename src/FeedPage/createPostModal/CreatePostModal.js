@@ -34,20 +34,40 @@ function CreatePostModal({ addPost, postNum, composer, LastName, FirstName }) {
   const postSetter = function () {
     const post = {
       id: postNum,
-      composer: composer,
-      time: date.toDateString(),
-      text: postText.current.value,
+      author: composer,
+      published: date.toDateString(),
+      content: postText.current.value,
       contains_img: imgWasAdded,
-      img: selectedImage,
-      likes: 0,
+      imageView: selectedImage,
+      numOfLikes: 0,
       comments: new Array(),
     };
+    create();
     addPost(post);
     postText.current.value = "";
     setSelectedImage(null);
     search();
   };
 
+  async function create() {
+    const data = await fetch("http://localhost:12345/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        author: composer,
+        content: postText.current.value,
+        published: date.toDateString(),
+        contains_img: imgWasAdded,
+        imageView: selectedImage,
+        numOfLikes: 0,
+        comments: new Array(),
+      }),
+    });
+    const posts = await data.json();
+    console.log(posts);
+  }
   return (
     <div
       className="modal fade"

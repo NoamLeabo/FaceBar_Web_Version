@@ -44,12 +44,12 @@ function TextPost({
           inModal={inModal}
         />
         <h5 className="card-title">
-          <img
+          {/* <img
             src={composer.image}
             className="ProfPic rounded-circle img-cover ratio ratio-1x1 overflow-hidden"
             width={"100px"}
             alt=""
-          />
+          /> */}
           {composer.FirstName} {composer.LastName}
         </h5>
         <p className="card-text">

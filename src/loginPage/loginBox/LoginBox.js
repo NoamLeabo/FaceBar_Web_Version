@@ -10,7 +10,7 @@ function LoginBox({ activeUsers, SetLoggedUser }) {
   const toastTrigger = useRef(null);
 
   const navigate = useNavigate();
-  const [running, setRunning] = useState(false);
+  // const [running, setRunning] = useState(false);
 
   const [entry, setEntry] = useState({ user: "", password: "" }); // Define entry state
   const uName = useRef("");
@@ -23,16 +23,46 @@ function LoginBox({ activeUsers, SetLoggedUser }) {
     uPassword.current = newPassword;
   };
 
-  useEffect(() => {
-    if (running) {
-      checkIfValid(entry);
-    }
-  }, [entry]);
+  // useEffect(() => {
+  //   if (running) {
+  //     checkIfValid(entry);
+  //   }
+  // }, [entry]);
 
+  //////////////////////////////////////////////////////////////////////////////////////////
+  async function login() {
+    // Create a json object with the username and password from the form
+    const data = {
+      username: uName.current,
+      password: uPassword.current,
+    };
+
+    const res = await fetch("http://localhost:12345/tokens", {
+      method: "post", // send a post request
+      headers: {
+        "Content-Type": "application/json", // the data (username/password) is in the form of a JSON object
+      },
+      body: JSON.stringify(data), // The actual data (username/password)
+    });
+    const json = await res.json();
+    if (res.status != 201) alert("Invalid username and/or password");
+    else {
+      navigate("/home");
+      // const res = await fetch("http://localhost:12345/", {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     authorization: "bearer " + json.token, // attach the token
+      //   },
+      // });
+    }
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////
   const clickedLogIn = () => {
-    setRunning(true);
-    setEntry({ user: uName.current, password: uPassword.current });
+    // setRunning(true);
+    // setEntry({ user: uName.current, password: uPassword.current });
     SetLoggedUser(uName.current);
+    login();
   };
 
   const checkIfValid = (entry) => {
