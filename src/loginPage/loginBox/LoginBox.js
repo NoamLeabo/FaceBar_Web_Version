@@ -54,8 +54,6 @@ function LoginBox({ activeUsers, SetLoggedUser, setToken }) {
 
   ////////////////////////////////////////////////////////////////////////////////////////
   const clickedLogIn = async () => {
-    // setRunning(true);
-    // setEntry({ user: uName.current, password: uPassword.current });
     await login();
   };
 

@@ -9,6 +9,7 @@ import SharePostModal from "../sharePostModal/SharePostModal";
 function FeedPost({
   _id,
   author,
+  profilePic,
   published,
   content,
   comments,
@@ -76,6 +77,7 @@ function FeedPost({
       <TextPost
         id={_id}
         composer={composer}
+        profilePic={profilePic}
         time={published}
         text={content}
         usersWhoLiked={usersWhoLiked}
@@ -89,6 +91,7 @@ function FeedPost({
       <FeedPostModal
         id={_id}
         composer={composer}
+        profilePic={profilePic}
         time={published}
         text={content}
         usersWhoLiked={usersWhoLiked}

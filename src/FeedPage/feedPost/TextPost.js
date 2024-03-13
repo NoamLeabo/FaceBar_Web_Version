@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 function TextPost({
   id,
   composer,
+  profilePic,
   time,
   text,
   likesDisp,
@@ -66,12 +67,12 @@ function TextPost({
       <div className="card-body ">
         <PostSettingBtn btn1action={remPost} id={id} inModal={inModal} />
         <h5 className="card-title">
-          {/* <img
-            src={composer.image}
+          <img
+            src={`data:image/jpeg;base64,${profilePic}`}
             className="ProfPic rounded-circle img-cover ratio ratio-1x1 overflow-hidden"
             width={"100px"}
             alt=""
-          /> */}
+          />
           {composer.fName} {composer.lName}
         </h5>
         <p className="card-text">

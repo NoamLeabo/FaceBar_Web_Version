@@ -5,8 +5,7 @@ function CreatePostModal({
   addPost,
   postNum,
   composer,
-  LastName,
-  FirstName,
+  profilePic,
   gotToken,
   loggedinUser,
 }) {
@@ -57,6 +56,7 @@ function CreatePostModal({
     const post = {
       id: postNum,
       author: composer,
+      profilePic: profilePic,
       published: date.toDateString(),
       content: postText.current.value,
       contains_img: imgWasAdded,
@@ -79,26 +79,50 @@ function CreatePostModal({
         loggedinUser.username +
         "/posts"
     );
-    const data = await fetch(
-      "http://localhost:12345/api/users/" + loggedinUser.username + "/posts",
-      {
-        method: "POST",
-        // Remove the Content-Type header
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "bearer " + gotToken,
-        },
-        body: JSON.stringify({
-          author: composer,
-          content: postText.current.value,
-          published: date.toDateString(),
-          contains_img: imgWasAdded,
-          imageView: selectedImage,
-          numOfLikes: 0,
-          comments: new Array(),
-        }),
-      }
-    );
+    let data;
+    if (selectedImage) {
+      data = await fetch(
+        "http://localhost:12345/api/users/" + loggedinUser.username + "/posts",
+        {
+          method: "POST",
+          // Remove the Content-Type header
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "bearer " + gotToken,
+          },
+          body: JSON.stringify({
+            author: composer,
+            profilePic: profilePic,
+            content: postText.current.value,
+            published: date.toDateString(),
+            contains_img: imgWasAdded,
+            imageView: selectedImage,
+            numOfLikes: 0,
+            comments: new Array(),
+          }),
+        }
+      );
+    } else {
+      data = await fetch(
+        "http://localhost:12345/api/users/" + loggedinUser.username + "/posts",
+        {
+          method: "POST",
+          // Remove the Content-Type header
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "bearer " + gotToken,
+          },
+          body: JSON.stringify({
+            author: composer,
+            content: postText.current.value,
+            published: date.toDateString(),
+            contains_img: imgWasAdded,
+            numOfLikes: 0,
+            comments: new Array(),
+          }),
+        }
+      );
+    }
     const posts = await data.json();
     console.log(posts);
   }

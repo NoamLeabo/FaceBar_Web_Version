@@ -2,12 +2,29 @@ import InputGetter from "../../CrossScreensElements/inputGetter/InputGetter";
 import RBStyle from "./RegisterBox.css";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import UploadAndDisplayImage from "../../CrossScreensElements/modals/uploadAndDisplayImage/UploadAndDisplayImage";
 import Btn from "../../CrossScreensElements/btn/Btn";
 function RegisterBox({ setActiveUsers, activeUsers }) {
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
-  const handleChange = (e) => {
-    const file = e.target.files[0];
+  // const handleChange = (e) => {
+  //   const file = e.target.files[0];
+  //   const reader = new FileReader();
+
+  //   reader.onloadend = () => {
+  //     // Extract base64 encoded string and set it as state
+  //     const imageDataURL = reader.result;
+  //     const base64String = imageDataURL.split(",")[1];
+  //     setImage(base64String);
+  //   };
+
+  //   if (file) {
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
+  const addedImg = (event) => {
+    // setImage(URL.createObjectURL(event.target.files[0]));
+    const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onloadend = () => {
@@ -47,6 +64,18 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
   };
 
   async function addUser() {
+    const newU = {
+      name: uName.current,
+      password: uPassword.current,
+      FirstName: uFName.current,
+      LastName: uLName.current,
+      image: image,
+    };
+    checkIfValid(newU);
+    if (!checkIfValid(newU)) {
+      return;
+    }
+
     const data = await fetch("http://localhost:12345/api/users", {
       method: "POST",
       headers: {
@@ -75,7 +104,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
 
   const checkIfValid = (newU) => {
     // regex for checking
-    let checkPassword = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
+    let checkPassword = /(?=.[a-z])(?=.[A-Z])(?=.*[0-9])(?=.{8,})/;
     let checkName = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/;
     let checkUsername = /^[a-zA-Z0-9_-]{4,16}$/;
 
@@ -87,37 +116,33 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
       uCPass.current === ""
     ) {
       alert("You must fill all fields!");
-      return;
+      return false;
     }
     if (!uName.current.match(checkUsername)) {
       alert(
         "Username must be between 4 and 16 characters long\nand contain only:\n-letters\n-numbers\n-underscores\n-hyphens"
       );
-      return;
+      return false;
     }
     if (!uPassword.current.match(checkPassword)) {
       alert(
         "Password must contain:\n-at least 8 characters\n-uppercase letters\n-lowercase letters\n-numbers"
       );
-      return;
+      return false;
     }
     if (!uLName.current.match(checkName) || !uFName.current.match(checkName)) {
       alert("First And Last Names must contain letters only!");
-      return;
+      return false;
     }
     if (image === null) {
       alert("No profile image was uploaded!");
-      return;
+      return false;
     }
     if (newU.password !== uCPass.current) {
       alert("Passwords do not match!");
-      return;
+      return false;
     }
-
-    if (newU.name !== "" && newU.password !== "") {
-      setActiveUsers([...activeUsers, newU]);
-      navigate("/");
-    }
+    return true;
   };
 
   return (
@@ -163,7 +188,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
           type="file"
           id="picture"
           accept="image/*"
-          onChange={handleChange}
+          onChange={addedImg}
           hidden
         />
         <label htmlFor="picture" className="btn btn-danger btn-sm" id="label1">
@@ -172,7 +197,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
 
         {image && (
           <div className="image-container">
-            <img src={image} id="image" alt="" />
+            <img src={`data:image/jpeg;base64,${image}`} id="image" alt="" />
             {/* <button id="removeImgBtn" className ="btn btn-secondary"onClick={remImg}>Remove</button> */}
           </div>
         )}

@@ -213,8 +213,7 @@ function FeedPage({
           <CreatePostModal
             addPost={addPost}
             postNum={postNum}
-            FirstName={loggedinUser.fName}
-            LastName={loggedinUser.lName}
+            profilePic={loggedinUser.profileImg}
             composer={loggedinUser.username}
             gotToken={gotToken}
             loggedinUser={loggedinUser}
