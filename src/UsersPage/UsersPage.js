@@ -9,6 +9,7 @@ import Contact from "../FeedPage/contact/Contact";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import CreatePostButton from "../FeedPage/createPostButton/CreatePostButton";
 import { useParams } from "react-router-dom";
+import "../UsersPage/UsersPage.css";
 
 function UsersPage({
   loggedinUser,
@@ -95,7 +96,9 @@ function UsersPage({
       <div className="row">
         <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-2"></div>
         <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+          <div className="row">
           <div id="feedmain">{usersList}</div>
+          </div>
         </div>
         <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 ps-5"></div>
       </div>

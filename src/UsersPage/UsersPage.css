@@ -1,0 +1,5 @@
+.row #feedmain > * {
+    padding: 10px; /* Adjust as needed */
+    border-radius: 10px; /* Adjust as needed */
+    margin :10px; /* Adjust as needed */
+}
