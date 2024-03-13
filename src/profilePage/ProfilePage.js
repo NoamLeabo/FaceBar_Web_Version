@@ -24,6 +24,8 @@ function ProfilePage({
   const page = useRef(null);
   const { id } = useParams();
   const [friendList, setFriendList] = useState([]);
+  const [friendNameList, setFriendNameList] = useState([]);
+
   const [friendReqList, setFriendReqList] = useState([]);
   const [createPoseElement, setCreatePoseElement] = useState(null);
   const [friendReqBtn, setFriendReqBtn] = useState(null);
@@ -71,6 +73,7 @@ function ProfilePage({
       }
     );
     let list = await data.json();
+    setFriendNameList(list);
     list = await foriUsers(list);
     setFriendList(list);
   }
@@ -84,6 +87,9 @@ function ProfilePage({
         method: "PATCH",
       }
     );
+    setFriendReqList((prevList) =>
+      prevList.filter((user) => user.username !== friend)
+    );
   }
   async function rejectFriend(friend) {
     await fetch(
@@ -95,24 +101,42 @@ function ProfilePage({
         method: "DELETE",
       }
     );
+    setFriendReqList((prevList) =>
+      prevList.filter((user) => user.username !== friend)
+    );
   }
   const [profileusername, setProfileusername] = useState(null);
-
   useEffect(() => {
     if (profileOwner.username === loggedinUser.username) {
-      setProfileusername("me");
-      setCreatePoseElement(
-        <>
-          <CreatePostButton loggedinUser={loggedinUser} />
-          <CreatePostModal
-            addPost={addPost}
-            postNum={postNum}
-            FirstName={loggedinUser.fName}
-            LastName={loggedinUser.lName}
-            composer={loggedinUser.username}
-          />
-        </>
-      );
+      getRequestList();
+    } else {
+      // setProfileusername("friend");
+    }
+    getFriendsList();
+  }, [profileOwner]);
+  useEffect(() => {
+    getFriendsList();
+
+    if (
+      profileOwner.username === loggedinUser.username ||
+      friendNameList.includes(loggedinUser.username)
+    ) {
+      setFriendReqBtn(null);
+      if (profileOwner.username === loggedinUser.username) {
+        setProfileusername("me");
+        setCreatePoseElement(
+          <>
+            <CreatePostButton loggedinUser={loggedinUser} />
+            <CreatePostModal
+              addPost={addPost}
+              postNum={postNum}
+              FirstName={loggedinUser.fName}
+              LastName={loggedinUser.lName}
+              composer={loggedinUser.username}
+            />
+          </>
+        );
+      }
       setContacts(
         <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 ps-5">
           <div
@@ -151,14 +175,7 @@ function ProfilePage({
     }
     // getFriendsList();
   }, [profileOwner, friendList, friendReqList]);
-  useEffect(() => {
-    if (profileOwner.username === loggedinUser.username) {
-      getRequestList();
-    } else {
-      // setProfileusername("friend");
-    }
-    getFriendsList();
-  }, [profileOwner]);
+
   const [postList, setPostList] = useState(posts);
   if (!loggedinUser) {
     return <Navigate to="/" />;
