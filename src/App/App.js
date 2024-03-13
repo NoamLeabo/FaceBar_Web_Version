@@ -8,39 +8,23 @@ import usersInfo from "../users.json";
 import ProfilePage from "../profilePage/ProfilePage";
 import PostsPage from "../postsPage/PostsPage";
 import axios from "axios";
+import UsersPage from "../UsersPage/UsersPage";
 
 function App() {
   const [activeUsers, setActiveUsers] = useState(usersInfo);
   const [gotToken, setGotToken] = useState(null);
 
   const setToken = function (token) {
-    console.log("testing 1 2" + `bearer ${token}`);
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-    // axios.defaults.headers.common["authorization"] = `bearer ${token}`;
     setGotToken(token);
   };
 
   async function SetLoggedUser(userId) {
     const data = await fetch("http://localhost:12345/api/users/" + userId);
     let user = await data.json();
-    // console.log("we set logged in as " + user);
-    // console.log("Logged-in user:", user.username); // Log the entire user object
-    // console.log("l:", user.lName); // Log the username property
-    // console.log("f:", user.fName); // Log the email property
     setLoggedinUser(user);
   }
 
-  // async function getAllUsers() {
-  //   // const data = await fetch("http://localhost:12345/api/users");
-  //   // let users = await data.json();
-  //   // console.log(users);
-  //   // setActiveUsers(users);
-  //   // return users;
-  // }
-  // useEffect(() => {
-  //   getAllUsers();
-  // }, []);
   const [profileOwner, setProfileOwner] = useState({
     name: null,
     profileImg: null,
@@ -53,9 +37,7 @@ function App() {
       return userList["name"] == Uname;
     })[0];
   }
-  // const SetLoggedUser = function (Uname) {
-  //   setLoggedinUser(filterByUname(activeUsers, Uname));
-  // };
+
   return (
     <div>
       <BrowserRouter>
@@ -104,7 +86,18 @@ function App() {
               />
             }
           ></Route>
-          {/* <Route path="/posts" element={<PostsPage />}></Route> */}
+          <Route
+            path="/allUsers"
+            element={
+              <UsersPage
+                loggedinUser={loggedinUser}
+                setLoggedinUser={setLoggedinUser}
+                activeUsers={activeUsers}
+                setProfileOwner={setProfileOwner}
+                gotToken={gotToken}
+              />
+            }
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -24,6 +24,9 @@ function NavBar({
   const navHome = () => {
     navigate("/home");
   };
+  const navallUsers = () => {
+    navigate("/allUsers");
+  };
   const editUser = () => {};
   return (
     <nav
@@ -61,7 +64,11 @@ function NavBar({
             </a>
           </li>
           <li className="nav-item nav-icon">
-            <a className="nav-link active" aria-current="page" href="#">
+            <a
+              className="nav-link active"
+              aria-current="page"
+              onClick={navallUsers}
+            >
               <i className="bi bi-people-fill"></i>
             </a>
           </li>
