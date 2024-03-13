@@ -116,12 +116,13 @@ function ProfilePage({
   }, [profileOwner]);
   useEffect(() => {
     getFriendsList();
-
-    if (
-      profileOwner.username === loggedinUser.username ||
-      friendNameList.includes(loggedinUser.username)
-    ) {
+    let infriends = false;
+    if (friendNameList.length) {
+      if (friendNameList.includes(loggedinUser.username)) infriends = true;
+    }
+    if (profileOwner.username === loggedinUser.username || infriends) {
       setFriendReqBtn(null);
+      getUsersPosts();
       if (profileOwner.username === loggedinUser.username) {
         setProfileusername("me");
         setCreatePoseElement(
@@ -176,7 +177,16 @@ function ProfilePage({
     // getFriendsList();
   }, [profileOwner, friendList, friendReqList]);
 
-  const [postList, setPostList] = useState(posts);
+  const [postList, setPostList] = useState([]);
+  async function getUsersPosts(friend) {
+    let data = await fetch(
+      "http://localhost:12345/api/users/" + profileOwner.username + "/posts"
+    );
+    let posts = await data.json();
+    // console.log(posts);
+    // console.log("hi");
+    setPostList(posts);
+  }
   if (!loggedinUser) {
     return <Navigate to="/" />;
   }
@@ -335,7 +345,21 @@ function ProfilePage({
       );
     });
   }
-
+  const postListElement = postList.map((post) => {
+    return (
+      <FeedPost
+        {...post}
+        remPost={remPost}
+        editPost={editPost}
+        remComment={remComment}
+        editComments={editComments}
+        postAddComment={postAddComment}
+        key={post._id}
+        Uname={loggedinUser.username}
+        // commentsNum={post.comments.length}
+      />
+    );
+  });
   return (
     <div ref={page} className="container-fluid">
       <NavBar
@@ -350,7 +374,7 @@ function ProfilePage({
         <div className="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-xs-6">
           <div className="list-group-item list-group-item-action profileInfo">
             <img
-              src={profileOwner.profileImg}
+              src={`data:image/jpeg;base64,${profileOwner.profileImg}`}
               className="ProfPagePic rounded-circle img-cover ratio ratio-1x1 overflow-hidden"
               width={"1000px"}
               alt=""
@@ -368,21 +392,7 @@ function ProfilePage({
         <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
           <div id="feedmain">
             {createPoseElement}
-            {postList
-              .filter((post) => post.author === profileOwner.username)
-              .map((post) => (
-                <FeedPost
-                  {...post}
-                  remPost={remPost}
-                  editPost={editPost}
-                  remComment={remComment}
-                  editComments={editComments}
-                  postAddComment={postAddComment}
-                  key={post.id}
-                  Uname={profileOwner.username}
-                  commentsNum={post.comments.length}
-                />
-              ))}
+            {postList.length > 0 && postListElement}
             {!profileusername === "me" && <ContentNotAvailable />}
           </div>
         </div>

@@ -12,7 +12,8 @@ function FeedPost({
   published,
   content,
   comments,
-  img,
+  usersWhoLiked,
+  imageView,
   numOfLikes,
   remPost,
   editPost,
@@ -35,14 +36,13 @@ function FeedPost({
     async function fetchAuthor() {
       const data = await fetch("http://localhost:12345/api/users/" + author);
       const user = await data.json();
-      // console.log(user);
       setComposer(user);
     }
     fetchAuthor();
   }, [author]);
 
   let likesDisp;
-  const [likenum, setLikes] = useState(numOfLikes);
+  const [likenum, setLikes] = useState(usersWhoLiked.length);
 
   if (likenum > 999) {
     likesDisp = "999+";
@@ -71,7 +71,6 @@ function FeedPost({
   if (!composer) {
     return null; // Return null or any other loading indicator while composer is being fetched
   }
-
   return (
     <div className="feed-component" data-testid={`test-post-${_id}`}>
       <TextPost
@@ -79,22 +78,25 @@ function FeedPost({
         composer={composer}
         time={published}
         text={content}
+        usersWhoLiked={usersWhoLiked}
         likesDisp={likesDisp}
         addLike={addLike}
         filterById={filterById}
-        img={img}
+        img={imageView}
         remPost={deletePost}
+        Uname={Uname}
       />
       <FeedPostModal
         id={_id}
         composer={composer}
         time={published}
         text={content}
+        usersWhoLiked={usersWhoLiked}
         comments={comments}
         likesDisp={likesDisp}
         addLike={addLike}
         filterById={filterById}
-        img={img}
+        img={imageView}
         remComment={remComment}
         editComments={editComments}
         commentList={comments}
@@ -112,7 +114,7 @@ function FeedPost({
         myComposer={composer}
         myTime={published}
         myLikes={likesDisp}
-        myImg={img}
+        myImg={imageView}
         myComments={comments}
       />
       <SharePostModal />

@@ -36,8 +36,6 @@ function LoginBox({ activeUsers, SetLoggedUser, setToken }) {
       username: uName.current,
       password: uPassword.current,
     };
-    console.log("Before fetch! ");
-
     const res = await fetch("http://localhost:12345/api/tokens", {
       method: "post", // send a post request
       headers: {
@@ -45,23 +43,20 @@ function LoginBox({ activeUsers, SetLoggedUser, setToken }) {
       },
       body: JSON.stringify(data), // The actual data (username/password)
     });
-    const json = await res.json();
-    // console.log("set the token to " + json.token);
-
     if (res.status != 201) alert("Invalid username and/or password");
     else {
-      setToken(json.token);
+      const token = await res.json();
+      setToken(token);
       await SetLoggedUser(uName.current);
-
       navigateHome();
     }
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////
-  const clickedLogIn = () => {
+  const clickedLogIn = async () => {
     // setRunning(true);
     // setEntry({ user: uName.current, password: uPassword.current });
-    login();
+    await login();
   };
 
   const checkIfValid = (entry) => {

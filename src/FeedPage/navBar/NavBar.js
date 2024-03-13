@@ -89,7 +89,7 @@ function NavBar({
               >
                 {loggedinUser.fName} {loggedinUser.lName}
                 <img
-                  src={loggedinUser.profileImg}
+                  src={`data:image/jpeg;base64,${loggedinUser.profileImg}`}
                   className="ProfPic rounded-circle img-cover ratio ratio-1x1 overflow-hidden"
                   width={"100px"}
                   alt=""

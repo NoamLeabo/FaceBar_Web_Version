@@ -26,7 +26,7 @@ function CreatePostModal({
       // Extract base64 encoded string and set it as state
       const imageDataURL = reader.result;
       const base64String = imageDataURL.split(",")[1];
-      setSavedImage(base64String);
+      setSelectedImage(base64String);
     };
 
     if (file) {
@@ -60,9 +60,10 @@ function CreatePostModal({
       published: date.toDateString(),
       content: postText.current.value,
       contains_img: imgWasAdded,
-      imageView: savedImage,
+      imageView: selectedImage,
       numOfLikes: 0,
       comments: new Array(),
+      usersWhoLiked: [],
     };
     create();
     addPost(post);
@@ -72,6 +73,12 @@ function CreatePostModal({
   };
   //////////////////////////////////////////////////////////////////////////////////////////////////
   async function create() {
+    console.log(
+      "Link is : " +
+        "http://localhost:12345/api/users/" +
+        loggedinUser.username +
+        "/posts"
+    );
     const data = await fetch(
       "http://localhost:12345/api/users/" + loggedinUser.username + "/posts",
       {
@@ -86,7 +93,7 @@ function CreatePostModal({
           content: postText.current.value,
           published: date.toDateString(),
           contains_img: imgWasAdded,
-          imageView: savedImage,
+          imageView: selectedImage,
           numOfLikes: 0,
           comments: new Array(),
         }),

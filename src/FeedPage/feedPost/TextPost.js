@@ -1,7 +1,7 @@
 import "./Posts.css";
 import PostSettingBtn from "../../CrossScreensElements/btn/PostSettingBtn";
 import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function TextPost({
   id,
@@ -11,38 +11,60 @@ function TextPost({
   likesDisp,
   addLike,
   img,
+  usersWhoLiked,
   filterById,
   remPost,
   inModal,
+  Uname,
 }) {
+  const [iLiked, setILiked] = useState(usersWhoLiked.includes(Uname));
+  const [clickedLike, setClikedLike] = useState(false);
+
   let containerSize = null;
+
   if (img) {
     let imgHeight = img.height + 50;
     containerSize = { height: { imgHeight } };
   }
   const likebtn = useRef(null);
   const liked = function () {
-    if (likebtn.current.getAttribute("id") == "likeBtn") {
+    if (!iLiked) {
       addLike(1);
+      setClikedLike(true);
+      likePost();
       likebtn.current.setAttribute("id", "likeBtnDis");
     } else {
+      setClikedLike(false);
+      likePost();
       addLike(-1);
       likebtn.current.setAttribute("id", "likeBtn");
     }
   };
+  useEffect(() => {
+    if (usersWhoLiked.length) {
+      if (usersWhoLiked.includes(Uname)) {
+        setILiked(true);
+        likebtn.current.setAttribute("id", "likeBtnDis");
+      }
+    }
+  }, [clickedLike]);
+  async function likePost() {
+    const data = await fetch(
+      "http://localhost:12345/api/users/" + Uname + "/posts/" + id,
+      {
+        method: "POST",
+        // Remove the Content-Type header
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   authorization: "bearer " + gotToken,
+        // },
+      }
+    );
+  }
   return (
     <div className="card">
       <div className="card-body ">
-        <PostSettingBtn
-          btn1action={remPost}
-          text={text}
-          composer={composer}
-          time={time}
-          id={id}
-          likesDisp={likesDisp}
-          img={img}
-          inModal={inModal}
-        />
+        <PostSettingBtn btn1action={remPost} id={id} inModal={inModal} />
         <h5 className="card-title">
           {/* <img
             src={composer.image}
@@ -50,7 +72,7 @@ function TextPost({
             width={"100px"}
             alt=""
           /> */}
-          {composer.FirstName} {composer.LastName}
+          {composer.fName} {composer.lName}
         </h5>
         <p className="card-text">
           <small className="text-body-secondary">Last updated {time}</small>
@@ -68,7 +90,8 @@ function TextPost({
                   width: "100%",
                   objectFit: "contain",
                 }}
-                src={img}
+                // src={img}
+                src={`data:image/jpeg;base64,${img}`}
               />
             </div>
           )}

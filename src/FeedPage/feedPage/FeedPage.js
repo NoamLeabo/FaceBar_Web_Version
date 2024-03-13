@@ -21,9 +21,9 @@ function FeedPage({
 }) {
   const page = useRef(null);
   const [postList, setPostList] = useState([]);
-  async function getAll() {
-    setTimeout("", 50000000);
+  const [friendList, setFriendList] = useState([]);
 
+  async function getAll() {
     const data = await fetch("http://localhost:12345/api/posts", {
       headers: {
         "Content-Type": "application/json",
@@ -31,22 +31,39 @@ function FeedPage({
       },
     });
     let posts = await data.json();
-    // console.log(posts);
-    // console.log("hi");
     setPostList(posts);
     return posts;
   }
+  async function foriUsers(list) {
+    let array = [];
+    for (let i = 0; i < list.length; i++) {
+      const data = await fetch("http://localhost:12345/api/users/" + list[i]);
+      const user = await data.json();
+      array.push(user);
+    }
+    return array;
+  }
+  async function getFriendsList() {
+    const data = await fetch(
+      "http://localhost:12345/api/users/" + loggedinUser.username + "/friends",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      }
+    );
+    let list = await data.json();
+    list = await foriUsers(list);
+    setFriendList(list);
+  }
   useEffect(() => {
-    // setPostList(getAll());
     if (gotToken) {
       getAll();
+      getFriendsList();
     }
   }, [gotToken]);
-  // const postListElement = [];
 
-  // useEffect(() => {
-
-  // }, [postList]);
   if (!loggedinUser) {
     return <Navigate to="/" />;
   }
@@ -147,13 +164,17 @@ function FeedPage({
     // postList[postIndex].comments = comments;
     // setPostList([...postList]);
   }
-
-  const contactList = activeUsers.map((user, key) => {
-    return <Contact user={user} setProfileOwner={setProfileOwner} key={key} />;
-  });
-
+  let contactList = null;
+  if (friendList.length) {
+    contactList = friendList.map((user, key) => {
+      return (
+        <Contact user={user} setProfileOwner={setProfileOwner} key={key} />
+      );
+    });
+  }
   // console.log("postlist is " + postList);
   const postListElement = postList.map((post) => {
+    console.log(post);
     return (
       <FeedPost
         {...post}
@@ -203,6 +224,10 @@ function FeedPage({
             postListElement
           ) : (
             <div>
+              <h6 style={{ margin: "10px" }}>
+                {" "}
+                There are no posts to display...
+              </h6>
               <div className="card" aria-hidden="true">
                 {/* <img src="..." className="card-img-top" alt="..."></img> */}
                 <div className="card-body">

@@ -19,7 +19,7 @@ function Contact({ user, setProfileOwner }) {
       style={{ width: "6cm" }}
     >
       <img
-        src={user.profileImg}
+        src={`data:image/jpeg;base64,${user.profileImg}`}
         className="ProfPic rounded-circle img-cover ratio ratio-1x1 overflow-hidden"
         width={"100px"}
         alt=""

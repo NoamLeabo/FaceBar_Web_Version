@@ -9,6 +9,7 @@ function FeedPostModal({
   time,
   text,
   comments,
+  usersWhoLiked,
   likesDisp,
   addLike,
   remComment,
@@ -56,6 +57,7 @@ function FeedPostModal({
               composer={composer}
               time={time}
               text={text}
+              usersWhoLiked={usersWhoLiked}
               likesDisp={likesDisp}
               addLike={addLike}
               filterById={filterById}

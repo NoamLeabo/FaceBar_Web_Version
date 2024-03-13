@@ -17,7 +17,7 @@ function UploadAndDisplayImage({ addedImg, selectedImage, setSelectedImage }) {
             style={{ marginBottom: "20px" }}
             alt="not found"
             width={"250px"}
-            src={selectedImage}
+            src={`data:image/jpeg;base64,${selectedImage}`}
           />
           <button
             id="removeImgBtn"
