@@ -9,7 +9,26 @@ function CreatePostModal({
   gotToken,
   loggedinUser,
 }) {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(getCurrentTime());
+  function getCurrentTime() {
+    let now = new Date();
+    let hourOfDay = now.getHours();
+    let minute = now.getMinutes();
+
+    // Format the time
+    let formattedTime = `${String(hourOfDay).padStart(2, "0")}:${String(
+      minute
+    ).padStart(2, "0")}`;
+
+    // Get the current date
+    let date = `${String(now.getDate()).padStart(2, "0")}/${String(
+      now.getMonth() + 1
+    ).padStart(2, "0")}`;
+
+    // Construct the final string
+    // setDate(`${formattedTime}, ${date}`);
+    return `${formattedTime}, ${date}`;
+  }
 
   let imgWasAdded = false;
   const [selectedImage, setSelectedImage] = useState(null);
@@ -57,7 +76,7 @@ function CreatePostModal({
       id: postNum,
       author: composer,
       profilePic: profilePic,
-      published: date.toDateString(),
+      published: date,
       content: postText.current.value,
       contains_img: imgWasAdded,
       imageView: selectedImage,
@@ -73,12 +92,8 @@ function CreatePostModal({
   };
   //////////////////////////////////////////////////////////////////////////////////////////////////
   async function create() {
-    console.log(
-      "Link is : " +
-        "http://localhost:12345/api/users/" +
-        loggedinUser.username +
-        "/posts"
-    );
+    // await getCurrentTime();
+    console.log("date is" + date);
     let data;
     if (selectedImage) {
       data = await fetch(
@@ -94,7 +109,7 @@ function CreatePostModal({
             author: composer,
             profilePic: profilePic,
             content: postText.current.value,
-            published: date.toDateString(),
+            published: date,
             contains_img: imgWasAdded,
             imageView: selectedImage,
             numOfLikes: 0,
@@ -115,7 +130,7 @@ function CreatePostModal({
           body: JSON.stringify({
             author: composer,
             content: postText.current.value,
-            published: date.toDateString(),
+            published: date,
             contains_img: imgWasAdded,
             numOfLikes: 0,
             comments: new Array(),

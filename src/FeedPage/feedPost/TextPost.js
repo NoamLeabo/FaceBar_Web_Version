@@ -20,6 +20,7 @@ function TextPost({
 }) {
   const [iLiked, setILiked] = useState(usersWhoLiked.includes(Uname));
   const [clickedLike, setClikedLike] = useState(false);
+  const [profPic, setProfPic] = useState(composer.profileImg);
 
   let containerSize = null;
 
@@ -62,13 +63,15 @@ function TextPost({
       }
     );
   }
+  // console.log(profilePic);
+  // console.log("profile pic");
   return (
     <div className="card">
       <div className="card-body ">
         <PostSettingBtn btn1action={remPost} id={id} inModal={inModal} />
         <h5 className="card-title">
           <img
-            src={`data:image/jpeg;base64,${profilePic}`}
+            src={`data:image/jpeg;base64,${profPic}`}
             className="ProfPic rounded-circle img-cover ratio ratio-1x1 overflow-hidden"
             width={"100px"}
             alt=""

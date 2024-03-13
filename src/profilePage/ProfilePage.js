@@ -134,6 +134,7 @@ function ProfilePage({
               FirstName={loggedinUser.fName}
               LastName={loggedinUser.lName}
               composer={loggedinUser.username}
+              loggedinUser={loggedinUser}
             />
           </>
         );
