@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 import ForgotPasswordToast from "../toasts/ForgotPasswordToast";
 // import Toast from 'react-bootstrap/Toast';
 
-function LoginBox({ activeUsers, SetLoggedUser }) {
+function LoginBox({ activeUsers, SetLoggedUser, setToken }) {
   const toastTrigger = useRef(null);
 
   const navigate = useNavigate();
-  // const [running, setRunning] = useState(false);
+  const [running, setRunning] = useState(false);
 
   const [entry, setEntry] = useState({ user: "", password: "" }); // Define entry state
   const uName = useRef("");
@@ -23,11 +23,11 @@ function LoginBox({ activeUsers, SetLoggedUser }) {
     uPassword.current = newPassword;
   };
 
-  // useEffect(() => {
-  //   if (running) {
-  //     checkIfValid(entry);
-  //   }
-  // }, [entry]);
+  useEffect(() => {
+    if (running) {
+      checkIfValid(entry);
+    }
+  }, [entry]);
 
   //////////////////////////////////////////////////////////////////////////////////////////
   async function login() {
@@ -36,8 +36,9 @@ function LoginBox({ activeUsers, SetLoggedUser }) {
       username: uName.current,
       password: uPassword.current,
     };
+    console.log("Before fetch! ");
 
-    const res = await fetch("http://localhost:12345/tokens", {
+    const res = await fetch("http://localhost:12345/api/tokens", {
       method: "post", // send a post request
       headers: {
         "Content-Type": "application/json", // the data (username/password) is in the form of a JSON object
@@ -45,15 +46,14 @@ function LoginBox({ activeUsers, SetLoggedUser }) {
       body: JSON.stringify(data), // The actual data (username/password)
     });
     const json = await res.json();
+    // console.log("set the token to " + json.token);
+
     if (res.status != 201) alert("Invalid username and/or password");
     else {
-      navigate("/home");
-      // const res = await fetch("http://localhost:12345/", {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     authorization: "bearer " + json.token, // attach the token
-      //   },
-      // });
+      setToken(json.token);
+      await SetLoggedUser(uName.current);
+
+      navigateHome();
     }
   }
 
@@ -61,7 +61,6 @@ function LoginBox({ activeUsers, SetLoggedUser }) {
   const clickedLogIn = () => {
     // setRunning(true);
     // setEntry({ user: uName.current, password: uPassword.current });
-    SetLoggedUser(uName.current);
     login();
   };
 
@@ -80,7 +79,9 @@ function LoginBox({ activeUsers, SetLoggedUser }) {
       navigate("/home");
     }
   };
-
+  const navigateHome = function () {
+    navigate("/home");
+  };
   const newNavigation = function () {
     navigate("/details");
   };

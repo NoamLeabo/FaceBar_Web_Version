@@ -2,9 +2,10 @@ import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
 import FeedPostModal from "./FeedPostModal";
 import EditPostModal from "../editPostModal/EditPostModal";
 import TextPost from "./TextPost";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EditComment from "../comments/EditComment";
 import SharePostModal from "../sharePostModal/SharePostModal";
+
 function FeedPost({
   _id,
   author,
@@ -12,7 +13,7 @@ function FeedPost({
   content,
   comments,
   img,
-  likes,
+  numOfLikes,
   remPost,
   editPost,
   remComment,
@@ -26,15 +27,29 @@ function FeedPost({
       return jsonObject["id"] == id;
     })[0];
   }
+
+  const [composer, setComposer] = useState(null);
   const [commentList, setCommentList] = useState(comments);
 
+  useEffect(() => {
+    async function fetchAuthor() {
+      const data = await fetch("http://localhost:12345/api/users/" + author);
+      const user = await data.json();
+      // console.log(user);
+      setComposer(user);
+    }
+    fetchAuthor();
+  }, [author]);
+
   let likesDisp;
-  const [likenum, setLikes] = useState(likes);
+  const [likenum, setLikes] = useState(numOfLikes);
+
   if (likenum > 999) {
     likesDisp = "999+";
   } else {
     likesDisp = likenum;
   }
+
   const addLike = function (stat) {
     setLikes((l) => l + stat);
     if (likenum > 999) {
@@ -43,33 +58,25 @@ function FeedPost({
       likesDisp = likenum;
     }
   };
+
   async function deletePost() {
-    const data = await fetch("http://localhost:12345/posts/" + _id, {
+    const data = await fetch("http://localhost:12345/api/posts/" + _id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
     });
   }
-  // const editCommListElement = commentList.map((comm, key) => {
-  //   return (
-  //     <EditComment
-  //       editComments={editComments}
-  //       originalCommentText={comm.commentText}
-  //       commentId={comm.commentId}
-  //       commentAuthor={comm.commentAuthor}
-  //       postId={id}
-  //       key={key}
-  //       setCommentList={setCommentList}
-  //       commentList={commentList}
-  //     />
-  //   );
-  // });
+
+  if (!composer) {
+    return null; // Return null or any other loading indicator while composer is being fetched
+  }
+
   return (
     <div className="feed-component" data-testid={`test-post-${_id}`}>
       <TextPost
         id={_id}
-        composer={author}
+        composer={composer}
         time={published}
         text={content}
         likesDisp={likesDisp}
@@ -80,7 +87,7 @@ function FeedPost({
       />
       <FeedPostModal
         id={_id}
-        composer={author}
+        composer={composer}
         time={published}
         text={content}
         comments={comments}
@@ -90,7 +97,7 @@ function FeedPost({
         img={img}
         remComment={remComment}
         editComments={editComments}
-        commentList={commentList}
+        commentList={comments}
         setCommentList={setCommentList}
         Uname={Uname}
         commentsNum={commentsNum}
@@ -102,14 +109,13 @@ function FeedPost({
         editPost={editPost}
         myId={_id}
         myText={content}
-        myComposer={author}
+        myComposer={composer}
         myTime={published}
         myLikes={likesDisp}
         myImg={img}
         myComments={comments}
       />
       <SharePostModal />
-      {/* {editCommListElement} */}
     </div>
   );
 }

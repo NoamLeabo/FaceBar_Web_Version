@@ -1,9 +1,9 @@
 import React from "react";
 import MainTextBlock from "../mainTextBlock/MainTextBlock";
 import LoginBox from "../loginBox/LoginBox";
-import LPStyle from "./LoginPage.css"
+import LPStyle from "./LoginPage.css";
 
-function LoginPage({activeUsers, SetLoggedUser}) {
+function LoginPage({ activeUsers, SetLoggedUser, setToken }) {
   return (
     <div className="Login">
       <div className="container">
@@ -14,7 +14,11 @@ function LoginPage({activeUsers, SetLoggedUser}) {
           <MainTextBlock />
 
           {/* Creating a second Col' in which we will have the login-Box */}
-          <LoginBox activeUsers={activeUsers} SetLoggedUser = {SetLoggedUser}/>
+          <LoginBox
+            activeUsers={activeUsers}
+            SetLoggedUser={SetLoggedUser}
+            setToken={setToken}
+          />
         </div>
 
         {/* Adding a visual divider */}

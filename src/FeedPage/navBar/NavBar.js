@@ -2,8 +2,14 @@ import Search from "../search/Search";
 import "./NavBar.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import DarkModeBtn from "../../CrossScreensElements/btn/DarkModeBtn";
+import EditUserModal from "../../CrossScreensElements/modals/EditUserModal/EditUserModal";
 
-function NavBar({ loggedinUser, setLoggedinUser, setDarkMode }) {
+function NavBar({
+  loggedinUser,
+  setLoggedinUser,
+  setDarkMode,
+  setProfileOwner,
+}) {
   const navigate = useNavigate();
 
   const logOut = () => {
@@ -11,14 +17,20 @@ function NavBar({ loggedinUser, setLoggedinUser, setDarkMode }) {
     return <Navigate to="/" />;
   };
   const profPage = () => {
-    var myProffPage = "/users/" + loggedinUser.name;
-    navigate("/users/arnonlu");
+    setProfileOwner(loggedinUser);
+    var myProffPage = "/users/" + loggedinUser.username;
+    navigate(myProffPage);
   };
+  const navHome = () => {
+    navigate("/home");
+  };
+  const editUser = () => {};
   return (
     <nav
       className="navbar navbar-expand-md bg-body-tertiary fixed-top nav-justified justify-content-between navbar-light bg-light"
       id="navbar"
     >
+      <EditUserModal loggedinUser={loggedinUser} logOut={logOut} />
       <div className="container-fluid" id="navbarcontainer">
         <a className="navbar-brand" href="#">
           <i
@@ -40,7 +52,11 @@ function NavBar({ loggedinUser, setLoggedinUser, setDarkMode }) {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <li className="nav-item nav-icon" style={{ padding: "10px" }}>
-            <a className="nav-link active" aria-current="page" href="#">
+            <a
+              className="nav-link active"
+              aria-current="page"
+              onClick={navHome}
+            >
               <i className="bi bi-house-door"></i>
             </a>
           </li>
@@ -71,9 +87,9 @@ function NavBar({ loggedinUser, setLoggedinUser, setDarkMode }) {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                {loggedinUser.FirstName} {loggedinUser.LastName}
+                {loggedinUser.fName} {loggedinUser.lName}
                 <img
-                  src={loggedinUser.image}
+                  src={loggedinUser.profileImg}
                   className="ProfPic rounded-circle img-cover ratio ratio-1x1 overflow-hidden"
                   width={"100px"}
                   alt=""
@@ -85,6 +101,15 @@ function NavBar({ loggedinUser, setLoggedinUser, setDarkMode }) {
               >
                 <a className="dropdown-item" role="button" onClick={profPage}>
                   Profile page
+                </a>
+                <a
+                  data-bs-toggle="modal"
+                  data-bs-target="#editUserModal"
+                  className="dropdown-item"
+                  role="button"
+                  onClick={editUser}
+                >
+                  Edit user
                 </a>
                 <a className="dropdown-item" role="button" onClick={logOut}>
                   Log out

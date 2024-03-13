@@ -1,15 +1,37 @@
-import { useRef } from "react";
-import UploadAndDisplayImage from "../uploadAndDisplayImage/UploadAndDisplayImage";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import UploadAndDisplayImage from "../../CrossScreensElements/modals/uploadAndDisplayImage/UploadAndDisplayImage";
 
-function CreatePostModal({ addPost, postNum, composer, LastName, FirstName }) {
+function CreatePostModal({
+  addPost,
+  postNum,
+  composer,
+  LastName,
+  FirstName,
+  gotToken,
+  loggedinUser,
+}) {
   const [date, setDate] = useState(new Date());
 
   let imgWasAdded = false;
   const [selectedImage, setSelectedImage] = useState(null);
+  const [savedImage, setSavedImage] = useState(null);
+
   const addedImg = (event) => {
     setSelectedImage(URL.createObjectURL(event.target.files[0]));
     imgWasAdded = true;
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      // Extract base64 encoded string and set it as state
+      const imageDataURL = reader.result;
+      const base64String = imageDataURL.split(",")[1];
+      setSavedImage(base64String);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
   const content = useRef(null);
 
@@ -38,7 +60,7 @@ function CreatePostModal({ addPost, postNum, composer, LastName, FirstName }) {
       published: date.toDateString(),
       content: postText.current.value,
       contains_img: imgWasAdded,
-      imageView: selectedImage,
+      imageView: savedImage,
       numOfLikes: 0,
       comments: new Array(),
     };
@@ -48,26 +70,32 @@ function CreatePostModal({ addPost, postNum, composer, LastName, FirstName }) {
     setSelectedImage(null);
     search();
   };
-
+  //////////////////////////////////////////////////////////////////////////////////////////////////
   async function create() {
-    const data = await fetch("http://localhost:12345/posts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        author: composer,
-        content: postText.current.value,
-        published: date.toDateString(),
-        contains_img: imgWasAdded,
-        imageView: selectedImage,
-        numOfLikes: 0,
-        comments: new Array(),
-      }),
-    });
+    const data = await fetch(
+      "http://localhost:12345/api/users/" + loggedinUser.username + "/posts",
+      {
+        method: "POST",
+        // Remove the Content-Type header
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+        body: JSON.stringify({
+          author: composer,
+          content: postText.current.value,
+          published: date.toDateString(),
+          contains_img: imgWasAdded,
+          imageView: savedImage,
+          numOfLikes: 0,
+          comments: new Array(),
+        }),
+      }
+    );
     const posts = await data.json();
     console.log(posts);
   }
+  /////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     <div
       className="modal fade"

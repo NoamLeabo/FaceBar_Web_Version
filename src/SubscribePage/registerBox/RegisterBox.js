@@ -7,7 +7,19 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const handleChange = (e) => {
-    setImage(URL.createObjectURL(e.target.files[0]));
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      // Extract base64 encoded string and set it as state
+      const imageDataURL = reader.result;
+      const base64String = imageDataURL.split(",")[1];
+      setImage(base64String);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
   const uName = useRef("");
   const uLName = useRef("");
@@ -35,7 +47,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
   };
 
   async function addUser() {
-    const data = await fetch("http://localhost:12345/user", {
+    const data = await fetch("http://localhost:12345/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,6 +60,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
         profileImg: image,
       }),
     });
+    navigate("/");
   }
   const clicked = () => {
     const newU = {

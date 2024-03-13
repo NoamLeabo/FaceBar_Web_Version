@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import UploadAndDisplayImage from "../uploadAndDisplayImage/UploadAndDisplayImage";
+import UploadAndDisplayImage from "../../CrossScreensElements/modals/uploadAndDisplayImage/UploadAndDisplayImage";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -68,7 +68,7 @@ function EditPostModal({
   ///////////////////////////////////////////////////////////////////
   async function update() {
     console.log("my id is" + myId);
-    const data = await fetch("http://localhost:12345/posts/" + myId, {
+    const data = await fetch("http://localhost:12345/api/posts/" + myId, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -12,23 +12,41 @@ import Contact from "../contact/Contact";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import CreatePostButton from "../createPostButton/CreatePostButton";
 
-function FeedPage({ loggedinUser, setLoggedinUser, activeUsers }) {
+function FeedPage({
+  loggedinUser,
+  setLoggedinUser,
+  activeUsers,
+  gotToken,
+  setProfileOwner,
+}) {
   const page = useRef(null);
   const [postList, setPostList] = useState([]);
   async function getAll() {
-    const data = await fetch("http://localhost:12345/posts");
+    setTimeout("", 50000000);
+
+    const data = await fetch("http://localhost:12345/api/posts", {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "bearer " + gotToken, // attach the token
+      },
+    });
     let posts = await data.json();
-    console.log(posts);
-    console.log("hi");
+    // console.log(posts);
+    // console.log("hi");
     setPostList(posts);
     return posts;
   }
   useEffect(() => {
     // setPostList(getAll());
+    if (gotToken) {
+      getAll();
+    }
+  }, [gotToken]);
+  // const postListElement = [];
 
-    getAll();
-  }, []);
+  // useEffect(() => {
 
+  // }, [postList]);
   if (!loggedinUser) {
     return <Navigate to="/" />;
   }
@@ -130,6 +148,11 @@ function FeedPage({ loggedinUser, setLoggedinUser, activeUsers }) {
     // setPostList([...postList]);
   }
 
+  const contactList = activeUsers.map((user, key) => {
+    return <Contact user={user} setProfileOwner={setProfileOwner} key={key} />;
+  });
+
+  // console.log("postlist is " + postList);
   const postListElement = postList.map((post) => {
     return (
       <FeedPost
@@ -140,14 +163,13 @@ function FeedPage({ loggedinUser, setLoggedinUser, activeUsers }) {
         editComments={editComments}
         postAddComment={postAddComment}
         key={post._id}
-        Uname={loggedinUser.name}
+        Uname={loggedinUser.username}
         // commentsNum={post.comments.length}
       />
     );
   });
-  const contactList = activeUsers.map((user, key) => {
-    return <Contact user={user} key={key} />;
-  });
+  // console.log("postlistElement is " + postListElement);
+
   return (
     <div ref={page} className="container-fluid">
       <NavBar
@@ -155,10 +177,11 @@ function FeedPage({ loggedinUser, setLoggedinUser, activeUsers }) {
         setLoggedinUser={setLoggedinUser}
         activeUsers={activeUsers}
         setDarkMode={setDarkMode}
+        setProfileOwner={setProfileOwner}
       />
       <div className="row">
         <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-2">
-          <SideBar loggedinUser={loggedinUser} />
+          <SideBar />
         </div>
         <div
           className="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-xs-6"
@@ -169,12 +192,38 @@ function FeedPage({ loggedinUser, setLoggedinUser, activeUsers }) {
           <CreatePostModal
             addPost={addPost}
             postNum={postNum}
-            FirstName={loggedinUser.FirstName}
-            LastName={loggedinUser.LastName}
-            composer={loggedinUser}
+            FirstName={loggedinUser.fName}
+            LastName={loggedinUser.lName}
+            composer={loggedinUser.username}
+            gotToken={gotToken}
+            loggedinUser={loggedinUser}
           />
           {/* <!-- Posts --> */}
-          {postListElement}
+          {postList.length > 0 ? (
+            postListElement
+          ) : (
+            <div>
+              <div className="card" aria-hidden="true">
+                {/* <img src="..." className="card-img-top" alt="..."></img> */}
+                <div className="card-body">
+                  <h5 className="card-title placeholder-glow">
+                    <span className="placeholder col-6"></span>
+                  </h5>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-7"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-6"></span>
+                    <span className="placeholder col-8"></span>
+                  </p>
+                  <a
+                    className="btn btn-primary disabled placeholder col-6"
+                    aria-disabled="true"
+                  ></a>
+                </div>
+              </div>
+            </div>
+          )}
           <ContentNotAvailable />
         </div>
         <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-2 ps-5">

@@ -2,7 +2,7 @@ import SideBarBtn from "./SideBarBtn";
 import btns from "./btns";
 import { useRef } from "react";
 import "./SideBar.css";
-function SideBar({ loggedinUser }) {
+function SideBar() {
   const btnList = btns.map((button, key) => {
     return <SideBarBtn {...button} key={key} />;
   });
