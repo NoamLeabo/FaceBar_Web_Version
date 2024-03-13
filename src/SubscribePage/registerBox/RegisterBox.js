@@ -38,99 +38,78 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
       reader.readAsDataURL(file);
     }
   };
-  const uName = useRef("");
-  const uLName = useRef("");
-  const uFName = useRef("");
-  const uCPass = useRef("");
-  const uPassword = useRef("");
-
-  const setUsername = function (newUsername) {
-    uName.current = newUsername;
-  };
-  const setPassword = function (newPassword) {
-    uPassword.current = newPassword;
-  };
-
-  const setFName = function (newFName) {
-    uFName.current = newFName;
-  };
-
-  const setLName = function (newLName) {
-    uLName.current = newLName;
-  };
-
-  const setConfirmPass = function (newCPass) {
-    uCPass.current = newCPass;
-  };
+  const [uName, setUName] = useState("");
+  const [uLName, setULName] = useState("");
+  const [uFName, setUFName] = useState("");
+  const [uCPass, setUCPass] = useState("");
+  const [uPassword, setUPassword] = useState("");
 
   async function addUser() {
     const newU = {
-      name: uName.current,
-      password: uPassword.current,
-      FirstName: uFName.current,
-      LastName: uLName.current,
+      name: uName,
+      password: uPassword,
+      FirstName: uFName,
+      LastName: uLName,
       image: image,
     };
-    checkIfValid(newU);
     if (!checkIfValid(newU)) {
       return;
     }
-
     const data = await fetch("http://localhost:12345/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        fName: uFName.current,
-        lName: uLName.current,
-        username: uName.current,
-        password: uPassword.current,
+        fName: uFName,
+        lName: uLName,
+        username: uName,
+        password: uPassword,
         profileImg: image,
       }),
     });
     navigate("/");
   }
-  const clicked = () => {
-    const newU = {
-      name: uName.current,
-      password: uPassword.current,
-      FirstName: uFName.current,
-      LastName: uLName.current,
-      image: image,
-    };
-    checkIfValid(newU);
-  };
+  // const clicked = () => {
+  //   const newU = {
+  //     name: uName.current,
+  //     password: uPassword.current,
+  //     FirstName: uFName.current,
+  //     LastName: uLName.current,
+  //     image: image,
+  //   };
+  //   checkIfValid(newU);
+  // };
 
   const checkIfValid = (newU) => {
     // regex for checking
-    let checkPassword = /(?=.[a-z])(?=.[A-Z])(?=.*[0-9])(?=.{8,})/;
+    let checkPassword = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}/; 
     let checkName = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/;
     let checkUsername = /^[a-zA-Z0-9_-]{4,16}$/;
 
     if (
-      uName.current === "" ||
-      uPassword.current === "" ||
-      uFName.current === "" ||
-      uLName.current === "" ||
-      uCPass.current === ""
+      uName === "" ||
+      uPassword === "" ||
+      uFName === "" ||
+      uLName === "" ||
+      uCPass === ""
     ) {
       alert("You must fill all fields!");
       return false;
     }
-    if (!uName.current.match(checkUsername)) {
+    if (!uName.match(checkUsername)) {
       alert(
         "Username must be between 4 and 16 characters long\nand contain only:\n-letters\n-numbers\n-underscores\n-hyphens"
       );
       return false;
     }
-    if (!uPassword.current.match(checkPassword)) {
+    if (!uPassword.match(checkPassword)) {
       alert(
         "Password must contain:\n-at least 8 characters\n-uppercase letters\n-lowercase letters\n-numbers"
       );
       return false;
     }
-    if (!uLName.current.match(checkName) || !uFName.current.match(checkName)) {
+    if (!uLName.match(checkName) || !uFName.match(checkName)) {
       alert("First And Last Names must contain letters only!");
       return false;
     }
@@ -138,7 +117,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
       alert("No profile image was uploaded!");
       return false;
     }
-    if (newU.password !== uCPass.current) {
+    if (newU.password !== uCPass) {
       alert("Passwords do not match!");
       return false;
     }
@@ -153,7 +132,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
             <InputGetter
               type="text"
               text="First Name"
-              onChange={setFName}
+              onChange={setUFName}
               title="first name must contain only letters"
             />
           </div>
@@ -161,7 +140,7 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
             <InputGetter
               type="text"
               text="Last Name"
-              onChange={setLName}
+              onChange={setULName}
               title="last name must contain only letters"
             />
           </div>
@@ -170,19 +149,19 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
         <InputGetter
           type="text"
           text="Username"
-          onChange={setUsername}
+          onChange={setUName}
           title="must contain at least 8 characters, including uppercase, lowercase letters and numbers"
         />
         <InputGetter
           type="password"
           text="Password"
-          onChange={setPassword}
+          onChange={setUPassword}
           title="must contain at least 8 characters, including uppercase, lowercase letters and numbers"
         />
         <InputGetter
           type="password"
           text="Confirm Password"
-          onChange={setConfirmPass}
+          onChange={setUCPass}
         />
         <input
           type="file"
