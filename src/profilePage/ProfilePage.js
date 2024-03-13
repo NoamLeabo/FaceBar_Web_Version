@@ -324,8 +324,6 @@ function ProfilePage({
             <button
               type="button"
               className="btn btn-primary"
-              data-bs-dismiss="modal"
-              aria-label="Close"
               onClick={() => acceptFriend(user.username)}
               style={{ marginBlockStart: "20px" }}
             >
@@ -334,8 +332,6 @@ function ProfilePage({
             <button
               type="button"
               className="btn btn-secondary float-end"
-              data-bs-dismiss="modal"
-              aria-label="Close"
               onClick={() => rejectFriend(user.username)}
               style={{ marginBlockStart: "20px" }}
             >
