@@ -21,7 +21,19 @@ function EditPostModal({
     }
   }, []);
   const addedImg = (event) => {
-    setSelectedImage(URL.createObjectURL(event.target.files[0]));
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      // Extract base64 encoded string and set it as state
+      const imageDataURL = reader.result;
+      const base64String = imageDataURL.split(",")[1];
+      setSelectedImage(base64String);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
   const content = useRef(null);
   String.prototype.trim = function () {
@@ -64,7 +76,7 @@ function EditPostModal({
     // };
     // editPost(myId, post);
     update();
-    getAll();
+    editPost();
     postText.current.value = "";
   };
   ///////////////////////////////////////////////////////////////////
@@ -83,7 +95,7 @@ function EditPostModal({
         body: JSON.stringify({
           content: postText.current.value,
           published: myTime,
-          imageView: myImg,
+          imageView: selectedImage,
         }),
       }
     );

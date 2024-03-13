@@ -1,4 +1,3 @@
-import EditPostModal from "../../FeedPage/editPostModal/EditPostModal";
 import "./Btn.css";
 function PostSettingBtn({ btn1action, btn2action, id, inModal }) {
   return (

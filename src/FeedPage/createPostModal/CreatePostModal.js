@@ -35,8 +35,6 @@ function CreatePostModal({
   const [savedImage, setSavedImage] = useState(null);
 
   const addedImg = (event) => {
-    setSelectedImage(URL.createObjectURL(event.target.files[0]));
-    imgWasAdded = true;
     const file = event.target.files[0];
     const reader = new FileReader();
 

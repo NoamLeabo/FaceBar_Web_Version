@@ -1,4 +1,3 @@
-import EditPostModal from "../../FeedPage/editPostModal/EditPostModal";
 import "./Btn.css";
 function CommSettingsBtn({ remComment, commentId, postId, setCommentList }) {
   return (

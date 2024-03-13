@@ -3,10 +3,8 @@ import UploadAndDisplayImage from "../uploadAndDisplayImage/UploadAndDisplayImag
 
 function EditUserModal({ loggedinUser, logOut }) {
   const [selectedImage, setSelectedImage] = useState(loggedinUser.image);
-  const [savedImage, setSavedImage] = useState(null);
+  // const [savedImage, setSavedImage] = useState(null);
   const addedImg = (event) => {
-    setSelectedImage(URL.createObjectURL(event.target.files[0]));
-    // imgWasAdded = true;
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -14,7 +12,7 @@ function EditUserModal({ loggedinUser, logOut }) {
       // Extract base64 encoded string and set it as state
       const imageDataURL = reader.result;
       const base64String = imageDataURL.split(",")[1];
-      setSavedImage(base64String);
+      setSelectedImage(base64String);
     };
 
     if (file) {
@@ -22,7 +20,17 @@ function EditUserModal({ loggedinUser, logOut }) {
     }
   };
   async function edit() {
-    console.log("edditing password to " + newPassword.current.value);
+    let checkPassword = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}/;
+    if (newPassword.current.value === "") {
+      alert("You must fill all fields!");
+      return false;
+    }
+    if (!newPassword.current.value.match(checkPassword)) {
+      alert(
+        "Password must contain:\n-at least 8 characters\n-uppercase letters\n-lowercase letters\n-numbers"
+      );
+      return false;
+    }
     const data = await fetch(
       "http://localhost:12345/api/users/" + loggedinUser.username,
       {
@@ -32,7 +40,7 @@ function EditUserModal({ loggedinUser, logOut }) {
         },
         body: JSON.stringify({
           password: newPassword.current.value,
-          profileImg: savedImage,
+          profileImg: selectedImage,
         }),
       }
     );
@@ -80,14 +88,15 @@ function EditUserModal({ loggedinUser, logOut }) {
           <div className="modal-body">
             <form>
               <div className="mb-3">
-                <textarea
+                <input
+                  type="password"
                   ref={newPassword}
                   // onChange={search}
                   className="form-control"
                   data-testid="create-post-text-test"
                   id="create-post-text"
                   placeholder="Enter a new password"
-                ></textarea>
+                ></input>
               </div>
               <div className="input-group">
                 <UploadAndDisplayImage

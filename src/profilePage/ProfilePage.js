@@ -211,8 +211,6 @@ function ProfilePage({
       "http://localhost:12345/api/users/" + profileOwner.username + "/posts"
     );
     let posts = await data.json();
-    // console.log(posts);
-    // console.log("hi");
     setPostList(posts);
   }
   if (!loggedinUser) {
@@ -327,14 +325,16 @@ function ProfilePage({
       return (
         <div key={key} className="contact-container">
           <Contact user={user} setProfileOwner={setProfileOwner} key={key} />
-          {loggedinUser.username === profileOwner.username &&          <button
-            type="button"
-            className="btn btn-secondary float-end"
-            onClick={() => rejectFriend(user.username)}
-            style={{ marginBlockStart: "20px" }}
-          >
-            Delete
-          </button>}
+          {loggedinUser.username === profileOwner.username && (
+            <button
+              type="button"
+              className="btn btn-secondary float-end"
+              onClick={() => rejectFriend(user.username)}
+              style={{ marginBlockStart: "20px" }}
+            >
+              Delete
+            </button>
+          )}
         </div>
       );
     });
@@ -365,19 +365,21 @@ function ProfilePage({
     });
   }
   const postListElement = postList.map((post) => {
-    return (
-      <FeedPost
-        {...post}
-        remPost={remPost}
-        editPost={editPost}
-        remComment={remComment}
-        editComments={editComments}
-        postAddComment={postAddComment}
-        key={post._id}
-        Uname={loggedinUser.username}
-        // commentsNum={post.comments.length}
-      />
-    );
+    if (post) {
+      return (
+        <FeedPost
+          {...post}
+          remPost={remPost}
+          editPost={editPost}
+          remComment={remComment}
+          editComments={editComments}
+          postAddComment={postAddComment}
+          key={post._id}
+          Uname={loggedinUser.username}
+          // commentsNum={post.comments.length}
+        />
+      );
+    }
   });
   return (
     <div ref={page} className="container-fluid">
