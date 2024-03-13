@@ -64,10 +64,7 @@ function UsersPage({
       page.current.className = mode;
     }
   };
-  let postNum = postList.length;
-  const addPost = (post) => {
-    setPostList([post, ...postList]);
-  };
+
   let usersList = null;
 
   if (userList.length) {
@@ -80,8 +77,6 @@ function UsersPage({
         </div>
       );
     });
-    console.log(usersList);
-    console.log("usersList");
   }
 
   return (

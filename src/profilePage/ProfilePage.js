@@ -31,6 +31,17 @@ function ProfilePage({
   const [friendReqBtn, setFriendReqBtn] = useState(null);
   const [contacts, setContacts] = useState(null);
   const friendreqbtn = useRef(null);
+
+  async function updateLoggedInUser() {
+    const data = await fetch(
+      "http://localhost:12345/api/users/" + loggedinUser.username
+    );
+    const user = await data.json();
+
+    console.log("new user updated ");
+    console.log(user);
+    setLoggedinUser(user);
+  }
   async function sendFriendRequest() {
     const data = await fetch(
       "http://localhost:12345/api/users/" + profileOwner.username + "/friends",
@@ -96,6 +107,7 @@ function ProfilePage({
     setFriendReqList((prevList) =>
       prevList.filter((user) => user.username !== friend)
     );
+    await updateLoggedInUser();
   }
   async function rejectFriend(friend) {
     await fetch(
@@ -110,11 +122,12 @@ function ProfilePage({
     setFriendReqList((prevList) =>
       prevList.filter((user) => user.username !== friend)
     );
+    await updateLoggedInUser();
   }
   const [profileusername, setProfileusername] = useState(null);
   useEffect(() => {
     if (profileOwner.username === loggedinUser.username) {
-      // getRequestList();
+      getRequestList();
     } else {
       // setProfileusername("friend");
     }
@@ -312,7 +325,17 @@ function ProfilePage({
   if (friendList.length || friendReqList.length) {
     contactList = friendList.map((user, key) => {
       return (
-        <Contact user={user} setProfileOwner={setProfileOwner} key={key} />
+        <div key={key} className="contact-container">
+          <Contact user={user} setProfileOwner={setProfileOwner} key={key} />
+          {loggedinUser.username === profileOwner.username &&          <button
+            type="button"
+            className="btn btn-secondary float-end"
+            onClick={() => rejectFriend(user.username)}
+            style={{ marginBlockStart: "20px" }}
+          >
+            Delete
+          </button>}
+        </div>
       );
     });
     requestsList = friendReqList.map((user, key) => {
