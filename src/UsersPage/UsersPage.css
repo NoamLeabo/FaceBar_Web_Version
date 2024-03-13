@@ -1,5 +1,9 @@
-.row #feedmain > * {
+.row #feedmainuserspage > * {
     padding: 10px; /* Adjust as needed */
     border-radius: 10px; /* Adjust as needed */
     margin :10px; /* Adjust as needed */
+}
+.userCard{
+    width: 50%;
+    /* padding-left: 50% !important; */
 }

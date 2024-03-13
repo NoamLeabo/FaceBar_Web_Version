@@ -68,7 +68,10 @@ function TextPost({
   return (
     <div className="card">
       <div className="card-body ">
-        <PostSettingBtn btn1action={remPost} id={id} inModal={inModal} />
+        {composer.username == Uname && (
+          <PostSettingBtn btn1action={remPost} id={id} inModal={inModal} />
+        )}
+
         <h5 className="card-title">
           <img
             src={`data:image/jpeg;base64,${profPic}`}

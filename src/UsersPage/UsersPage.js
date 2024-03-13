@@ -73,7 +73,11 @@ function UsersPage({
   if (userList.length) {
     usersList = userList.map((user, key) => {
       return (
-        <Contact user={user} setProfileOwner={setProfileOwner} key={key} />
+        <div className="card userCard">
+          <div className="card-body ">
+            <Contact user={user} setProfileOwner={setProfileOwner} key={key} />
+          </div>
+        </div>
       );
     });
     console.log(usersList);
@@ -97,7 +101,7 @@ function UsersPage({
         <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-2"></div>
         <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
           <div className="row">
-          <div id="feedmain">{usersList}</div>
+            <div id="feedmainuserspage">{usersList}</div>
           </div>
         </div>
         <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 ps-5"></div>

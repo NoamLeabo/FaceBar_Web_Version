@@ -12,6 +12,7 @@ function EditPostModal({
   myLikes,
   myImg,
   myComments,
+  getAll,
 }) {
   const [selectedImage, setSelectedImage] = useState(null);
   useEffect(() => {
@@ -63,20 +64,29 @@ function EditPostModal({
     // };
     // editPost(myId, post);
     update();
+    getAll();
     postText.current.value = "";
   };
   ///////////////////////////////////////////////////////////////////
   async function update() {
     console.log("my id is" + myId);
-    const data = await fetch("http://localhost:12345/api/posts/" + myId, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        content: postText.current.value,
-      }),
-    });
+    const data = await fetch(
+      "http://localhost:12345/api/users/" +
+        myComposer.username +
+        "/posts/" +
+        myId,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: postText.current.value,
+          published: myTime,
+          imageView: myImg,
+        }),
+      }
+    );
     // posts = await data.json();
     // console.log(posts);
   }

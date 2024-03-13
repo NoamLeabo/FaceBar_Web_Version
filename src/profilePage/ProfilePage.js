@@ -30,6 +30,7 @@ function ProfilePage({
   const [createPoseElement, setCreatePoseElement] = useState(null);
   const [friendReqBtn, setFriendReqBtn] = useState(null);
   const [contacts, setContacts] = useState(null);
+  const friendreqbtn = useRef(null);
   async function sendFriendRequest() {
     const data = await fetch(
       "http://localhost:12345/api/users/" + profileOwner.username + "/friends",
@@ -45,7 +46,12 @@ function ProfilePage({
         }),
       }
     );
+    friendreqbtn.current.className = "btn btn-primary btn-lg disabled";
   }
+
+  const Pressable = () => {
+    return !profileOwner.pending.includes(loggedinUser.username);
+  };
   async function foriUsers(list) {
     let array = [];
     for (let i = 0; i < list.length; i++) {
@@ -108,11 +114,18 @@ function ProfilePage({
   const [profileusername, setProfileusername] = useState(null);
   useEffect(() => {
     if (profileOwner.username === loggedinUser.username) {
-      getRequestList();
+      // getRequestList();
     } else {
       // setProfileusername("friend");
     }
     getFriendsList();
+    if (friendreqbtn.current) {
+      if (Pressable()) {
+        friendreqbtn.current.className = "btn btn-primary btn-lg";
+      } else {
+        friendreqbtn.current.className = "btn btn-primary btn-lg disabled";
+      }
+    }
   }, [profileOwner]);
   useEffect(() => {
     getFriendsList();
@@ -159,6 +172,7 @@ function ProfilePage({
       setFriendReqBtn(
         <button
           type="button"
+          ref={friendreqbtn}
           className="btn btn-primary btn-lg"
           onClick={sendFriendRequest}
           style={{
@@ -291,22 +305,7 @@ function ProfilePage({
     postList[postIndex].comments = comments;
     setPostList([...postList]);
   }
-  // const postListElement = postList.map((post) => {
-  //   if (post.composer.username === profileOwner.username)
-  //     return (
-  //       <FeedPost
-  //         {...post}
-  //         remPost={remPost}
-  //         editPost={editPost}
-  //         remComment={remComment}
-  //         editComments={editComments}
-  //         postAddComment={postAddComment}
-  //         key={post.id}
-  //         Uname={profileOwner.username}
-  //         commentsNum={post.comments.length}
-  //       />
-  //     );
-  // });
+
   let contactList = null;
   let requestsList = null;
 

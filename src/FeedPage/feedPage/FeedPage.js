@@ -22,7 +22,23 @@ function FeedPage({
   const page = useRef(null);
   const [postList, setPostList] = useState([]);
   const [friendList, setFriendList] = useState([]);
-
+  async function deletePost(pid) {
+    // await getCurrentTime();
+    const data = await fetch(
+      "http://localhost:12345/api/users/" +
+        loggedinUser.username +
+        "/posts/" +
+        pid,
+      {
+        method: "DELETE",
+        // Remove the Content-Type header
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      }
+    );
+  }
   async function getAll() {
     const data = await fetch("http://localhost:12345/api/posts", {
       headers: {
@@ -92,6 +108,9 @@ function FeedPage({
     // postList.splice(index, 1);
     // setPostList([...postList]);
     // postNum++;
+    console.log("post id is " + id);
+    deletePost(id);
+    getAll();
   }
 
   function remComment(postId, commentId, setter) {
@@ -184,6 +203,7 @@ function FeedPage({
         editComments={editComments}
         postAddComment={postAddComment}
         key={post._id}
+        getAll={getAll}
         Uname={loggedinUser.username}
         // commentsNum={post.comments.length}
       />

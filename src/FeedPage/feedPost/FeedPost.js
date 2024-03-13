@@ -20,6 +20,7 @@ function FeedPost({
   editPost,
   remComment,
   editComments,
+  getAll,
   Uname,
   commentsNum,
   postAddComment,
@@ -85,7 +86,7 @@ function FeedPost({
         addLike={addLike}
         filterById={filterById}
         img={imageView}
-        remPost={deletePost}
+        remPost={remPost}
         Uname={Uname}
       />
       <FeedPostModal
@@ -107,7 +108,7 @@ function FeedPost({
         Uname={Uname}
         commentsNum={commentsNum}
         postAddComment={postAddComment}
-        remPost={deletePost}
+        remPost={remPost}
       />
 
       <EditPostModal
@@ -119,6 +120,7 @@ function FeedPost({
         myLikes={likesDisp}
         myImg={imageView}
         myComments={comments}
+        getAll={getAll}
       />
       <SharePostModal />
     </div>
