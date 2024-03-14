@@ -42,8 +42,6 @@ function TextPost({
     }
   };
   useEffect(() => {
-    console.log(usersWhoLiked);
-    console.log("usersWhoLiked ");
     if (usersWhoLiked.length) {
       if (usersWhoLiked.includes(Uname)) {
         setILiked(true);

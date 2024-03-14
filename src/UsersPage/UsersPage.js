@@ -38,11 +38,7 @@ function UsersPage({
       },
     });
     let list = await data.json();
-    console.log("user list befor fori");
-    console.log(list);
-    // list = await foriUsers(list);
-    // console.log("user list after fori");
-    // console.log(list);
+
     setUserList(list);
   }
 
@@ -70,9 +66,9 @@ function UsersPage({
   if (userList.length) {
     usersList = userList.map((user, key) => {
       return (
-        <div className="card userCard">
+        <div className="card userCard" key={key}>
           <div className="card-body ">
-            <Contact user={user} setProfileOwner={setProfileOwner} key={key} />
+            <Contact user={user} setProfileOwner={setProfileOwner} />
           </div>
         </div>
       );
