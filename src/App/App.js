@@ -11,6 +11,9 @@ import UsersPage from "../UsersPage/UsersPage";
 function App() {
   const [activeUsers, setActiveUsers] = useState(usersInfo);
   const [gotToken, setGotToken] = useState(null);
+  const setToken = function (token) {
+    setGotToken(token);
+  };
 
 
 

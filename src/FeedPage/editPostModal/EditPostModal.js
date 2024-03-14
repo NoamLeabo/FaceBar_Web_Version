@@ -19,6 +19,7 @@ function EditPostModal({
     if (myImg != null) {
       setSelectedImage(myImg);
     }
+    search();
   }, []);
   const addedImg = (event) => {
     const file = event.target.files[0];
@@ -66,7 +67,7 @@ function EditPostModal({
   const postSetter = async function () {
     await update();
     editPost();
-    postText.current.value = "";
+    // postText.current.value = "";
   };
   async function update() {
     if (selectedImage) {

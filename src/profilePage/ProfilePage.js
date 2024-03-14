@@ -174,6 +174,7 @@ function ProfilePage({
               LastName={loggedinUser.lName}
               composer={loggedinUser.username}
               loggedinUser={loggedinUser}
+              gotToken={gotToken}
             />
           </>
         );
@@ -251,21 +252,23 @@ function ProfilePage({
   };
   let postNum = postList.length;
   const addPost = (post) => {
-    setPostList([post, ...postList]);
+    getUsersPosts();
   };
   function remPost(id) {
-    var index = -1;
-    postList.find(function (item, i) {
-      if (item.id === id) {
-        index = i;
-        return i;
-      }
-    });
+    // var index = -1;
+    // postList.find(function (item, i) {
+    //   if (item.id === id) {
+    //     index = i;
+    //     return i;
+    //   }
+    // });
 
-    postList.splice(index, 1);
-    setPostList([...postList]);
-    postNum++;
-  }
+    // postList.splice(index, 1);
+    // setPostList([...postList]);
+    // postNum++;
+    getUsersPosts();
+  }
+
   function remComment(postId, commentId, setter) {
     var postIndex = -1;
     postList.find(function (item, i) {
@@ -429,7 +432,6 @@ function ProfilePage({
           <div id="feedmain">
             {createPoseElement}
             {postList.length > 0 && postListElement}
-            {!profileusername === "me" && <ContentNotAvailable />}
           </div>
         </div>
         <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 ps-5"></div>
