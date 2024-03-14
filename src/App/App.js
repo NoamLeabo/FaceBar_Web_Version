@@ -6,17 +6,13 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import usersInfo from "../users.json";
 import ProfilePage from "../profilePage/ProfilePage";
-import axios from "axios";
 import UsersPage from "../UsersPage/UsersPage";
 
 function App() {
   const [activeUsers, setActiveUsers] = useState(usersInfo);
   const [gotToken, setGotToken] = useState(null);
 
-  const setToken = function (token) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    setGotToken(token);
-  };
+
 
   async function SetLoggedUser(userId) {
     const data = await fetch("http://localhost:12345/api/users/" + userId, {
