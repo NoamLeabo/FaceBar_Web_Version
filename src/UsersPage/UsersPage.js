@@ -24,7 +24,12 @@ function UsersPage({
   async function foriUsers(list) {
     let array = [];
     for (let i = 0; i < list.length; i++) {
-      const data = await fetch("http://localhost:12345/api/users/" + list[i]);
+      const data = await fetch("http://localhost:12345/api/users/" + list[i], {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      });
       const user = await data.json();
       array.push(user);
     }

@@ -11,6 +11,7 @@ function NavBar({
   setProfileOwner,
   reloader,
   setReloader,
+  gotToken,
 }) {
   const navigate = useNavigate();
 
@@ -40,6 +41,7 @@ function NavBar({
         logOut={logOut}
         setReloader={setReloader}
         reloader={reloader}
+        gotToken={gotToken}
       />
       <div className="container-fluid" id="navbarcontainer">
         <a className="navbar-brand" href="#">

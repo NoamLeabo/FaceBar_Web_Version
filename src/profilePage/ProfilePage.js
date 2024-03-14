@@ -38,10 +38,15 @@ function ProfilePage({
   let requestsList = null;
   async function updateLoggedInUser() {
     const data = await fetch(
-      "http://localhost:12345/api/users/" + loggedinUser.username
+      "http://localhost:12345/api/users/" + loggedinUser.username,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      }
     );
     const user = await data.json();
-
 
     setLoggedinUser(user);
   }
@@ -65,7 +70,12 @@ function ProfilePage({
   async function foriUsers(list) {
     let array = [];
     for (let i = 0; i < list.length; i++) {
-      const data = await fetch("http://localhost:12345/api/users/" + list[i]);
+      const data = await fetch("http://localhost:12345/api/users/" + list[i], {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      });
       const user = await data.json();
       array.push(user);
     }
@@ -101,6 +111,11 @@ function ProfilePage({
         friend,
       {
         method: "PATCH",
+
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
       }
     );
     setFriendReqList((prevList) =>
@@ -117,6 +132,11 @@ function ProfilePage({
         friend,
       {
         method: "DELETE",
+
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
       }
     );
     setFriendReqList((prevList) =>
@@ -194,7 +214,6 @@ function ProfilePage({
       );
     }
     if (friendreqbtn.current) {
-
       if (profileOwner.pending.includes(loggedinUser.username)) {
         friendreqbtn.current.className = "btn btn-primary btn-lg disabled";
       } else {
@@ -206,7 +225,13 @@ function ProfilePage({
   const [postList, setPostList] = useState([]);
   async function getUsersPosts() {
     let data = await fetch(
-      "http://localhost:12345/api/users/" + profileOwner.username + "/posts"
+      "http://localhost:12345/api/users/" + profileOwner.username + "/posts",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      }
     );
     let posts = await data.json();
     setPostList(posts);

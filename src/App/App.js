@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import usersInfo from "../users.json";
 import ProfilePage from "../profilePage/ProfilePage";
-import PostsPage from "../postsPage/PostsPage";
 import axios from "axios";
 import UsersPage from "../UsersPage/UsersPage";
 
@@ -20,7 +19,12 @@ function App() {
   };
 
   async function SetLoggedUser(userId) {
-    const data = await fetch("http://localhost:12345/api/users/" + userId);
+    const data = await fetch("http://localhost:12345/api/users/" + userId, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "bearer " + gotToken,
+      },
+    });
     let user = await data.json();
     setLoggedinUser(user);
   }

@@ -21,6 +21,7 @@ function FeedPostModal({
   commentsNum,
   setReloader,
   reloader,
+  gotToken,
 }) {
   // const addComment = (comment) => {
   //   setCommentList([...commentList, comment]);
@@ -65,6 +66,7 @@ function FeedPostModal({
               inModal={"modal"}
               setReloader={setReloader}
               reloader={reloader}
+              gotToken={gotToken}
             />
           </div>
           {/* {commentListElement} */}

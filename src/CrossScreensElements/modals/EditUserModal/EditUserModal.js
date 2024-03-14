@@ -1,7 +1,13 @@
 import { useRef, useState } from "react";
 import UploadAndDisplayImage from "../uploadAndDisplayImage/UploadAndDisplayImage";
 
-function EditUserModal({ loggedinUser, logOut, reloader, setReloader }) {
+function EditUserModal({
+  loggedinUser,
+  logOut,
+  reloader,
+  setReloader,
+  gotToken,
+}) {
   const [selectedImage, setSelectedImage] = useState(loggedinUser.profileImg);
   const addedImg = (event) => {
     const file = event.target.files[0];
@@ -35,6 +41,7 @@ function EditUserModal({ loggedinUser, logOut, reloader, setReloader }) {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
         },
         body: JSON.stringify({
           password: newPassword.current.value,
@@ -52,6 +59,7 @@ function EditUserModal({ loggedinUser, logOut, reloader, setReloader }) {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
         },
       }
     );

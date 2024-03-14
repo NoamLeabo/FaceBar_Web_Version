@@ -47,7 +47,12 @@ function FeedPost({
   }
   useEffect(() => {
     async function fetchAuthor() {
-      const data = await fetch("http://localhost:12345/api/users/" + author);
+      const data = await fetch("http://localhost:12345/api/users/" + author, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      });
       const user = await data.json();
       setComposer(user);
     }
@@ -90,6 +95,7 @@ function FeedPost({
         img={imageView}
         remPost={deletePost}
         Uname={Uname}
+        gotToken={gotToken}
         // setReloader={setReloader}
         // reloader={reloader}
       />
@@ -110,6 +116,7 @@ function FeedPost({
         Uname={Uname}
         commentsNum={commentsNum}
         remPost={deletePost}
+        gotToken={gotToken}
         // setReloader={setReloader}
         // reloader={reloader}
       />
@@ -123,6 +130,7 @@ function FeedPost({
         myLikes={likesDisp}
         myImg={imageView}
         myComments={comments}
+        gotToken={gotToken}
       />
       <SharePostModal />
     </div>

@@ -39,7 +39,12 @@ function FeedPage({
   async function foriUsers(list) {
     let array = [];
     for (let i = 0; i < list.length; i++) {
-      const data = await fetch("http://localhost:12345/api/users/" + list[i]);
+      const data = await fetch("http://localhost:12345/api/users/" + list[i], {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      });
       const user = await data.json();
       array.push(user);
     }
@@ -182,6 +187,7 @@ function FeedPage({
         setProfileOwner={setProfileOwner}
         setReloader={setReloader}
         reloader={reloader}
+        gotToken ={gotToken}
       />
       <div className="row">
         <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-2">

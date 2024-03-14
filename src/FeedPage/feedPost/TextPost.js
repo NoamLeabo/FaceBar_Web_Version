@@ -17,6 +17,7 @@ function TextPost({
   remPost,
   inModal,
   Uname,
+  gotToken,
 }) {
   const [iLiked, setILiked] = useState(usersWhoLiked.includes(Uname));
   const [profPic, setProfPic] = useState(composer.profileImg);
@@ -54,6 +55,11 @@ function TextPost({
       "http://localhost:12345/api/users/" + Uname + "/posts/" + id,
       {
         method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
       }
     );
   }

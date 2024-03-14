@@ -12,6 +12,7 @@ function EditPostModal({
   myLikes,
   myImg,
   myComments,
+  gotToken,
 }) {
   const [selectedImage, setSelectedImage] = useState(null);
   useEffect(() => {
@@ -78,6 +79,7 @@ function EditPostModal({
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            authorization: "bearer " + gotToken,
           },
           body: JSON.stringify({
             content: postText.current.value,
@@ -96,6 +98,7 @@ function EditPostModal({
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            authorization: "bearer " + gotToken,
           },
           body: JSON.stringify({
             content: postText.current.value,
@@ -104,7 +107,6 @@ function EditPostModal({
         }
       );
     }
-
   }
   return (
     <div
