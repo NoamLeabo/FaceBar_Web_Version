@@ -127,6 +127,7 @@ function CreatePostModal({
           },
           body: JSON.stringify({
             author: composer,
+            profilePic: profilePic,
             content: postText.current.value,
             published: date,
             contains_img: imgWasAdded,
