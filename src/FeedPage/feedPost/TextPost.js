@@ -1,56 +1,84 @@
 import "./Posts.css";
 import PostSettingBtn from "../../CrossScreensElements/btn/PostSettingBtn";
 import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function TextPost({
   id,
   composer,
+  profilePic,
   time,
   text,
   likesDisp,
   addLike,
   img,
+  usersWhoLiked,
   filterById,
   remPost,
   inModal,
+  Uname,
+  gotToken,
 }) {
+  const [iLiked, setILiked] = useState(usersWhoLiked.includes(Uname));
+  const [profPic, setProfPic] = useState(composer.profileImg);
+
   let containerSize = null;
+
   if (img) {
     let imgHeight = img.height + 50;
     containerSize = { height: { imgHeight } };
   }
   const likebtn = useRef(null);
-  const liked = function () {
-    if (likebtn.current.getAttribute("id") == "likeBtn") {
+  const liked = async function () {
+    if (!iLiked) {
       addLike(1);
+      setILiked(true);
       likebtn.current.setAttribute("id", "likeBtnDis");
+      await likePost();
     } else {
       addLike(-1);
+      setILiked(false);
       likebtn.current.setAttribute("id", "likeBtn");
+      await likePost();
     }
   };
+  useEffect(() => {
+    if (usersWhoLiked.length) {
+      if (usersWhoLiked.includes(Uname)) {
+        setILiked(true);
+        likebtn.current.setAttribute("id", "likeBtnDis");
+      }
+    }
+  }, []);
+  async function likePost() {
+    const data = await fetch(
+      "http://localhost:12345/api/users/" + Uname + "/posts/" + id,
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      }
+    );
+  }
+
   return (
     <div className="card">
       <div className="card-body ">
-        <PostSettingBtn
-          btn1action={remPost}
-          text={text}
-          composer={composer}
-          time={time}
-          id={id}
-          likesDisp={likesDisp}
-          img={img}
-          inModal={inModal}
-        />
+        {composer.username == Uname && (
+          <PostSettingBtn btn1action={remPost} id={id} inModal={inModal} />
+        )}
+
         <h5 className="card-title">
           <img
-            src={composer.image}
+            src={`data:image/jpeg;base64,${profPic}`}
             className="ProfPic rounded-circle img-cover ratio ratio-1x1 overflow-hidden"
             width={"100px"}
             alt=""
           />
-          {composer.FirstName} {composer.LastName}
+          {composer.fName} {composer.lName}
         </h5>
         <p className="card-text">
           <small className="text-body-secondary">Last updated {time}</small>
@@ -68,7 +96,7 @@ function TextPost({
                   width: "100%",
                   objectFit: "contain",
                 }}
-                src={img}
+                src={`data:image/jpeg;base64,${img}`}
               />
             </div>
           )}

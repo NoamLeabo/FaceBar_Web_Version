@@ -2,14 +2,14 @@ import SideBarBtn from "./SideBarBtn";
 import btns from "./btns";
 import { useRef } from "react";
 import "./SideBar.css";
-function SideBar({ loggedinUser }) {
+function SideBar() {
   const btnList = btns.map((button, key) => {
     return <SideBarBtn {...button} key={key} />;
   });
   return (
     <div className="list-group" id="side-bar" style={{ marginTop: "20px" }}>
       {btnList}
-      <li className="list-group-item">
+      {/* <li className="list-group-item">
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
@@ -27,7 +27,7 @@ function SideBar({ loggedinUser }) {
             </li>
           </ul>
         </div>
-      </li>
+      </li> */}
     </div>
   );
 }

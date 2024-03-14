@@ -1,40 +1,73 @@
-import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
 import FeedPostModal from "./FeedPostModal";
 import EditPostModal from "../editPostModal/EditPostModal";
 import TextPost from "./TextPost";
-import { useState } from "react";
-import EditComment from "../comments/EditComment";
+import { useState, useEffect } from "react";
 import SharePostModal from "../sharePostModal/SharePostModal";
+
 function FeedPost({
-  id,
-  composer,
-  time,
-  text,
+  _id,
+  author,
+  profilePic,
+  published,
+  content,
   comments,
-  img,
-  likes,
+  usersWhoLiked,
+  imageView,
+  numOfLikes,
   remPost,
   editPost,
-  remComment,
-  editComments,
   Uname,
   commentsNum,
-  postAddComment,
+  gotToken,
+  // setReloader,
+  // reloader,
 }) {
   function filterById(jsonObject, id) {
     return jsonObject.filter(function (jsonObject) {
       return jsonObject["id"] == id;
     })[0];
   }
+
+  const [composer, setComposer] = useState(null);
   const [commentList, setCommentList] = useState(comments);
+  async function deletePost(pid) {
+    // await getCurrentTime();
+    const data = await fetch(
+      "http://localhost:12345/api/users/" + composer.username + "/posts/" + pid,
+      {
+        method: "DELETE",
+        // Remove the Content-Type header
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      }
+    );
+    remPost(_id);
+  }
+  useEffect(() => {
+    async function fetchAuthor() {
+      const data = await fetch("http://localhost:12345/api/users/" + author, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      });
+      const user = await data.json();
+      setComposer(user);
+    }
+    fetchAuthor();
+  }, [author]);
 
   let likesDisp;
-  const [likenum, setLikes] = useState(likes);
+  const [likenum, setLikes] = useState(usersWhoLiked.length);
+
   if (likenum > 999) {
     likesDisp = "999+";
   } else {
     likesDisp = likenum;
   }
+
   const addLike = function (stat) {
     setLikes((l) => l + stat);
     if (likenum > 999) {
@@ -43,65 +76,63 @@ function FeedPost({
       likesDisp = likenum;
     }
   };
-  const editCommListElement = commentList.map((comm, key) => {
-    return (
-      <EditComment
-        editComments={editComments}
-        originalCommentText={comm.commentText}
-        commentId={comm.commentId}
-        commentAuthor={comm.commentAuthor}
-        postId={id}
-        key={key}
-        setCommentList={setCommentList}
-        commentList={commentList}
-      />
-    );
-  });
+
+  if (!composer) {
+    return null; // Return null or any other loading indicator while composer is being fetched
+  }
   return (
-    <div className="feed-component" data-testid={`test-post-${id}`}>
+    <div className="feed-component" data-testid={`test-post-${_id}`}>
       <TextPost
-        id={id}
+        id={_id}
         composer={composer}
-        time={time}
-        text={text}
+        profilePic={profilePic}
+        time={published}
+        text={content}
+        usersWhoLiked={usersWhoLiked}
         likesDisp={likesDisp}
         addLike={addLike}
         filterById={filterById}
-        img={img}
-        remPost={remPost}
+        img={imageView}
+        remPost={deletePost}
+        Uname={Uname}
+        gotToken={gotToken}
+        // setReloader={setReloader}
+        // reloader={reloader}
       />
       <FeedPostModal
-        id={id}
+        id={_id}
         composer={composer}
-        time={time}
-        text={text}
+        profilePic={profilePic}
+        time={published}
+        text={content}
+        usersWhoLiked={usersWhoLiked}
         comments={comments}
         likesDisp={likesDisp}
         addLike={addLike}
         filterById={filterById}
-        img={img}
-        remComment={remComment}
-        editComments={editComments}
-        commentList={commentList}
+        img={imageView}
+        commentList={comments}
         setCommentList={setCommentList}
         Uname={Uname}
         commentsNum={commentsNum}
-        postAddComment={postAddComment}
-        remPost={remPost}
+        remPost={deletePost}
+        gotToken={gotToken}
+        // setReloader={setReloader}
+        // reloader={reloader}
       />
 
       <EditPostModal
         editPost={editPost}
-        myId={id}
-        myText={text}
+        myId={_id}
+        myText={content}
         myComposer={composer}
-        myTime={time}
+        myTime={published}
         myLikes={likesDisp}
-        myImg={img}
+        myImg={imageView}
         myComments={comments}
+        gotToken={gotToken}
       />
       <SharePostModal />
-      {editCommListElement}
     </div>
   );
 }

@@ -9,7 +9,7 @@ function CreatePostButton({ loggedinUser }) {
           data-bs-target="#create-post"
           id="create-post-btn"
         >
-          What's on your mind, {loggedinUser.FirstName}?
+          What's on your mind, {loggedinUser.fName}?
         </button>
       </div>
     </div>

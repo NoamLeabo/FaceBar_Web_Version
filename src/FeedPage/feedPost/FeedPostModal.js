@@ -9,10 +9,9 @@ function FeedPostModal({
   time,
   text,
   comments,
+  usersWhoLiked,
   likesDisp,
   addLike,
-  remComment,
-  editComments,
   commentList,
   setCommentList,
   Uname,
@@ -20,25 +19,27 @@ function FeedPostModal({
   remPost,
   filterById,
   commentsNum,
-  postAddComment,
+  setReloader,
+  reloader,
+  gotToken,
 }) {
-  const addComment = (comment) => {
-    setCommentList([...commentList, comment]);
-    postAddComment(id, comment);
-    commentsNum++;
-  };
-  const commentListElement = commentList.map((comment, key) => {
-    return (
-      <Comment
-        {...comment}
-        key={key}
-        remComment={remComment}
-        editComments={editComments}
-        postId={id}
-        setCommentList={setCommentList}
-      />
-    );
-  });
+  // const addComment = (comment) => {
+  //   setCommentList([...commentList, comment]);
+  //   postAddComment(id, comment);
+  //   commentsNum++;
+  // };
+  // const commentListElement = commentList.map((comment, key) => {
+  //   return (
+  //     <Comment
+  //       {...comment}
+  //       key={key}
+  //       remComment={remComment}
+  //       editComments={editComments}
+  //       postId={id}
+  //       setCommentList={setCommentList}
+  //     />
+  //   );
+  // });
   return (
     <div
       className="modal fade post-modal"
@@ -56,20 +57,24 @@ function FeedPostModal({
               composer={composer}
               time={time}
               text={text}
+              usersWhoLiked={usersWhoLiked}
               likesDisp={likesDisp}
               addLike={addLike}
               filterById={filterById}
               img={img}
               remPost={remPost}
               inModal={"modal"}
+              setReloader={setReloader}
+              reloader={reloader}
+              gotToken={gotToken}
             />
           </div>
-          {commentListElement}
+          {/* {commentListElement} */}
           <CreateComment
-            addComment={addComment}
+            // addComment={addComment}
             commId={commentsNum}
             Uname={Uname}
-            editComments={editComments}
+            // editComments={editComments}
           />
         </div>
       </div>

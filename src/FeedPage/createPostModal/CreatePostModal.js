@@ -1,15 +1,53 @@
-import { useRef } from "react";
-import UploadAndDisplayImage from "../uploadAndDisplayImage/UploadAndDisplayImage";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import UploadAndDisplayImage from "../../CrossScreensElements/modals/uploadAndDisplayImage/UploadAndDisplayImage";
 
-function CreatePostModal({ addPost, postNum, composer, LastName, FirstName }) {
-  const [date, setDate] = useState(new Date());
+function CreatePostModal({
+  addPost,
+  postNum,
+  composer,
+  profilePic,
+  gotToken,
+  loggedinUser,
+}) {
+  const [date, setDate] = useState(getCurrentTime());
+  function getCurrentTime() {
+    let now = new Date();
+    let hourOfDay = now.getHours();
+    let minute = now.getMinutes();
+
+    // Format the time
+    let formattedTime = `${String(hourOfDay).padStart(2, "0")}:${String(
+      minute
+    ).padStart(2, "0")}`;
+
+    // Get the current date
+    let date = `${String(now.getDate()).padStart(2, "0")}/${String(
+      now.getMonth() + 1
+    ).padStart(2, "0")}`;
+
+    // Construct the final string
+    // setDate(`${formattedTime}, ${date}`);
+    return `${formattedTime}, ${date}`;
+  }
 
   let imgWasAdded = false;
   const [selectedImage, setSelectedImage] = useState(null);
+  const [savedImage, setSavedImage] = useState(null);
+
   const addedImg = (event) => {
-    setSelectedImage(URL.createObjectURL(event.target.files[0]));
-    imgWasAdded = true;
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      // Extract base64 encoded string and set it as state
+      const imageDataURL = reader.result;
+      const base64String = imageDataURL.split(",")[1];
+      setSelectedImage(base64String);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
   const content = useRef(null);
 
@@ -34,20 +72,75 @@ function CreatePostModal({ addPost, postNum, composer, LastName, FirstName }) {
   const postSetter = function () {
     const post = {
       id: postNum,
-      composer: composer,
-      time: date.toDateString(),
-      text: postText.current.value,
+      author: composer,
+      profilePic: profilePic,
+      published: date,
+      content: postText.current.value,
       contains_img: imgWasAdded,
-      img: selectedImage,
-      likes: 0,
+      imageView: selectedImage,
+      numOfLikes: 0,
       comments: new Array(),
+      usersWhoLiked: [],
     };
+    create();
     addPost(post);
     postText.current.value = "";
     setSelectedImage(null);
     search();
   };
-
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  async function create() {
+    // await getCurrentTime();
+    console.log("date is" + date);
+    let data;
+    if (selectedImage) {
+      data = await fetch(
+        "http://localhost:12345/api/users/" + loggedinUser.username + "/posts",
+        {
+          method: "POST",
+          // Remove the Content-Type header
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "bearer " + gotToken,
+          },
+          body: JSON.stringify({
+            author: composer,
+            profilePic: profilePic,
+            content: postText.current.value,
+            published: date,
+            contains_img: imgWasAdded,
+            imageView: selectedImage,
+            numOfLikes: 0,
+            comments: new Array(),
+          }),
+        }
+      );
+    } else {
+      data = await fetch(
+        "http://localhost:12345/api/users/" + loggedinUser.username + "/posts",
+        {
+          method: "POST",
+          // Remove the Content-Type header
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "bearer " + gotToken,
+          },
+          body: JSON.stringify({
+            author: composer,
+            profilePic: profilePic,
+            content: postText.current.value,
+            published: date,
+            contains_img: imgWasAdded,
+            numOfLikes: 0,
+            comments: new Array(),
+          }),
+        }
+      );
+    }
+    const posts = await data.json();
+    console.log(posts);
+  }
+  /////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     <div
       className="modal fade"

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import UploadAndDisplayImage from "../uploadAndDisplayImage/UploadAndDisplayImage";
+import UploadAndDisplayImage from "../../CrossScreensElements/modals/uploadAndDisplayImage/UploadAndDisplayImage";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -12,15 +12,28 @@ function EditPostModal({
   myLikes,
   myImg,
   myComments,
+  gotToken,
 }) {
   const [selectedImage, setSelectedImage] = useState(null);
   useEffect(() => {
     if (myImg != null) {
       setSelectedImage(myImg);
     }
+    search();
   }, []);
   const addedImg = (event) => {
-    setSelectedImage(URL.createObjectURL(event.target.files[0]));
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const imageDataURL = reader.result;
+      const base64String = imageDataURL.split(",")[1];
+      setSelectedImage(base64String);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
   const content = useRef(null);
   String.prototype.trim = function () {
@@ -51,20 +64,51 @@ function EditPostModal({
     myTime = "now";
   }
 
-  const postSetter = function () {
-    const post = {
-      id: myId,
-      composer: myComposer,
-      time: myTime,
-      text: postText.current.value,
-      img: selectedImage,
-      likes: myLikes,
-      comments: myComments,
-    };
-    editPost(myId, post);
-    postText.current.value = "";
+  const postSetter = async function () {
+    await update();
+    editPost();
+    // postText.current.value = "";
   };
-
+  async function update() {
+    if (selectedImage) {
+      const data = await fetch(
+        "http://localhost:12345/api/users/" +
+          myComposer.username +
+          "/posts/" +
+          myId,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "bearer " + gotToken,
+          },
+          body: JSON.stringify({
+            content: postText.current.value,
+            published: myTime,
+            imageView: selectedImage,
+          }),
+        }
+      );
+    } else {
+      const data = await fetch(
+        "http://localhost:12345/api/users/" +
+          myComposer.username +
+          "/posts/" +
+          myId,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "bearer " + gotToken,
+          },
+          body: JSON.stringify({
+            content: postText.current.value,
+            published: myTime,
+          }),
+        }
+      );
+    }
+  }
   return (
     <div
       className="modal fade"

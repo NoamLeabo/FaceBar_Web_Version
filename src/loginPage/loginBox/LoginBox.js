@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import ForgotPasswordToast from "../toasts/ForgotPasswordToast";
 // import Toast from 'react-bootstrap/Toast';
 
-function LoginBox({ activeUsers, SetLoggedUser }) {
+function LoginBox({ activeUsers, SetLoggedUser, setToken }) {
   const toastTrigger = useRef(null);
 
   const navigate = useNavigate();
@@ -29,10 +29,33 @@ function LoginBox({ activeUsers, SetLoggedUser }) {
     }
   }, [entry]);
 
-  const clickedLogIn = () => {
-    setRunning(true);
-    setEntry({ user: uName.current, password: uPassword.current });
-    SetLoggedUser(uName.current);
+  //////////////////////////////////////////////////////////////////////////////////////////
+  async function login() {
+    // Create a json object with the username and password from the form
+    const data = {
+      username: uName.current,
+      password: uPassword.current,
+    };
+    const res = await fetch("http://localhost:12345/api/tokens", {
+      method: "post", // send a post request
+      headers: {
+        "Content-Type": "application/json", // the data (username/password) is in the form of a JSON object
+      },
+      body: JSON.stringify(data), // The actual data (username/password)
+    });
+    if (res.status != 201) {
+      alert("Invalid username and/or password");
+    } else {
+      const token = await res.json();
+      setToken(token);
+      await SetLoggedUser(uName.current);
+      navigateHome();
+    }
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////
+  const clickedLogIn = async () => {
+    await login();
   };
 
   const checkIfValid = (entry) => {
@@ -50,7 +73,9 @@ function LoginBox({ activeUsers, SetLoggedUser }) {
       navigate("/home");
     }
   };
-
+  const navigateHome = function () {
+    navigate("/home");
+  };
   const newNavigation = function () {
     navigate("/details");
   };
