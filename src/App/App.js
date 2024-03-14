@@ -32,6 +32,12 @@ function App() {
     LastName: null,
   });
   const [loggedinUser, setLoggedinUser] = useState(null);
+  const [reloader, setReloader] = useState(null);
+  useEffect(() => {
+    if (loggedinUser) {
+      SetLoggedUser(loggedinUser.username);
+    }
+  }, [reloader]);
   function filterByUname(userList, Uname) {
     return userList.filter(function (userList) {
       return userList["name"] == Uname;
@@ -70,6 +76,8 @@ function App() {
                 activeUsers={activeUsers}
                 setProfileOwner={setProfileOwner}
                 gotToken={gotToken}
+                setReloader={setReloader}
+                reloader={reloader}
               />
             }
           ></Route>
@@ -83,6 +91,7 @@ function App() {
                 profileOwner={profileOwner}
                 setProfileOwner={setProfileOwner}
                 gotToken={gotToken}
+                setReloader={setReloader}
               />
             }
           ></Route>

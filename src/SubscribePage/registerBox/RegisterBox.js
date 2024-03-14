@@ -7,28 +7,12 @@ import Btn from "../../CrossScreensElements/btn/Btn";
 function RegisterBox({ setActiveUsers, activeUsers }) {
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
-  // const handleChange = (e) => {
-  //   const file = e.target.files[0];
-  //   const reader = new FileReader();
 
-  //   reader.onloadend = () => {
-  //     // Extract base64 encoded string and set it as state
-  //     const imageDataURL = reader.result;
-  //     const base64String = imageDataURL.split(",")[1];
-  //     setImage(base64String);
-  //   };
-
-  //   if (file) {
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
   const addedImg = (event) => {
-    // setImage(URL.createObjectURL(event.target.files[0]));
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      // Extract base64 encoded string and set it as state
       const imageDataURL = reader.result;
       const base64String = imageDataURL.split(",")[1];
       setImage(base64String);
@@ -70,20 +54,9 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
     });
     navigate("/");
   }
-  // const clicked = () => {
-  //   const newU = {
-  //     name: uName.current,
-  //     password: uPassword.current,
-  //     FirstName: uFName.current,
-  //     LastName: uLName.current,
-  //     image: image,
-  //   };
-  //   checkIfValid(newU);
-  // };
 
   const checkIfValid = (newU) => {
-    // regex for checking
-    let checkPassword = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}/; 
+    let checkPassword = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}/;
     let checkName = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/;
     let checkUsername = /^[a-zA-Z0-9_-]{4,16}$/;
 
@@ -177,7 +150,6 @@ function RegisterBox({ setActiveUsers, activeUsers }) {
         {image && (
           <div className="image-container">
             <img src={`data:image/jpeg;base64,${image}`} id="image" alt="" />
-            {/* <button id="removeImgBtn" className ="btn btn-secondary"onClick={remImg}>Remove</button> */}
           </div>
         )}
 

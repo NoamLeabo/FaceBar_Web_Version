@@ -19,7 +19,6 @@ function TextPost({
   Uname,
 }) {
   const [iLiked, setILiked] = useState(usersWhoLiked.includes(Uname));
-  const [clickedLike, setClikedLike] = useState(false);
   const [profPic, setProfPic] = useState(composer.profileImg);
 
   let containerSize = null;
@@ -29,42 +28,38 @@ function TextPost({
     containerSize = { height: { imgHeight } };
   }
   const likebtn = useRef(null);
-  const liked = function () {
+  const liked = async function () {
     if (!iLiked) {
       addLike(1);
-      setClikedLike(true);
-      likePost();
+      setILiked(true);
       likebtn.current.setAttribute("id", "likeBtnDis");
+      await likePost();
     } else {
-      setClikedLike(false);
-      likePost();
       addLike(-1);
+      setILiked(false);
       likebtn.current.setAttribute("id", "likeBtn");
+      await likePost();
     }
   };
   useEffect(() => {
+    console.log(usersWhoLiked);
+    console.log("usersWhoLiked ");
     if (usersWhoLiked.length) {
       if (usersWhoLiked.includes(Uname)) {
         setILiked(true);
         likebtn.current.setAttribute("id", "likeBtnDis");
       }
     }
-  }, [clickedLike]);
+  }, []);
   async function likePost() {
     const data = await fetch(
       "http://localhost:12345/api/users/" + Uname + "/posts/" + id,
       {
         method: "POST",
-        // Remove the Content-Type header
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   authorization: "bearer " + gotToken,
-        // },
       }
     );
   }
-  // console.log(profilePic);
-  // console.log("profile pic");
+
   return (
     <div className="card">
       <div className="card-body ">
@@ -97,7 +92,6 @@ function TextPost({
                   width: "100%",
                   objectFit: "contain",
                 }}
-                // src={img}
                 src={`data:image/jpeg;base64,${img}`}
               />
             </div>

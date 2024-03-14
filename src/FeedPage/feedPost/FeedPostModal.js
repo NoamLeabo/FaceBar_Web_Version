@@ -12,8 +12,6 @@ function FeedPostModal({
   usersWhoLiked,
   likesDisp,
   addLike,
-  remComment,
-  editComments,
   commentList,
   setCommentList,
   Uname,
@@ -21,13 +19,14 @@ function FeedPostModal({
   remPost,
   filterById,
   commentsNum,
-  postAddComment,
+  setReloader,
+  reloader,
 }) {
-  const addComment = (comment) => {
-    setCommentList([...commentList, comment]);
-    postAddComment(id, comment);
-    commentsNum++;
-  };
+  // const addComment = (comment) => {
+  //   setCommentList([...commentList, comment]);
+  //   postAddComment(id, comment);
+  //   commentsNum++;
+  // };
   // const commentListElement = commentList.map((comment, key) => {
   //   return (
   //     <Comment
@@ -64,14 +63,16 @@ function FeedPostModal({
               img={img}
               remPost={remPost}
               inModal={"modal"}
+              setReloader={setReloader}
+              reloader={reloader}
             />
           </div>
           {/* {commentListElement} */}
           <CreateComment
-            addComment={addComment}
+            // addComment={addComment}
             commId={commentsNum}
             Uname={Uname}
-            editComments={editComments}
+            // editComments={editComments}
           />
         </div>
       </div>

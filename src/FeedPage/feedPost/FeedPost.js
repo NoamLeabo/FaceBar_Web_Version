@@ -1,9 +1,7 @@
-import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
 import FeedPostModal from "./FeedPostModal";
 import EditPostModal from "../editPostModal/EditPostModal";
 import TextPost from "./TextPost";
 import { useState, useEffect } from "react";
-import EditComment from "../comments/EditComment";
 import SharePostModal from "../sharePostModal/SharePostModal";
 
 function FeedPost({
@@ -18,12 +16,11 @@ function FeedPost({
   numOfLikes,
   remPost,
   editPost,
-  remComment,
-  editComments,
-  getAll,
   Uname,
   commentsNum,
-  postAddComment,
+  gotToken,
+  // setReloader,
+  // reloader,
 }) {
   function filterById(jsonObject, id) {
     return jsonObject.filter(function (jsonObject) {
@@ -33,7 +30,21 @@ function FeedPost({
 
   const [composer, setComposer] = useState(null);
   const [commentList, setCommentList] = useState(comments);
-
+  async function deletePost(pid) {
+    // await getCurrentTime();
+    const data = await fetch(
+      "http://localhost:12345/api/users/" + composer.username + "/posts/" + pid,
+      {
+        method: "DELETE",
+        // Remove the Content-Type header
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "bearer " + gotToken,
+        },
+      }
+    );
+    remPost(_id);
+  }
   useEffect(() => {
     async function fetchAuthor() {
       const data = await fetch("http://localhost:12345/api/users/" + author);
@@ -61,15 +72,6 @@ function FeedPost({
     }
   };
 
-  async function deletePost() {
-    const data = await fetch("http://localhost:12345/api/posts/" + _id, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  }
-
   if (!composer) {
     return null; // Return null or any other loading indicator while composer is being fetched
   }
@@ -86,8 +88,10 @@ function FeedPost({
         addLike={addLike}
         filterById={filterById}
         img={imageView}
-        remPost={remPost}
+        remPost={deletePost}
         Uname={Uname}
+        // setReloader={setReloader}
+        // reloader={reloader}
       />
       <FeedPostModal
         id={_id}
@@ -101,14 +105,13 @@ function FeedPost({
         addLike={addLike}
         filterById={filterById}
         img={imageView}
-        remComment={remComment}
-        editComments={editComments}
         commentList={comments}
         setCommentList={setCommentList}
         Uname={Uname}
         commentsNum={commentsNum}
-        postAddComment={postAddComment}
-        remPost={remPost}
+        remPost={deletePost}
+        // setReloader={setReloader}
+        // reloader={reloader}
       />
 
       <EditPostModal
@@ -120,7 +123,6 @@ function FeedPost({
         myLikes={likesDisp}
         myImg={imageView}
         myComments={comments}
-        getAll={getAll}
       />
       <SharePostModal />
     </div>

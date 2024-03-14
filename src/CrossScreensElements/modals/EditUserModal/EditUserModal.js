@@ -1,15 +1,13 @@
 import { useRef, useState } from "react";
 import UploadAndDisplayImage from "../uploadAndDisplayImage/UploadAndDisplayImage";
 
-function EditUserModal({ loggedinUser, logOut }) {
-  const [selectedImage, setSelectedImage] = useState(loggedinUser.image);
-  // const [savedImage, setSavedImage] = useState(null);
+function EditUserModal({ loggedinUser, logOut, reloader, setReloader }) {
+  const [selectedImage, setSelectedImage] = useState(loggedinUser.profileImg);
   const addedImg = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      // Extract base64 encoded string and set it as state
       const imageDataURL = reader.result;
       const base64String = imageDataURL.split(",")[1];
       setSelectedImage(base64String);
@@ -44,10 +42,10 @@ function EditUserModal({ loggedinUser, logOut }) {
         }),
       }
     );
+    setReloader(!reloader);
   }
   const newPassword = useRef(null);
   async function deleteUser() {
-    console.log("edditing password to " + newPassword.current.value);
     const data = await fetch(
       "http://localhost:12345/api/users/" + loggedinUser.username,
       {
@@ -59,13 +57,7 @@ function EditUserModal({ loggedinUser, logOut }) {
     );
     logOut();
   }
-  // const search = function () {
-  //   if (Postable()) {
-  //     content.current.className = "btn btn-primary";
-  //   } else {
-  //     content.current.className = "btn btn-primary disabled";
-  //   }
-  // };
+
   return (
     <div
       className="modal fade"
@@ -88,21 +80,38 @@ function EditUserModal({ loggedinUser, logOut }) {
           <div className="modal-body">
             <form>
               <div className="mb-3">
-                <input
-                  type="password"
-                  ref={newPassword}
-                  // onChange={search}
-                  className="form-control"
-                  data-testid="create-post-text-test"
-                  id="create-post-text"
-                  placeholder="Enter a new password"
-                ></input>
+                <div className="row g-3 align-items-center">
+                  <div className="col-auto">
+                    <label htmlFor="inputPassword6" className="col-form-label">
+                      Password
+                    </label>
+                  </div>
+                  <div className="col-auto">
+                    <input
+                      type="password"
+                      id="inputPassword6"
+                      ref={newPassword}
+                      className="form-control"
+                      aria-describedby="passwordHelpInline"
+                      defaultValue={loggedinUser.password || ""}
+                    ></input>
+                  </div>
+                  <div className="col-auto">
+                    <span
+                      id="passwordHelpInline"
+                      className="form-text float-end"
+                    >
+                      Must be at least 8 characters long.
+                    </span>
+                  </div>
+                </div>
               </div>
               <div className="input-group">
                 <UploadAndDisplayImage
                   addedImg={addedImg}
                   selectedImage={selectedImage}
                   setSelectedImage={setSelectedImage}
+                  inEditUser={true}
                 />
               </div>
             </form>

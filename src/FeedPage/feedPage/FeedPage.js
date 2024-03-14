@@ -1,6 +1,5 @@
 import "./FeedPage.css";
 import FeedPost from "../feedPost/FeedPost";
-// import posts from "../feedPost/posts";
 import NavBar from "../navBar/NavBar";
 import CreatePostModal from "../createPostModal/CreatePostModal";
 import SideBar from "../sideBar/SideBar";
@@ -19,32 +18,18 @@ function FeedPage({
   activeUsers,
   gotToken,
   setProfileOwner,
+  reloader,
+  setReloader,
 }) {
   const page = useRef(null);
   const [postList, setPostList] = useState([]);
   const [friendList, setFriendList] = useState([]);
-  async function deletePost(pid) {
-    // await getCurrentTime();
-    const data = await fetch(
-      "http://localhost:12345/api/users/" +
-        loggedinUser.username +
-        "/posts/" +
-        pid,
-      {
-        method: "DELETE",
-        // Remove the Content-Type header
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "bearer " + gotToken,
-        },
-      }
-    );
-  }
+
   async function getAll() {
     const data = await fetch("http://localhost:12345/api/posts", {
       headers: {
         "Content-Type": "application/json",
-        authorization: "bearer " + gotToken, // attach the token
+        authorization: "bearer " + gotToken,
       },
     });
     let posts = await data.json();
@@ -79,7 +64,7 @@ function FeedPage({
       getAll();
       getFriendsList();
     }
-  }, [gotToken]);
+  }, [gotToken, reloader]);
 
   if (!loggedinUser) {
     return <Navigate to="/" />;
@@ -95,22 +80,9 @@ function FeedPage({
   };
   let postNum = 1;
   const addPost = (post) => {
-    // setPostList([post, ...postList]);
     getAll();
   };
   function remPost(id) {
-    // var index = -1;
-    // postList.find(function (item, i) {
-    //   if (item.id === id) {
-    //     index = i;
-    //     return i;
-    //   }
-    // });
-    // postList.splice(index, 1);
-    // setPostList([...postList]);
-    // postNum++;
-    console.log("post id is " + id);
-    deletePost(id);
     getAll();
   }
 
@@ -137,15 +109,6 @@ function FeedPage({
   }
 
   function editPost(id, newItem) {
-    // var index = -1;
-    // postList.find(function (item, i) {
-    //   if (item.id === id) {
-    //     index = i;
-    //     return i;
-    //   }
-    // });
-    // postList.splice(index, 1, newItem);
-    // setPostList([...postList]);
     getAll();
   }
 
@@ -172,18 +135,18 @@ function FeedPage({
   }
 
   function postAddComment(postId, newItem) {
-    // var postIndex = -1;
-    // postList.find(function (item, i) {
-    //   if (item.id === postId) {
-    //     postIndex = i;
-    //     return i;
-    //   }
-    // });
-    // const comments = postList[postIndex].comments;
-    // var index = comments.length;
-    // comments.splice(index, 1, newItem);
-    // postList[postIndex].comments = comments;
-    // setPostList([...postList]);
+    //   var postIndex = -1;
+    //   postList.find(function (item, i) {
+    //     if (item.id === postId) {
+    //       postIndex = i;
+    //       return i;
+    //     }
+    //   });
+    //   const comments = postList[postIndex].comments;
+    //   var index = comments.length;
+    //   comments.splice(index, 1, newItem);
+    //   postList[postIndex].comments = comments;
+    //   setPostList([...postList]);
   }
   let contactList = null;
   if (friendList.length) {
@@ -193,20 +156,18 @@ function FeedPage({
       );
     });
   }
-  // console.log("postlist is " + postList);
   const postListElement = postList.map((post) => {
-    console.log(post);
     return (
       <FeedPost
         {...post}
         remPost={remPost}
         editPost={editPost}
-        remComment={remComment}
-        editComments={editComments}
-        postAddComment={postAddComment}
         key={post._id}
         getAll={getAll}
         Uname={loggedinUser.username}
+        setReloader={setReloader}
+        reloader={reloader}
+        gotToken={gotToken}
       />
     );
   });
@@ -219,6 +180,8 @@ function FeedPage({
         activeUsers={activeUsers}
         setDarkMode={setDarkMode}
         setProfileOwner={setProfileOwner}
+        setReloader={setReloader}
+        reloader={reloader}
       />
       <div className="row">
         <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-2">

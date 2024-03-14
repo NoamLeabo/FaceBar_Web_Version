@@ -20,6 +20,8 @@ function ProfilePage({
   profileOwner,
   setProfileOwner,
   gotToken,
+  setReloader,
+  reloader,
 }) {
   const page = useRef(null);
   const { id } = useParams();
@@ -32,14 +34,15 @@ function ProfilePage({
   const [contacts, setContacts] = useState(null);
   const friendreqbtn = useRef(null);
 
+  let contactList = null;
+  let requestsList = null;
   async function updateLoggedInUser() {
     const data = await fetch(
       "http://localhost:12345/api/users/" + loggedinUser.username
     );
     const user = await data.json();
 
-    console.log("new user updated ");
-    console.log(user);
+
     setLoggedinUser(user);
   }
   async function sendFriendRequest() {
@@ -47,7 +50,6 @@ function ProfilePage({
       "http://localhost:12345/api/users/" + profileOwner.username + "/friends",
       {
         method: "POST",
-        // Remove the Content-Type header
         headers: {
           "Content-Type": "application/json",
           authorization: "bearer " + gotToken,
@@ -60,9 +62,6 @@ function ProfilePage({
     friendreqbtn.current.className = "btn btn-primary btn-lg disabled";
   }
 
-  const Pressable = () => {
-    return !profileOwner.pending.includes(loggedinUser.username);
-  };
   async function foriUsers(list) {
     let array = [];
     for (let i = 0; i < list.length; i++) {
@@ -107,6 +106,7 @@ function ProfilePage({
     setFriendReqList((prevList) =>
       prevList.filter((user) => user.username !== friend)
     );
+    await getFriendsList();
     await updateLoggedInUser();
   }
   async function rejectFriend(friend) {
@@ -122,6 +122,7 @@ function ProfilePage({
     setFriendReqList((prevList) =>
       prevList.filter((user) => user.username !== friend)
     );
+    await getFriendsList();
     await updateLoggedInUser();
   }
   const [profileusername, setProfileusername] = useState(null);
@@ -129,19 +130,10 @@ function ProfilePage({
     if (profileOwner.username === loggedinUser.username) {
       getRequestList();
     } else {
-      // setProfileusername("friend");
     }
     getFriendsList();
-    if (friendreqbtn.current) {
-      if (Pressable()) {
-        friendreqbtn.current.className = "btn btn-primary btn-lg";
-      } else {
-        friendreqbtn.current.className = "btn btn-primary btn-lg disabled";
-      }
-    }
   }, [profileOwner]);
   useEffect(() => {
-    getFriendsList();
     let infriends = false;
     if (friendNameList.length) {
       if (friendNameList.includes(loggedinUser.username)) infriends = true;
@@ -157,6 +149,7 @@ function ProfilePage({
             <CreatePostModal
               addPost={addPost}
               postNum={postNum}
+              profilePic={loggedinUser.profileImg}
               FirstName={loggedinUser.fName}
               LastName={loggedinUser.lName}
               composer={loggedinUser.username}
@@ -177,9 +170,7 @@ function ProfilePage({
           </div>
         </div>
       );
-      // getRequestList();
     } else {
-      // setProfileusername("friend");
       setContacts(null);
       setCreatePoseElement(null);
       setFriendReqBtn(
@@ -202,11 +193,18 @@ function ProfilePage({
         </button>
       );
     }
-    // getFriendsList();
+    if (friendreqbtn.current) {
+
+      if (profileOwner.pending.includes(loggedinUser.username)) {
+        friendreqbtn.current.className = "btn btn-primary btn-lg disabled";
+      } else {
+        friendreqbtn.current.className = "btn btn-primary btn-lg";
+      }
+    }
   }, [profileOwner, friendList, friendReqList]);
 
   const [postList, setPostList] = useState([]);
-  async function getUsersPosts(friend) {
+  async function getUsersPosts() {
     let data = await fetch(
       "http://localhost:12345/api/users/" + profileOwner.username + "/posts"
     );
@@ -266,16 +264,7 @@ function ProfilePage({
     setter(comments);
   }
   function editPost(id, newItem) {
-    var index = -1;
-    postList.find(function (item, i) {
-      if (item.id === id) {
-        index = i;
-        return i;
-      }
-    });
-
-    postList.splice(index, 1, newItem);
-    setPostList([...postList]);
+    getUsersPosts();
   }
   function editComments(postId, commentId, newItem, setter) {
     var postIndex = -1;
@@ -316,9 +305,6 @@ function ProfilePage({
     postList[postIndex].comments = comments;
     setPostList([...postList]);
   }
-
-  let contactList = null;
-  let requestsList = null;
 
   if (friendList.length || friendReqList.length) {
     contactList = friendList.map((user, key) => {
@@ -376,7 +362,9 @@ function ProfilePage({
           postAddComment={postAddComment}
           key={post._id}
           Uname={loggedinUser.username}
-          // commentsNum={post.comments.length}
+          setReloader={setReloader}
+          reloader={reloader}
+          gotToken={gotToken}
         />
       );
     }
@@ -389,6 +377,8 @@ function ProfilePage({
         activeUsers={activeUsers}
         setDarkMode={setDarkMode}
         setProfileOwner={setProfileOwner}
+        setReloader={setReloader}
+        reloader={reloader}
       />
       <div className="row profileInfoRow">
         <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-2"></div>

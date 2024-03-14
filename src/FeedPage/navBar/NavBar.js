@@ -9,6 +9,8 @@ function NavBar({
   setLoggedinUser,
   setDarkMode,
   setProfileOwner,
+  reloader,
+  setReloader,
 }) {
   const navigate = useNavigate();
 
@@ -33,7 +35,12 @@ function NavBar({
       className="navbar navbar-expand-md bg-body-tertiary fixed-top nav-justified justify-content-between navbar-light bg-light"
       id="navbar"
     >
-      <EditUserModal loggedinUser={loggedinUser} logOut={logOut} />
+      <EditUserModal
+        loggedinUser={loggedinUser}
+        logOut={logOut}
+        setReloader={setReloader}
+        reloader={reloader}
+      />
       <div className="container-fluid" id="navbarcontainer">
         <a className="navbar-brand" href="#">
           <i

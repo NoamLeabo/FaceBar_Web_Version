@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useRef } from "react";
 import "./UploadAndDisplayImage.css";
-function UploadAndDisplayImage({ addedImg, selectedImage, setSelectedImage }) {
+function UploadAndDisplayImage({
+  addedImg,
+  selectedImage,
+  setSelectedImage,
+  inEditUser,
+}) {
   const fileInput = useRef(null);
 
   const remImg = () => {
@@ -19,13 +24,15 @@ function UploadAndDisplayImage({ addedImg, selectedImage, setSelectedImage }) {
             width={"250px"}
             src={`data:image/jpeg;base64,${selectedImage}`}
           />
-          <button
-            id="removeImgBtn"
-            className="btn btn-secondary"
-            onClick={remImg}
-          >
-            Remove
-          </button>
+          {!inEditUser && (
+            <button
+              id="removeImgBtn"
+              className="btn btn-secondary"
+              onClick={remImg}
+            >
+              Remove
+            </button>
+          )}
         </div>
       )}
       <input

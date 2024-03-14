@@ -12,7 +12,6 @@ function EditPostModal({
   myLikes,
   myImg,
   myComments,
-  getAll,
 }) {
   const [selectedImage, setSelectedImage] = useState(null);
   useEffect(() => {
@@ -25,7 +24,6 @@ function EditPostModal({
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      // Extract base64 encoded string and set it as state
       const imageDataURL = reader.result;
       const base64String = imageDataURL.split(",")[1];
       setSelectedImage(base64String);
@@ -64,45 +62,50 @@ function EditPostModal({
     myTime = "now";
   }
 
-  const postSetter = function () {
-    // const post = {
-    //   id: myId,
-    //   composer: myComposer,
-    //   time: myTime,
-    //   text: postText.current.value,
-    //   img: selectedImage,
-    //   likes: myLikes,
-    //   comments: myComments,
-    // };
-    // editPost(myId, post);
-    update();
+  const postSetter = async function () {
+    await update();
     editPost();
     postText.current.value = "";
   };
-  ///////////////////////////////////////////////////////////////////
   async function update() {
-    console.log("my id is" + myId);
-    const data = await fetch(
-      "http://localhost:12345/api/users/" +
-        myComposer.username +
-        "/posts/" +
-        myId,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          content: postText.current.value,
-          published: myTime,
-          imageView: selectedImage,
-        }),
-      }
-    );
-    // posts = await data.json();
-    // console.log(posts);
+    if (selectedImage) {
+      const data = await fetch(
+        "http://localhost:12345/api/users/" +
+          myComposer.username +
+          "/posts/" +
+          myId,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content: postText.current.value,
+            published: myTime,
+            imageView: selectedImage,
+          }),
+        }
+      );
+    } else {
+      const data = await fetch(
+        "http://localhost:12345/api/users/" +
+          myComposer.username +
+          "/posts/" +
+          myId,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content: postText.current.value,
+            published: myTime,
+          }),
+        }
+      );
+    }
+
   }
-  /////////////////////////////////////////////////////////
   return (
     <div
       className="modal fade"
