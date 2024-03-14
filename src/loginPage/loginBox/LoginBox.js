@@ -43,8 +43,9 @@ function LoginBox({ activeUsers, SetLoggedUser, setToken }) {
       },
       body: JSON.stringify(data), // The actual data (username/password)
     });
-    if (res.status != 201) alert("Invalid username and/or password");
-    else {
+    if (res.status != 201) {
+      alert("Invalid username and/or password");
+    } else {
       const token = await res.json();
       setToken(token);
       await SetLoggedUser(uName.current);
