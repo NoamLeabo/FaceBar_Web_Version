@@ -73,6 +73,7 @@ Adding a comment is pretty intuitive - click on the text area, write your though
 <img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/93cb4d10-efc1-48a0-90e6-b6a3538c3460">
 
 Notice that you can't post a comment without any text, because saying nothing isn't saying much.
+You can also edit and delete your comments.
 
 <img src="https://github.com/gideonn12/Foobar_p2_web/assets/30007559/314be8c8-225d-48b4-89e7-8c39505e7b1e">
 
