@@ -1,7 +1,7 @@
 # Foobar_p2_web
 The new Facebar is here, with tons of new features!
 
-The new profilepage lets you see all of your friend’s posts and even their friends! You can send a friend request to any user through their profilepage, and accept / reject a friend request through your page.
+The new profilepage lets you see all of your friend’s posts and even their friends! You can send a friend request to any user through their profilepage, and accept / reject a friend request through your page (The friend is added only if the receiving user accepted).
 
 *My profile page*
 ![צילום מסך 2024-04-11 224939](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/65621df9-79bf-4e65-9ea1-48fe5b82630b)
@@ -15,6 +15,7 @@ The users page lets you see every user on Facebar so you can find your friends o
 You can edit your information or delete your user entirely if you feel like it. Access this window by clicking on your prifilepicture on the top right side of the screen.
 ![צילום מסך 2024-04-11 225010](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/c73f1d50-75fd-444f-87b5-302c19e7f981)
 
+The feed page now displayes all of your friends posts and 5 posts of non-friend users.
 
 Comments have been disabled in the current update.
 
