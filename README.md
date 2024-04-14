@@ -1,7 +1,8 @@
 # Foobar_p2_web
 The new Facebar is here, with tons of new features!
 
-The new profilepage lets you see all of your friend’s posts and even their friends! You can send a friend request to any user through their profilepage, and accept / reject a friend request through your page (The friend is added only if the receiving user accepted). you can access a profilepage by cliking on the contact card of the user in your contacts area.
+The new profilepage lets you see all of your friend’s posts and even their friends! You can send a friend request to any user through their profilepage, and accept / reject a friend request through your page (The friend is added only if the receiving user accepted).
+You can access a profilepage by cliking on the contact card of the user in your contacts area.
 
 *My profile page*
 ![צילום מסך 2024-04-11 224939](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/65621df9-79bf-4e65-9ea1-48fe5b82630b)
