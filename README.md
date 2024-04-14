@@ -12,6 +12,7 @@ You can access a profilepage by cliking on the contact card of the user in your 
 
 
 The users page lets you see every user on Facebar so you can find your friends or make new ones. access it by clicking on the second button to the left in the bar (right next to the home screen button). 
+
 Access any profilepage by clicking on a users card. 
 ![צילום מסך 2024-04-11 224443](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/c8e16d4f-9991-48a0-8317-33a9156d8027)
 
