@@ -11,10 +11,12 @@ You can access a profilepage by cliking on the contact card of the user in your 
 ![צילום מסך 2024-04-11 224605](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/f698739e-2471-44af-82e0-7f97d724b1a9)
 
 
-The users page lets you see every user on Facebar so you can find your friends or make new ones. access it by clicking on the second button to the left in the bar (right next to the home screen button). 
+The users page lets you see every user on Facebar so you can find your friends or make new ones. access it by clicking on the second button to the left in the bar (1). 
+![צילום מסך 2024-04-11 224443](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/2796306f-1b70-4adb-942d-f97b283f51ab)
 
 Access any profilepage by clicking on a users card. 
-![צילום מסך 2024-04-11 224443](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/c8e16d4f-9991-48a0-8317-33a9156d8027)
+
+You can return to your feed page by clicking the home icon in the navbar (2).
 
 You can edit your information or delete your user entirely if you feel like it. Access this window by clicking on your prifilepicture on the top right side of the screen.
 ![צילום מסך 2024-04-11 225010](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/c73f1d50-75fd-444f-87b5-302c19e7f981)
