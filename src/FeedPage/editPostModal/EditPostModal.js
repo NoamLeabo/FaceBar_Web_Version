@@ -2,6 +2,7 @@ import { useRef } from "react";
 import UploadAndDisplayImage from "../../CrossScreensElements/modals/uploadAndDisplayImage/UploadAndDisplayImage";
 import { useState } from "react";
 import { useEffect } from "react";
+import PostAlert from "../../CrossScreensElements/alerts/PostAlert/PostAlert";
 
 function EditPostModal({
   editPost,
@@ -15,6 +16,8 @@ function EditPostModal({
   gotToken,
 }) {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [shouldHide, setShouldHide] = useState(false);
+
   useEffect(() => {
     if (myImg != null) {
       setSelectedImage(myImg);
@@ -47,6 +50,8 @@ function EditPostModal({
     }
   };
   const postText = useRef(null);
+  const closeModal = useRef(null);
+
   const search = function () {
     if (Postable()) {
       content.current.className = "btn btn-primary";
@@ -65,13 +70,14 @@ function EditPostModal({
   }
 
   const postSetter = async function () {
-    await update();
     editPost();
-    // postText.current.value = "";
+    closeModal.current.click();
+    setShouldHide(false);
   };
   async function update() {
+    let data;
     if (selectedImage) {
-      const data = await fetch(
+      data = await fetch(
         "http://localhost:12345/api/users/" +
           myComposer.username +
           "/posts/" +
@@ -90,7 +96,7 @@ function EditPostModal({
         }
       );
     } else {
-      const data = await fetch(
+      data = await fetch(
         "http://localhost:12345/api/users/" +
           myComposer.username +
           "/posts/" +
@@ -107,6 +113,14 @@ function EditPostModal({
           }),
         }
       );
+    }
+    if (!data) {
+      return;
+    }
+    if (data.status == 403) {
+      setShouldHide(true);
+    } else {
+      postSetter();
     }
   }
   return (
@@ -128,9 +142,16 @@ function EditPostModal({
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              ref={closeModal}
             ></button>
           </div>
           <div className="modal-body">
+            {shouldHide && (
+              <PostAlert
+                shouldHide={shouldHide}
+                setShouldHide={setShouldHide}
+              />
+            )}
             <form>
               <div className="mb-3">
                 <textarea
@@ -156,9 +177,9 @@ function EditPostModal({
               type="button"
               ref={content}
               className="btn btn-primary disabled"
-              data-bs-dismiss="modal"
+              // data-bs-dismiss="modal"
               aria-label="Close"
-              onClick={postSetter}
+              onClick={update}
               style={{ marginBottom: "12px" }}
             >
               Post

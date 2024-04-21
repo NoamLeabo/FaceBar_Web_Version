@@ -53,6 +53,7 @@ function CreatePostModal({
   };
   const content = useRef(null);
   const modal = useRef(null);
+  const closeModal = useRef(null);
 
   String.prototype.trim = function () {
     return this.replace(/^\s+|\s+$/g, "");
@@ -64,9 +65,7 @@ function CreatePostModal({
       return true;
     }
   };
-  const alertshow = function () {
-    setShouldHide(true);
-  };
+ 
   const postText = useRef(null);
   const search = function () {
     if (Postable()) {
@@ -88,8 +87,8 @@ function CreatePostModal({
       comments: new Array(),
       usersWhoLiked: [],
     };
-    // create();
-    modal.hide();
+    closeModal.current.click();
+    setShouldHide(false);
     addPost(post);
     postText.current.value = "";
     setSelectedImage(null);
@@ -142,6 +141,9 @@ function CreatePostModal({
         }
       );
     }
+    if (!data) {
+      return;
+    }
     if (data.status == 403) {
       setShouldHide(true);
     } else {
@@ -157,6 +159,7 @@ function CreatePostModal({
       aria-labelledby="createPostModalID"
       aria-hidden="true"
       ref={modal}
+      isOpen={false}
     >
       <div className="modal-dialog">
         <div className="modal-content">
@@ -169,6 +172,7 @@ function CreatePostModal({
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              ref={closeModal}
             ></button>
           </div>
           <div className="modal-body">
@@ -210,17 +214,6 @@ function CreatePostModal({
               style={{ marginBottom: "12px" }}
             >
               Post
-            </button>
-            <button
-              type="button"
-              // ref={content}
-              className="btn btn-primary "
-              // data-bs-dismiss="modal"
-              aria-label="Close"
-              onClick={alertshow}
-              style={{ marginBottom: "12px" }}
-            >
-              Alert
             </button>
           </div>
         </div>
