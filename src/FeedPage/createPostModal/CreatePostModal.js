@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import UploadAndDisplayImage from "../../CrossScreensElements/modals/uploadAndDisplayImage/UploadAndDisplayImage";
+import PostAlert from "../../CrossScreensElements/alerts/PostAlert/PostAlert";
 
 function CreatePostModal({
   addPost,
@@ -10,6 +11,7 @@ function CreatePostModal({
   loggedinUser,
 }) {
   const [date, setDate] = useState(getCurrentTime());
+  const [shouldHide, setShouldHide] = useState(false);
   function getCurrentTime() {
     let now = new Date();
     let hourOfDay = now.getHours();
@@ -50,6 +52,7 @@ function CreatePostModal({
     }
   };
   const content = useRef(null);
+  const modal = useRef(null);
 
   String.prototype.trim = function () {
     return this.replace(/^\s+|\s+$/g, "");
@@ -60,6 +63,9 @@ function CreatePostModal({
     } else {
       return true;
     }
+  };
+  const alertshow = function () {
+    setShouldHide(true);
   };
   const postText = useRef(null);
   const search = function () {
@@ -82,7 +88,8 @@ function CreatePostModal({
       comments: new Array(),
       usersWhoLiked: [],
     };
-    create();
+    // create();
+    modal.hide();
     addPost(post);
     postText.current.value = "";
     setSelectedImage(null);
@@ -90,8 +97,6 @@ function CreatePostModal({
   };
   //////////////////////////////////////////////////////////////////////////////////////////////////
   async function create() {
-    // await getCurrentTime();
-    console.log("date is" + date);
     let data;
     if (selectedImage) {
       data = await fetch(
@@ -137,8 +142,11 @@ function CreatePostModal({
         }
       );
     }
-    const posts = await data.json();
-    console.log(posts);
+    if (data.status == 403) {
+      setShouldHide(true);
+    } else {
+      postSetter();
+    }
   }
   /////////////////////////////////////////////////////////////////////////////////////////////////
   return (
@@ -146,13 +154,14 @@ function CreatePostModal({
       className="modal fade"
       id="create-post"
       tabIndex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="createPostModalID"
       aria-hidden="true"
+      ref={modal}
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="exampleModalLabel">
+            <h1 className="modal-title fs-5" id="createPostModalID">
               Create post
             </h1>
             <button
@@ -163,6 +172,13 @@ function CreatePostModal({
             ></button>
           </div>
           <div className="modal-body">
+            {shouldHide && (
+              <PostAlert
+                shouldHide={shouldHide}
+                setShouldHide={setShouldHide}
+              />
+            )}
+
             <form>
               <div className="mb-3">
                 <textarea
@@ -188,12 +204,23 @@ function CreatePostModal({
               type="button"
               ref={content}
               className="btn btn-primary disabled"
-              data-bs-dismiss="modal"
+              // data-bs-dismiss="modal"
               aria-label="Close"
-              onClick={postSetter}
+              onClick={create}
               style={{ marginBottom: "12px" }}
             >
               Post
+            </button>
+            <button
+              type="button"
+              // ref={content}
+              className="btn btn-primary "
+              // data-bs-dismiss="modal"
+              aria-label="Close"
+              onClick={alertshow}
+              style={{ marginBottom: "12px" }}
+            >
+              Alert
             </button>
           </div>
         </div>
