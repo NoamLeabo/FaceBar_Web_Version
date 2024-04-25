@@ -19,6 +19,7 @@ function FeedPost({
   Uname,
   commentsNum,
   gotToken,
+  setProfileOwner
   // setReloader,
   // reloader,
 }) {
@@ -29,7 +30,7 @@ function FeedPost({
   }
 
   const [composer, setComposer] = useState(null);
-  const [commentList, setCommentList] = useState(comments);
+  const [commentList, setCommentList] = useState([]);
   async function deletePost(pid) {
     // await getCurrentTime();
     const data = await fetch(
@@ -96,6 +97,7 @@ function FeedPost({
         remPost={deletePost}
         Uname={Uname}
         gotToken={gotToken}
+        setProfileOwner={setProfileOwner}
         // setReloader={setReloader}
         // reloader={reloader}
       />
@@ -111,12 +113,13 @@ function FeedPost({
         addLike={addLike}
         filterById={filterById}
         img={imageView}
-        commentList={comments}
+        commentList={commentList}
         setCommentList={setCommentList}
         Uname={Uname}
         commentsNum={commentsNum}
         remPost={deletePost}
         gotToken={gotToken}
+        setProfileOwner={setProfileOwner}
         // setReloader={setReloader}
         // reloader={reloader}
       />

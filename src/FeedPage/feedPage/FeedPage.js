@@ -173,6 +173,7 @@ function FeedPage({
         setReloader={setReloader}
         reloader={reloader}
         gotToken={gotToken}
+        setProfileOwner ={setProfileOwner}
       />
     );
   });

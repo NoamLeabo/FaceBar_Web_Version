@@ -72,7 +72,7 @@ function UsersPage({
     usersList = userList.map((user, key) => {
       return (
         <div className="card userCard" key={key}>
-          <div className="card-body ">
+          <div className="card-body users-list">
             <Contact user={user} setProfileOwner={setProfileOwner} />
           </div>
         </div>

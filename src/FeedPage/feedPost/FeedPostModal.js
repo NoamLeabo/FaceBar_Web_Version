@@ -22,24 +22,25 @@ function FeedPostModal({
   setReloader,
   reloader,
   gotToken,
+  setProfileOwner,
 }) {
-  // const addComment = (comment) => {
-  //   setCommentList([...commentList, comment]);
-  //   postAddComment(id, comment);
-  //   commentsNum++;
-  // };
-  // const commentListElement = commentList.map((comment, key) => {
-  //   return (
-  //     <Comment
-  //       {...comment}
-  //       key={key}
-  //       remComment={remComment}
-  //       editComments={editComments}
-  //       postId={id}
-  //       setCommentList={setCommentList}
-  //     />
-  //   );
-  // });
+  const addComment = (comment) => {
+    setCommentList([...commentList, comment]);
+    // postAddComment(id, comment);
+    commentsNum++;
+  };
+  const commentListElement = commentList.map((comment, key) => {
+    return (
+      <Comment
+        {...comment}
+        key={key}
+        // remComment={remComment}
+        // editComments={editComments}
+        postId={id}
+        setCommentList={setCommentList}
+      />
+    );
+  });
   return (
     <div
       className="modal fade post-modal"
@@ -67,11 +68,12 @@ function FeedPostModal({
               setReloader={setReloader}
               reloader={reloader}
               gotToken={gotToken}
+              setProfileOwner={setProfileOwner}
             />
           </div>
-          {/* {commentListElement} */}
+          {commentListElement}
           <CreateComment
-            // addComment={addComment}
+            addComment={addComment}
             commId={commentsNum}
             Uname={Uname}
             // editComments={editComments}

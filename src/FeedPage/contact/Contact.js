@@ -10,12 +10,9 @@ function Contact({ user, setProfileOwner }) {
   };
   return (
     <a
-      // data-bs-toggle="modal"
-      // data-bs-target="#notAvail"
       onClick={profPage}
-      // data-bs-toggle="dropdown"
-      // aria-expanded="false"
       className="list-group-item list-group-item-action"
+      type="button"
       style={{ width: "6cm" }}
     >
       <img

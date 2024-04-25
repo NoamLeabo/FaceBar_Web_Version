@@ -1,5 +1,5 @@
 import { useRef } from "react";
-function CreateComment({ commId, Uname }) {
+function CreateComment({ commId, Uname, addComment }) {
   const content = useRef(null);
 
   String.prototype.trim = function () {
@@ -22,16 +22,16 @@ function CreateComment({ commId, Uname }) {
         "btn btn-outline-secondary disabled post-comment-class";
     }
   };
-  // const commSetter = function () {
-  //   const comment = {
-  //     commentAuthor: Uname,
-  //     commentText: commText.current.value,
-  //     commentId: commId,
-  //   };
-  //   addComment(comment);
-  //   commText.current.value = "";
-  //   content.current.className = "btn btn-outline-secondary disabled";
-  // };
+  const commSetter = function () {
+    const comment = {
+      commentAuthor: Uname,
+      commentText: commText.current.value,
+      commentId: commId,
+    };
+    addComment(comment);
+    commText.current.value = "";
+    content.current.className = "btn btn-outline-secondary disabled";
+  };
   return (
     <>
       <form>
@@ -48,7 +48,7 @@ function CreateComment({ commId, Uname }) {
         <button
           ref={content}
           className="btn btn-outline-secondary disabled post-comment-class"
-          // onClick={commSetter}
+          onClick={commSetter}
           style={{ marginBottom: "12px" }}
         >
           <i className="bi bi-send-fill" fill="currentColor"></i>

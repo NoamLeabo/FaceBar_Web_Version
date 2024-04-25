@@ -63,10 +63,11 @@ function NavBar({
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <li className="nav-item nav-icon" style={{ padding: "10px" }}>
+          <li className="nav-item nav-icon" >
             <a
               className="nav-link active"
               aria-current="page"
+              role="button"
               onClick={navHome}
             >
               <i className="bi bi-house-door"></i>
@@ -76,6 +77,7 @@ function NavBar({
             <a
               className="nav-link active"
               aria-current="page"
+              role="button"
               onClick={navallUsers}
             >
               <i className="bi bi-people-fill"></i>

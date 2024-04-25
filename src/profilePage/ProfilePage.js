@@ -267,7 +267,7 @@ function ProfilePage({
     // setPostList([...postList]);
     // postNum++;
     getUsersPosts();
-  }
+  }
 
   function remComment(postId, commentId, setter) {
     var postIndex = -1;
@@ -393,6 +393,7 @@ function ProfilePage({
           setReloader={setReloader}
           reloader={reloader}
           gotToken={gotToken}
+          setProfileOwner={setProfileOwner}
         />
       );
     }

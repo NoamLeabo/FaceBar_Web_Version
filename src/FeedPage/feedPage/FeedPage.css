@@ -20,8 +20,14 @@ body{
   font-size:35px;
   padding-left: 15px;
 }
+.modal{
+  z-index: 100000;
+}
+#editUserModal{
+  z-index: 2000;
+}
 #navbar{
-  z-index: 9999;
+  z-index: 1;
   /* position:relative; */
 
 }

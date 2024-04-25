@@ -2,6 +2,7 @@ import "./Posts.css";
 import PostSettingBtn from "../../CrossScreensElements/btn/PostSettingBtn";
 import ImgBtn from "../../CrossScreensElements/btn/ImgBtn";
 import { useEffect, useRef, useState } from "react";
+import Contact from "../contact/Contact";
 
 function TextPost({
   id,
@@ -18,6 +19,7 @@ function TextPost({
   inModal,
   Uname,
   gotToken,
+  setProfileOwner,
 }) {
   const [iLiked, setILiked] = useState(usersWhoLiked.includes(Uname));
   const [profPic, setProfPic] = useState(composer.profileImg);
@@ -72,13 +74,14 @@ function TextPost({
         )}
 
         <h5 className="card-title">
-          <img
+          {/* <img
             src={`data:image/jpeg;base64,${profPic}`}
             className="ProfPic rounded-circle img-cover ratio ratio-1x1 overflow-hidden"
             width={"100px"}
             alt=""
           />
-          {composer.fName} {composer.lName}
+          {composer.fName} {composer.lName} */}
+          <Contact user={composer} setProfileOwner={setProfileOwner} />
         </h5>
         <p className="card-text">
           <small className="text-body-secondary">Last updated {time}</small>
