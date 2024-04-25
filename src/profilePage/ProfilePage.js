@@ -194,6 +194,7 @@ function ProfilePage({
     } else {
       setContacts(null);
       setCreatePoseElement(null);
+      setPostList([]);
       setFriendReqBtn(
         <button
           type="button"
@@ -270,26 +271,25 @@ function ProfilePage({
   }
 
   function remComment(postId, commentId, setter) {
-    var postIndex = -1;
-    postList.find(function (item, i) {
-      if (item.id === postId) {
-        postIndex = i;
-        return i;
-      }
-    });
-
-    const comments = postList[postIndex].comments;
-    var index = -1;
-    comments.find(function (item, i) {
-      if (item.commentId === commentId) {
-        index = i;
-        return i;
-      }
-    });
-    comments.splice(index, 1);
-    postList[postIndex].comments = comments;
-    setPostList([...postList]);
-    setter(comments);
+    // var postIndex = -1;
+    // postList.find(function (item, i) {
+    //   if (item.id === postId) {
+    //     postIndex = i;
+    //     return i;
+    //   }
+    // });
+    // const comments = postList[postIndex].comments;
+    // var index = -1;
+    // comments.find(function (item, i) {
+    //   if (item.commentId === commentId) {
+    //     index = i;
+    //     return i;
+    //   }
+    // });
+    // comments.splice(index, 1);
+    // postList[postIndex].comments = comments;
+    // setPostList([...postList]);
+    // setter(comments);
   }
   function editPost(id, newItem) {
     getUsersPosts();
@@ -385,9 +385,9 @@ function ProfilePage({
           {...post}
           remPost={remPost}
           editPost={editPost}
-          remComment={remComment}
-          editComments={editComments}
-          postAddComment={postAddComment}
+          // remComment={remComment}
+          // editComments={editComments}
+          // postAddComment={postAddComment}
           key={post._id}
           Uname={loggedinUser.username}
           setReloader={setReloader}
