@@ -18,12 +18,13 @@ Access any profilepage by clicking on a users card.
 
 You can return to your feed page by clicking the home icon in the navbar (2).
 
-You can edit your information or delete your user entirely if you feel like it. Access this window by clicking on your prifilepicture on the top right side of the screen.
+You can edit your information or delete your user entirely if you feel like it. Access this window by clicking on your profile picture on the top right side of the screen.
 ![צילום מסך 2024-04-11 225010](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/c73f1d50-75fd-444f-87b5-302c19e7f981)
+
 
 The feed page now displayes all of your friends posts and 5 posts of non-friend users. Notice that you can only edit or delete your posts.
 
-Comments have been disabled in the current update.
+Comments have been disabled in the current update (As they are a bonus), but they are added bback in the next update.
 
 Work flow:
 
