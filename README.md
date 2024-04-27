@@ -23,13 +23,12 @@ You can return to your feed page by clicking the home icon in the navbar (2).
 - **Clicking on the "Edit User" (5) button** Opens a window in which you can change your profile picture (8) or your password (7). Save the changes by clicking the "Save Changes" (9) button. You can also delete your user entirely through this window by clicking the "Delete User" (10) button.
 ![צילום מסך 2024-04-26 173600](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/f949e1e2-e9ed-4107-a04f-6480252bd022)
 
+![צילום מסך 2024-04-11 225010](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/c73f1d50-75fd-444f-87b5-302c19e7f981)
 
 ![צילום מסך 2024-04-27 151346](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/db835349-43bd-4c1e-8a72-a5f6f795ff24)
 
 - **Clicking on the "Profile Page" (4) button** Sends you to your profile page where you can create new posts, look at your old posts and manage your friends.
 
-You can edit your information or delete your user entirely if you feel like it. Access this window by clicking on your profile picture on the top right side of the screen.
-![צילום מסך 2024-04-11 225010](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/c73f1d50-75fd-444f-87b5-302c19e7f981)
 
 
 The feed page now displayes all of your friends posts and 5 posts of non-friend users. Notice that you can only edit or delete your posts.
