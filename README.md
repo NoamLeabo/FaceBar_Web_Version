@@ -21,7 +21,13 @@ You can return to your feed page by clicking the home icon in the navbar (2).
 - **Clicking on your profile picture (3)**, open a menu featuring the "Logout" (6) button, the "Edit User" (5) button and the "Profile Page" (4) button. 
 - **Clicking on the "Logout" (6) button** Logs you out so you can keep your account safe or log in to another account.
 - **Clicking on the "Edit User" (5) button** Opens a window in which you can change your profile picture (8) or your password (7). Save the changes by clicking the "Save Changes" (9) button. You can also delete your user entirely through this window by clicking the "Delete User" (10) button.
+![צילום מסך 2024-04-26 173600](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/f949e1e2-e9ed-4107-a04f-6480252bd022)
+
+![צילום מסך 2024-04-27 151346](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/8efe4e05-8de3-48d0-bed8-342e0dd6b3d8)
+
+  
 ![צילום מסך 2024-04-27 151346](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/9f162d22-6a7b-43bd-a4a4-99e675fc612e)
+
 ![צילום מסך 2024-04-26 173600](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/ba4a30ac-908a-4c96-92cf-6406ebb9fabc)
 
 ![צילום מסך 2024-04-27 151346](https://github.com/gideonn12/Foobar_p2_web/assets/30007559/db835349-43bd-4c1e-8a72-a5f6f795ff24)
