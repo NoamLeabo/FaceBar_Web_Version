@@ -33,7 +33,7 @@ You can return to your feed page by clicking the home icon in the navbar (2).
 
 The feed page now displayes all of your friends posts and 5 posts of non-friend users. Notice that you can only edit or delete your posts.
 
-Comments have been disabled in the current update (As they are a bonus), but they are added bback in the next update.
+Comments have been disabled in the current update (As they are a bonus), but they are added back in the next update.
 
 Work flow:
 
